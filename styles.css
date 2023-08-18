@@ -1,0 +1,107 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    overflow: hidden;
+}
+
+
+
+#background-video{
+    margin: 0px;
+    width: 100%;
+    right:0;
+    bottom:0;
+    position: absolute;
+}
+
+.tpbg{
+    width: 300px;
+    height: 500px;
+    margin-left: 40%;
+    top: 5rem;
+    flex-shrink: 0;
+    background-color: #FFF;
+    opacity: 0.25;
+    position: relative;
+    z-index: 1;
+    border-radius: 1.5rem;
+}
+
+h1{
+    color: gray;
+    text-align: center;
+    padding-top: 2.5rem;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+input{
+    width: 85%;
+}
+.nameinput{
+    margin-left: 2.5rem;
+    margin-top: 1.5rem;
+}
+
+#sbmitbtn{
+    width: 80%;
+    margin-left: 2rem;
+    margin-top: 1.5rem;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+@media (min-aspect-ratio:16/9){
+    #background-video{
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+@media (max-aspect-ratio:16/9){
+    #background-video{
+        width: auto;
+        height: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .tpbg{
+        width: 240px;
+        height: 400px;
+        margin-left: 20%;
+        margin-right: 20%;
+        top: 5rem;
+        background-color: #FFF;
+        opacity: 0.25;
+        position: relative;
+        z-index: 1;
+        border-radius: 1.5rem;
+    }
+    h1{
+        font-size: 1rem;
+    }
+    input{
+        width: 85%;
+    }
+    .nameinput{
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 1rem;
+    }
+    #sbmitbtn{
+        width: 75%;
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+  }
