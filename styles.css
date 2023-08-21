@@ -103,6 +103,9 @@ input{
         width: 100%;
         height: auto;
     }
+    .form{
+        margin-left: 2rem;
+    }
 
 }
 
@@ -110,6 +113,9 @@ input{
     #background-video{
         width: auto;
         height: 100%;
+    }
+    .form{
+        margin-left: 2rem;
     }
 
 }
