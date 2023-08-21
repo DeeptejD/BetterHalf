@@ -144,3 +144,7 @@ input{
         margin-top: 1rem;
     }
   }
+
+#sbmitbtn:hover{
+    border: thin solid white;
+}
