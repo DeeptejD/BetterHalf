@@ -19,28 +19,28 @@
 
                 <div class="form">
                     <h1 class="deez">Create an account</h1>
-                    <form action="">
+                    <form action="connection.php" method="POST">
                         <div class="nameinput">
-                                Name
+                            Name
                             <br>
-                            <input type="text" placeholder="Enter Your Name">
+                            <input type="text" placeholder="Enter Your Name" name="username">
                         </div>
                         <div class="nameinput">
                             Email Address
                         <br>
-                        <input type="email" placeholder="Enter You Email Id">
+                        <input type="email" placeholder="Enter You Email Id" name="email">
                         </div>
                         <div class="nameinput">
                             Password
                         <br>
-                        <input id="pass" type="password" placeholder="Enter You Password">
+                        <input id="pass" type="password" placeholder="Enter You Password" name="password">
                         </div>
                         <div class="nameinput">
                             Confirm Password
                         <br>
                         <input id="cnfrm-pass" type="password" placeholder="Enter You Password">
                         </div>
-                        <input id="sbmitbtn" type="button" value="Submit">
+                        <input id="sbmitbtn" type="button" value="Submit" name="submit">
                     </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             <script src="index.js" async defer></script>

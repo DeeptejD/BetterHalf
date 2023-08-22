@@ -72,9 +72,9 @@ input{
     width: 85%;
     height: 2rem;
     background: transparent;
-    border: thin solid white;
+    border: thin solid rgb(255, 255, 255);
     border-radius: 0.25rem;
-    color: #FFF;
+    color: #ffffff;
     font-weight: 250;
     text-align: left;
     padding-left: 0.5rem;
