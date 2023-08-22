@@ -12,6 +12,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 html{
     overflow: hidden;
 }
+
+
+
 #background-video{
     margin: 0px;
     width: 100%;
@@ -36,19 +39,13 @@ html{
 } */
 
 h3{
-    color: lightgray;
+    color: white;
     text-align: center;
     padding-top: 2.5rem;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
 }
-
-.link{
-    position: relative;
-    z-index: 2;
-    background-color: red;
-}
-
 
 h1{
     color: white;
@@ -59,21 +56,16 @@ h1{
     font-family: 'Poppins', sans-serif;
     /* text-shadow: 1px 1px black; */
 }
-.form{
+.form{  
     position: relative;
     z-index: 2;
     background: rgba(256, 256, 256, 0.25);
     color: white;
     width: 300px;
-    height: 500px;
+    height: 400px;
     margin-left: 40%;
     top: 5rem;
     border-radius: 1.5rem;
-}
-
-a{
-    color: white;
-    text-decoration: none;
 }
 
 .link{
@@ -84,13 +76,18 @@ a{
     background: rgba(256, 256, 256, 0.25);
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
 input{
     width: 85%;
     height: 2rem;
     background: transparent;
-    border: thin solid rgb(255, 255, 255);
+    border: thin solid white;
     border-radius: 0.25rem;
-    color: #ffffff;
+    color: #FFF;
     font-weight: 250;
     text-align: left;
     padding-left: 0.5rem;
