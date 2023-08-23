@@ -1,34 +1,69 @@
 <?php
-
+session_start();
 @include 'config.php';
 
-if(isset($_POST['submit'])){
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
-   $name = mysqli_real_escape_string($conn, $_POST['username']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);
-   $cpass = md5($_POST['cpassword']);
+require './phpmailer/src/PHPMailer.php';
+require './phpmailer/src/SMTP.php';
 
-   $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
+if (isset($_POST['submit'])) {
 
-   $result = mysqli_query($conn, $select);
+    $name = mysqli_real_escape_string($conn, $_POST['username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['cpassword']);
 
-   if(mysqli_num_rows($result) > 0){
+    $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
 
-      $error[] = 'user already exist!';
+    $result = mysqli_query($conn, $select);
 
-   }else{
-        if(($name == "")||($email == "")||($pass != $cpass)){
-         $error[] = 'Registration Failed. Please recheck your entered details.';
+    if (mysqli_num_rows($result) > 0) {
+
+        $error[] = 'User already exists!';
+
+    } else {
+        if (($name == "") || ($email == "") || ($pass != $cpass)) {
+            $error[] = 'Registration Failed. Please recheck your entered details.';
+        } else {
+            $otp = mt_rand(100000, 999999); // 6-digit OTP
+            date_default_timezone_set('Asia/Kolkata');
+            $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes')); // OTP expiry time (10 minutes from now)
+
+            // Sending OTP via Email
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; // smtp server
+            $mail->SMTPAuth = true;
+            $mail->Username = ''; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
+            $mail->Password = ''; // app password
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('', ''); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
+            $mail->addAddress($email, $name); // Use the user's email and name
+            $mail->Subject = 'OTP Verification';
+            $mail->Body = 'Your OTP is: ' . $otp;
+
+            if (!$mail->send()) {
+                echo 'OTP could not be sent. Please try again later.';
+            } else {
+                echo 'OTP sent successfully! Please check your email.';
+            }
+
+            $insert = "INSERT INTO `register` (user_name, user_email, user_password, otp_code, otp_expiry) VALUES ('$name', '$email', '$pass', '$otp', '$otp_expiry')";
+            mysqli_query($conn, $insert);
+
+            $_SESSION['email'] = $email; // Store the email in the session
+            header('location:verify-otp.php');
+
+
+            // header('location:login.php');
         }
-        else{
-         $insert = "INSERT INTO `register`(user_name, user_email, user_password) VALUES('$name','$email','$pass')";
-         mysqli_query($conn, $insert);
-         header('location:login.php');
-      }
-   }
+    }
 
-};
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,12 +94,14 @@ if(isset($_POST['submit'])){
                     <h1 class="deez">Create an account</h1>
                     <form action="" method="POST">
                             <?php
-                                if(isset($error)){
-                                    foreach($error as $error){
-                                        echo '<span color="white" class="error-msg">'.$error.'</span>';
-                                    };
-                                };
-                            
+                            if (isset($error)) {
+                                foreach ($error as $error) {
+                                    echo '<span color="white" class="error-msg">' . $error . '</span>';
+                                }
+                                ;
+                            }
+                            ;
+
                             ?>
                         <div class="nameinput">
                             Name
