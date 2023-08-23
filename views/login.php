@@ -52,6 +52,7 @@ if (isset($_POST['submit'])) {
                         <br>
                         <input id="pass" type="password" placeholder="Enter Your Password">
                         </div>
+                        <a href="forgot-password.php" >Forgot Password?</a>
                         <input id="sbmitbtn" type="submit" value="Submit">
 
                     </form>

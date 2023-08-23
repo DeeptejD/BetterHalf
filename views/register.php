@@ -36,15 +36,68 @@ if (isset($_POST['submit'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = ''; // EMAIL 
-            $mail->Password = ''; // APP PASSWORD
+            $mail->Username = 'deeptejdhauskar2003@gmail.com'; // EMAIL 
+            $mail->Password = 'udjxtknlhhbwlgew'; // APP PASSWORD
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('', ''); // (EMAIL, NAME)
+            $mail->setFrom('deeptejdhauskar2003@gmail.com', 'Astro'); // (EMAIL, NAME)
             $mail->addAddress($email, $name);
-            $mail->Subject = 'OTP Verification';
-            $mail->Body = 'Your OTP is: ' . $otp;
+            $mail->Subject = 'Here\'s your OTP!';
+            $mail->isHTML(true);
+            $mail->Body = '
+    <html>
+    <head>
+        <style>
+            
+  @import url(\'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,700&display=swap\');
+
+            body {
+                font-family: \'Bricolage Grotesque\', sans-serif;
+                background-color: #f2f2f2;
+            }
+            .container {
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+            .header {
+                background-color: black;
+                color: white;
+                padding: 10px;
+                border-radius: 5px 5px 0 0;
+            }
+            .content {
+                padding: 20px;
+            }
+            .footer {
+                padding: 10px;
+                text-align: center;
+                color: #999999;
+            }
+            .otp{
+                font-size: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>OTP Verification</h2>
+            </div>
+            <div class="content">
+                <p>Hello ' . $name . ',</p>
+                <p>Your OTP for verification is: <strong class="otp">' . $otp . '</strong></p>
+                <p>Please use this OTP within the next 10 minutes to complete the verification process.</p>
+            </div>
+            <div class="footer">
+                <p>If you did not request this OTP, please ignore this email.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+';
 
             if (!$mail->send()) {
                 echo 'OTP could not be sent. Please try again later.';
