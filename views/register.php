@@ -36,12 +36,12 @@ if (isset($_POST['submit'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // smtp server
             $mail->SMTPAuth = true;
-            $mail->Username = ''; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
-            $mail->Password = ''; // app password
+            $mail->Username = 'deeptejdhauskar2003@gmail.com'; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
+            $mail->Password = 'vgnajgruytdajyoc'; // app password
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('', ''); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
+            $mail->setFrom('deeptejdhauskar2003@gmail.com', 'Astro'); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
             $mail->addAddress($email, $name); // Use the user's email and name
             $mail->Subject = 'OTP Verification';
             $mail->Body = 'Your OTP is: ' . $otp;
@@ -70,22 +70,15 @@ if (isset($_POST['submit'])) {
 
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Registration</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
+        <?php include './partials/head-content.php'; ?>
+        <link rel="stylesheet" href="../assets/css/styles.css">
     </head>
     <body>
             <nav class="link">
                     <a href="login.php">Sign In</a>
             </nav>
             <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
-                <source src="GradientBg.mp4" type="video/mp4">
+                <source src="../assets/GradientBg.mp4" type="video/mp4">
                 </video>
 
                 
