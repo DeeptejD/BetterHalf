@@ -36,12 +36,12 @@ if (isset($_POST['submit'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // smtp server
             $mail->SMTPAuth = true;
-            $mail->Username = 'deeptejdhauskar2003@gmail.com'; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
-            $mail->Password = 'vgnajgruytdajyoc'; // app password
+            $mail->Username = ''; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
+            $mail->Password = ''; // app password
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('deeptejdhauskar2003@gmail.com', 'Astro'); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
+            $mail->setFrom('', ''); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
             $mail->addAddress($email, $name); // Use the user's email and name
             $mail->Subject = 'OTP Verification';
             $mail->Body = 'Your OTP is: ' . $otp;
