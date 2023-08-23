@@ -36,7 +36,7 @@ html{
 } */
 
 h3{
-    color: lightgray;
+    color: rgb(220, 220, 220);
     text-align: center;
     padding-top: 2.5rem;
     font-size: 1rem;
@@ -99,6 +99,7 @@ input{
     margin-left: 2rem;
     margin-top: 1.5rem;
     background: transparent;
+    color: #ffffff;
 }
 
 #sbmitbtn{
