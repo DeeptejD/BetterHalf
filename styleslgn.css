@@ -87,7 +87,7 @@ input{
     background: transparent;
     border: thin solid white;
     border-radius: 0.25rem;
-    color: white;
+    color: #FFF;
     font-weight: 250;
     text-align: left;
     padding-left: 0.5rem;
@@ -96,7 +96,6 @@ input{
     margin-left: 2rem;
     margin-top: 1.5rem;
     background: transparent;
-    color: white;
 }
 
 
