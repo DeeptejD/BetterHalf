@@ -36,12 +36,12 @@ if (isset($_POST['submit'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'deeptejdhauskar2003@gmail.com'; // EMAIL 
-            $mail->Password = 'udjxtknlhhbwlgew'; // APP PASSWORD
+            $mail->Username = ''; // EMAIL 
+            $mail->Password = ''; // APP PASSWORD
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('deeptejdhauskar2003@gmail.com', 'Astro'); // (EMAIL, NAME)
+            $mail->setFrom('', 'Astro'); // (EMAIL, NAME)
             $mail->addAddress($email, $name);
             $mail->Subject = 'Here\'s your OTP!';
             $mail->isHTML(true);
