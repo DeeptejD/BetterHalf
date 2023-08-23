@@ -27,22 +27,22 @@ if (isset($_POST['submit'])) {
         if (($name == "") || ($email == "") || ($pass != $cpass)) {
             $error[] = 'Registration Failed. Please recheck your entered details.';
         } else {
+            // OTP PART STARTS HERE
             $otp = mt_rand(100000, 999999); // 6-digit OTP
             date_default_timezone_set('Asia/Kolkata');
-            $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes')); // OTP expiry time (10 minutes from now)
+            $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes'));
 
-            // Sending OTP via Email
             $mail = new PHPMailer();
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // smtp server
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = ''; //  ENTER EMAIL FROM WHICH TO SEND OTP HERE  
-            $mail->Password = ''; // app password
+            $mail->Username = ''; // EMAIL 
+            $mail->Password = ''; // APP PASSWORD
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('', ''); // ENTER EMAIL FROM WHICH TO SEND OTP HERE AND NAME (EMAIL LEFT, NAME RIGHT)
-            $mail->addAddress($email, $name); // Use the user's email and name
+            $mail->setFrom('', ''); // (EMAIL, NAME)
+            $mail->addAddress($email, $name);
             $mail->Subject = 'OTP Verification';
             $mail->Body = 'Your OTP is: ' . $otp;
 
@@ -55,11 +55,8 @@ if (isset($_POST['submit'])) {
             $insert = "INSERT INTO `register` (user_name, user_email, user_password, otp_code, otp_expiry) VALUES ('$name', '$email', '$pass', '$otp', '$otp_expiry')";
             mysqli_query($conn, $insert);
 
-            $_SESSION['email'] = $email; // Store the email in the session
+            $_SESSION['email'] = $email; // SESSION EMAIL
             header('location:verify-otp.php');
-
-
-            // header('location:login.php');
         }
     }
 
