@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="link">
-            <a href="index.html">Sign In</a>
+            <a href="register.php">Sign Up</a>
         </div>
             <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
                 <source src="GradientBg.mp4" type="video/mp4">
