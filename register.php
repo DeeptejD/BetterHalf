@@ -1,22 +1,36 @@
 <?php
-    // require_once("connection.php");
-    // if(isset($_POST('submit'))){
-    //     $username = $_POST('username');
-    //     $password = $_POST('password');
-    //     $email = $_POST('email');
 
-    //     $sql = "insert into register(user_name,user_email,user_password)values(?,?,?);";
-    //     $stmtinsert = $db->prepare($sql);
-    //     $result = $stmtinsert->execute([$username, $email, $password]);
-    //     if($result){
-    //         echo "successfully saved";
-    //     }
-    //     else{
-    //         echo "error";
-    //     }
-    // }
+@include 'config.php';
 
+if(isset($_POST['submit'])){
+
+   $name = mysqli_real_escape_string($conn, $_POST['username']);
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $pass = md5($_POST['password']);
+   $cpass = md5($_POST['cpassword']);
+
+   $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
+
+   $result = mysqli_query($conn, $select);
+
+   if(mysqli_num_rows($result) > 0){
+
+      $error[] = 'user already exist!';
+
+   }else{
+
+      if($pswd != $cpswd){
+         $error[] = 'password not matched!';
+      }else{
+         $insert = "INSERT INTO `register`(user_name, user_email, user_password) VALUES('$name','$email','$pass')";
+         mysqli_query($conn, $insert);
+         header('location:login.php');
+      }
+   }
+
+};
 ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -43,7 +57,16 @@
 
                 <div class="form">
                     <h1 class="deez">Create an account</h1>
-                    <form action="connection.php" method="POST">
+                    <form action="" method="POST">
+
+                        <?php
+                            if(isset($error)){
+                                foreach($error as $error){
+                                    echo '<span class="error-msg">'.$error.'</span>';
+                                };
+                            };
+                        
+                        ?>
                         <div class="nameinput">
                             Name
                             <br>
@@ -62,9 +85,9 @@
                         <div class="nameinput">
                             Confirm Password
                         <br>
-                        <input id="cnfrm-pass" type="password" placeholder="Enter You Password">
+                        <input id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
                         </div>
-                        <input id="sbmitbtn" type="button" value="Submit" name="submit">
+                        <input id="sbmitbtn" type="submit" value="Submit" name="submit">
                     </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             <script src="index.js" async defer></script>

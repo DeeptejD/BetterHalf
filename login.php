@@ -1,3 +1,28 @@
+<?php
+
+@include 'config.php';
+
+if(isset($_POST['submit'])){
+
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+
+    $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
+
+    $result = mysqli_query($conn, $select);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
+   if($count>0){
+        header("location:home.php");
+   }else{
+    echo    '<script> 
+                window.location.href = "login.php";
+                alert("login failed");
+            </script>';
+   }
+};
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -22,7 +47,7 @@
 
                 <div class="form">
                     <h1 class="deez">Sign In</h1>
-                    <form action="">
+                    <form action="home.php" method="POST">
                         <div class="nameinput">
                             Email Address
                         <br>
@@ -31,9 +56,9 @@
                         <div class="nameinput">
                             Password
                         <br>
-                        <input id="pass" type="password" placeholder="Enter You Password">
+                        <input id="pass" type="password" placeholder="Enter Your Password">
                         </div>
-                        <input id="sbmitbtn" type="button" value="Submit">
+                        <input id="sbmitbtn" type="submit" value="Submit">
 
                     </form>
                 </div>
