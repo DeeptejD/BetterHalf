@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2023 at 01:19 PM
+-- Generation Time: Aug 24, 2023 at 10:46 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `otp_data`
+--
+
+CREATE TABLE `otp_data` (
+  `id` int(11) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `otp_code` int(11) NOT NULL,
+  `otp_expiry` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `register`
 --
 
@@ -31,14 +44,18 @@ CREATE TABLE `register` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(50) DEFAULT NULL,
   `user_email` varchar(50) DEFAULT NULL,
-  `user_password` varchar(50) DEFAULT NULL,
-  `otp_code` varchar(10) DEFAULT NULL,
-  `otp_expiry` datetime DEFAULT NULL
+  `user_password` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `otp_data`
+--
+ALTER TABLE `otp_data`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `register`
@@ -49,6 +66,12 @@ ALTER TABLE `register`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `otp_data`
+--
+ALTER TABLE `otp_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `register`
