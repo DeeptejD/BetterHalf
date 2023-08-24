@@ -50,11 +50,7 @@ if (isset($_POST['submit'])) {
     <html>
     <head>
         <style>
-            
-  @import url(\'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,700&display=swap\');
-
             body {
-                font-family: \'Bricolage Grotesque\', sans-serif;
                 background-color: #f2f2f2;
             }
             .container {
