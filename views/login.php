@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
         </div>
             <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
                 <source src="../assets/GradientBg.mp4" type="video/mp4">
-                </video>
+            </video>
 
                 <div class="form">
                     <h1 class="deez">Sign In</h1>
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
                         <br>
                         <input id="pass" type="password" placeholder="Enter Your Password">
                         </div>
-                        <a href="forgot-password.php" >Forgot Password?</a>
+                        <a href="../forgot-password/forgot-password.php" >Forgot Password?</a>
                         <input id="sbmitbtn" type="submit" value="Submit">
 
                     </form>
