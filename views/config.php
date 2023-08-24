@@ -3,20 +3,16 @@
     $password = "";
     $db_name = "loginpage";
 
-    // $user_name = $_POST('username');
-    // $user_email = $_POST('email');
-    // $user_password = $_POST('password');
-
     $conn = mysqli_connect('localhost', $username, $password, $db_name);
-    // if($conn->connect_error){
-    //     die("connection failed" . $conn->connect_error);
-    // }
-    // else{
-    //     $stmt = $conn->prepare("insert into register(user_name, user_email, user_password)values(?, ?, ?);");
-    //     $stmt->bind_param("sss", $user_name, $user_email, $user_password);
-    //     $stmt->execute();
-    //     echo "success";
-    //     $stmt->close();
-    //     $conn->close();
-    // }
+
+// Create a new table for OTP data
+$createOtpTableQuery = "
+    CREATE TABLE IF NOT EXISTS `otp_data` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `user_email` VARCHAR(255) NOT NULL,
+        `otp_code` INT NOT NULL,
+        `otp_expiry` DATETIME NOT NULL
+    );
+";
+mysqli_query($conn, $createOtpTableQuery);
 ?>

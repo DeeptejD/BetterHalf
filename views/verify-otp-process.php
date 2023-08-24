@@ -6,8 +6,7 @@ if (isset($_POST['otp'])) {
     $enteredOTP = mysqli_real_escape_string($conn, $_POST['otp']);
     $email = $_SESSION['email'];
 
-    $select = "SELECT * FROM `register` WHERE user_email = '$email' AND otp_code = '$enteredOTP' AND otp_expiry > NOW()";
-
+    $select = "SELECT * FROM `otp_data` WHERE user_email = '$email' AND otp_code = '$enteredOTP' AND otp_expiry > NOW()";
     $result = mysqli_query($conn, $select);
 
     if (!$result) {

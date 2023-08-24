@@ -105,8 +105,10 @@ if (isset($_POST['submit'])) {
                 echo 'OTP sent successfully! Please check your email.';
             }
 
-            $insert = "INSERT INTO `register` (user_name, user_email, user_password, otp_code, otp_expiry) VALUES ('$name', '$email', '$pass', '$otp', '$otp_expiry')";
+            $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$pass')";
             mysqli_query($conn, $insert);
+            $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
+            mysqli_query($conn, $insertOtpQuery);
 
             $_SESSION['email'] = $email; // SESSION EMAIL
             header('location:verify-otp.php');
