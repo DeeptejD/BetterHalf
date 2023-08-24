@@ -37,12 +37,12 @@ if (isset($_POST['submit'])) {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = ''; // EMAIL 
-            $mail->Password = ''; // APP PASSWORD
+            $mail->Username = 'deeptejdhauskar2003@gmail.com'; // EMAIL 
+            $mail->Password = 'wbxtnblepkwftmdm'; // APP PASSWORD
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('', 'Astro'); // (EMAIL, NAME)
+            $mail->setFrom('deeptejdhauskar2003@gmail.com', 'Astro'); // (EMAIL, NAME)
             $mail->addAddress($email, $name);
             $mail->Subject = 'Here\'s your OTP!';
             $mail->isHTML(true);
@@ -60,10 +60,13 @@ if (isset($_POST['submit'])) {
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             }
             .header {
-                background-color: black;
+                background-image: url("https://images.pexels.com/photos/7130498/pexels-photo-7130498.jpeg?cs=srgb&dl=pexels-codioful-%28formerly-gradienta%29-7130498.jpg&fm=jpg");
+                background-size: cover;
+                background-position: center;
                 color: white;
                 padding: 10px;
                 border-radius: 5px 5px 0 0;
+                height: 55px;
             }
             .content {
                 padding: 20px;
@@ -121,6 +124,8 @@ if (isset($_POST['submit'])) {
     <head>
         <?php include './partials/head-content.php'; ?>
         <link rel="stylesheet" href="../assets/css/styles.css">
+        <!-- for the google OAuth -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
             <nav class="link">
@@ -166,6 +171,8 @@ if (isset($_POST['submit'])) {
                         <input id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
                         </div>
                         <input id="sbmitbtn" type="submit" value="Submit" name="submit">
+                        <p style="text-align: center;">OR</p>
+                        <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
                     </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             <script>
