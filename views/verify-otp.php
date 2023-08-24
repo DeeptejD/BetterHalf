@@ -6,13 +6,24 @@
     <title>Verify OTP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/stylesotp.css">
 </head>
 <body>
-    <h1>Verify OTP</h1>
-    <form action="verify-otp-process.php" method="POST">
-        <label for="otp">Enter the OTP sent to your email:</label>
-        <input type="text" id="otp" name="otp" required>
-        <button type="submit">Verify OTP</button>
-    </form>
+    <div>
+        <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+                    <source src="../assets/GradientBg.mp4" type="video/mp4">
+        </video>
+        <div class="form">
+            <h1>Verify OTP</h1>
+            <form action="verify-otp-process.php" method="POST">
+                <div class="nameinput">
+                        Enter The Otp Sent to you Email
+                    <br>
+                    <input type="text" id="otp" name="otp" required>
+                </div>
+                <button id="sbmitbtn" type="submit">Verify OTP</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
