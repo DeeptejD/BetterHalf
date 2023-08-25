@@ -7,21 +7,22 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
-
+    $select = "SELECT user_password FROM `register` WHERE user_email = '$email'";
     $result = mysqli_query($conn, $select);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
-    if ($count > 0) {
-        header("location:home.php");
+
+    if ($row && password_verify($pass, $row['user_password'])) {
+        session_start();
+        $_SESSION['user_id'] = $row['user_id'];
+        header("location: home.php");
+        exit();
     } else {
         echo '<script> 
                 window.location.href = "login.php";
-                alert("login failed");
+                alert("Login failed. Please check your credentials.");
             </script>';
     }
 }
-;
 ?>
 
 <!DOCTYPE html>
@@ -39,24 +40,29 @@ if (isset($_POST['submit'])) {
                 <source src="../assets/GradientBg.mp4" type="video/mp4">
             </video>
 
-                <div class="form">
-                    <h1 class="deez">Sign In</h1>
-                    <form action="home.php" method="POST">
-                        <div class="nameinput">
-                            Email Address
-                        <br>
-                        <input type="email" placeholder="Enter You Email Id">
-                        </div>
-                        <div class="nameinput">
-                            Password
-                        <br>
-                        <input id="pass" type="password" placeholder="Enter Your Password">
-                        </div>
-                        <a href="../forgot-password/forgot-password.php" >Forgot Password?</a>
-                        <input id="sbmitbtn" type="submit" value="Submit">
-
-                    </form>
+            <div class="form">
+            <h1 class="deez">Sign In</h1>
+            <form action="login.php" method="POST">
+                <div class="nameinput">
+                    Email Address
+                <br>
+                <input type="email" name="email" placeholder="Enter Your Email Id">
                 </div>
+                <div class="nameinput">
+                    Password
+                <br>
+                <input id="pass" type="password" name="password" placeholder="Enter Your Password">
+                </div>
+                <div class="nameinput">
+                    <a href="../forgot-password/forgot-password.php" >Forgot Password?</a>
+                </div>
+                <div class="nameinput">
+                    <a href="register.php" >Don't have an account?</a>
+                </div>
+                <input id="sbmitbtn" type="submit" name="submit" value="Submit">
+
+            </form>
+            </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             <script src="index.js" async defer></script>
     </body>

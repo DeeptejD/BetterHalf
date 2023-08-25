@@ -13,10 +13,12 @@ if (isset($_POST['submit'])) {
 
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $pass = md5($_POST['password']);
-    $cpass = md5($_POST['cpassword']);
+    $enteredPassword = $_POST['password'];
+    $hashedPassword = password_hash($enteredPassword, PASSWORD_DEFAULT);
+    $cpass = $_POST['cpassword'];
+    $cHashedPassword = password_hash($cpass, PASSWORD_DEFAULT);
 
-    $select = " SELECT * FROM `register` WHERE user_email = '$email' && user_password = '$pass' ";
+    $select = " SELECT * FROM `register` WHERE user_email = '$email'";
 
     $result = mysqli_query($conn, $select);
 
@@ -25,7 +27,7 @@ if (isset($_POST['submit'])) {
         $error[] = 'User already exists!';
 
     } else {
-        if (($name == "") || ($email == "") || ($pass != $cpass)) {
+        if (($name == "") || ($email == "") || !password_verify($cpass, $cHashedPassword)) {
             $error[] = 'Registration Failed. Please recheck your entered details.';
         } else {
             // OTP PART STARTS HERE
@@ -33,79 +35,51 @@ if (isset($_POST['submit'])) {
             date_default_timezone_set('Asia/Kolkata');
             $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes'));
 
-            $mail = new PHPMailer();
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = ''; // EMAIL 
-            $mail->Password = ''; // APP PASSWORD
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+            $phpmailer = new PHPMailer();
+            $phpmailer->isSMTP();
+            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->SMTPAuth = true;
+            $phpmailer->Port = 2525;
+            $phpmailer->Username = '62c2d6ef1e94b4';
+            $phpmailer->Password = '7e0ed9a9aba60e';
+            $phpmailer->SMTPSecure = 'tls';
+            $phpmailer->Port = 587;
+            $phpmailer->setFrom('62c2d6ef1e94b4', 'Astro'); // (EMAIL, NAME)
+            $phpmailer->addAddress($email, $name);
+            $phpmailer->Subject = 'Here\'s your OTP!';
+            $phpmailer->isHTML(true);
 
-            $mail->setFrom('', 'Astro'); // (EMAIL, NAME)
-            $mail->addAddress($email, $name);
-            $mail->Subject = 'Here\'s your OTP!';
-            $mail->isHTML(true);
-            $mail->Body = '
-    <html>
-    <head>
-        <style>
-            body {
-                background-color: #f2f2f2;
-            }
-            .container {
-                padding: 20px;
-                background-color: #ffffff;
-                border-radius: 5px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            .header {
-                background-image: url("https://images.pexels.com/photos/7130498/pexels-photo-7130498.jpeg?cs=srgb&dl=pexels-codioful-%28formerly-gradienta%29-7130498.jpg&fm=jpg");
-                background-size: cover;
-                background-position: center;
-                color: white;
-                padding: 10px;
-                border-radius: 5px 5px 0 0;
-                height: 55px;
-            }
-            .content {
-                padding: 20px;
-            }
-            .footer {
-                padding: 10px;
-                text-align: center;
-                color: #999999;
-            }
-            .otp{
-                font-size: 2rem;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h2>OTP Verification</h2>
-            </div>
-            <div class="content">
-                <p>Hello ' . $name . ',</p>
-                <p>Your OTP for verification is: <strong class="otp">' . $otp . '</strong></p>
-                <p>Please use this OTP within the next 10 minutes to complete the verification process.</p>
-            </div>
-            <div class="footer">
-                <p>If you did not request this OTP, please ignore this email.</p>
-            </div>
-        </div>
-    </body>
-    </html>
-';
+            // fetchin the template
+            $otpEmailTemplate = file_get_contents('./otp/otp-mail-template.php');
+            $otpEmailTemplate = str_replace('{{name}}', $name, $otpEmailTemplate);
+            $otpEmailTemplate = str_replace('{{otp}}', $otp, $otpEmailTemplate);
 
-            if (!$mail->send()) {
+            $phpmailer->Body = $otpEmailTemplate;
+
+            // $mail = new PHPMailer();
+            // $mail->isSMTP();
+            // $mail->Host = 'smtp.gmail.com';
+            // $mail->SMTPAuth = true;
+            // $mail->Username = ''; // EMAIL 
+            // $mail->Password = ''; // APP PASSWORD
+            //$mail->SMTPSecure = 'tls';
+            //$mail->Port = 587;
+
+            //$mail->setFrom('62c2d6ef1e94b4', 'Astro'); // (EMAIL, NAME)
+            //$mail->addAddress($email, $name);
+            //$mail->Subject = 'Here\'s your OTP!';
+            //$mail->isHTML(true);
+            //$mail->Body = '
+
+            //if (!$mail->send()) {
+
+            if (!$phpmailer->send()) {
                 echo 'OTP could not be sent. Please try again later.';
             } else {
                 echo 'OTP sent successfully! Please check your email.';
             }
 
-            $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$pass')";
+            $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$hashedPassword')";
             mysqli_query($conn, $insert);
             $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
             mysqli_query($conn, $insertOtpQuery);
