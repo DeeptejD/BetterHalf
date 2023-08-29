@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
 
                 <div class="form">
                     <h1 class="deez">Create an account</h1>
-                    <form action="" method="POST">
+                    <form action="register.php" method="POST">
                             <?php
                             if (isset($error)) {
                                 foreach ($error as $error) {

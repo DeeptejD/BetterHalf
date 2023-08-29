@@ -7,21 +7,31 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $select = "SELECT user_password FROM `register` WHERE user_email = '$email'";
+    $select = "SELECT user_password FROM `register` WHERE user_email = '$email' and user_password = '$pass'";
     $result = mysqli_query($conn, $select);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-    if ($row && password_verify($pass, $row['user_password'])) {
-        session_start();
-        $_SESSION['user_id'] = $row['user_id'];
+    $count = mysqli_num_rows($result);
+    if($count == 1){
         header("location: home.php");
-        exit();
-    } else {
-        echo '<script> 
-                window.location.href = "login.php";
-                alert("Login failed. Please check your credentials.");
-            </script>';
     }
+    else{
+        echo '  <script>
+                    window.location.href = "index.php";
+                    alert("login failed. Please check your username and password");
+                </script>';
+    }
+
+    // if ($row && password_verify($pass, $row['user_password'])) {
+    //     session_start();
+    //     $_SESSION['user_id'] = $row['user_id'];
+    //     header("location: home.php");
+    //     exit();
+    // } else {
+    //     echo '<script> 
+    //             window.location.href = "login.php";
+    //             alert("Login failed. Please check your credentials.");
+    //         </script>';
+    // }
 }
 ?>
 
