@@ -61,6 +61,7 @@ if (isset($_POST['submit'])) {
                 echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
             } else {
                 echo 'OTP sent successfully! Please check your inbox.';
+                
                 $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
                 mysqli_query($conn, $insertOtpQuery);
 
