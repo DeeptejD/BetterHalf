@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
                 <div class="nameinput">
                     Password
                 <br>
-                <input id="pass" type="password" name="password" placeholder="Enter Your Password">
+                <input id="password" type="password" name="password" placeholder="Enter Your Password">
                 </div>
                 <div class="nameinput">
                     <a href="../forgot-password/forgot-password.php" >Forgot Password?</a>
