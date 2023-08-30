@@ -7,31 +7,23 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $select = "SELECT user_password FROM `register` WHERE user_email = '$email' and user_password = '$pass'";
+    $select = "SELECT * FROM `register` WHERE user_email = '$email'";
+    // $resulthash = mysqli_query($conn, $selectpass);
     $result = mysqli_query($conn, $select);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
-    if($count == 1){
-        header("location: home.php");
-    }
-    else{
-        echo '  <script>
-                    window.location.href = "index.php";
-                    alert("login failed. Please check your username and password");
-                </script>';
-    }
+    // $count = mysqli_num_rows($result);
 
-    // if ($row && password_verify($pass, $row['user_password'])) {
-    //     session_start();
-    //     $_SESSION['user_id'] = $row['user_id'];
-    //     header("location: home.php");
-    //     exit();
-    // } else {
-    //     echo '<script> 
-    //             window.location.href = "login.php";
-    //             alert("Login failed. Please check your credentials.");
-    //         </script>';
-    // }
+    if ($row && password_verify($pass, $row['user_password'])) {
+        session_start();
+        $_SESSION['user_email'] = $row['user_email'];
+        header("location: home.php");
+        exit();
+    } else {
+        echo '<script> 
+                window.location.href = "login.php";
+                alert("Login failed. Please check your credentials.");
+            </script>';
+    }
 }
 ?>
 
