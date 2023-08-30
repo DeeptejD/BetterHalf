@@ -66,6 +66,6 @@ if (isset($_POST['submit'])) {
             </form>
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-            <script src="index.js" async defer></script>
+            <!-- <script src="index.js" async defer></script> -->
     </body>
 </html>

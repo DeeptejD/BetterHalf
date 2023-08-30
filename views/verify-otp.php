@@ -17,7 +17,7 @@
             <h1>Verify OTP</h1>
             <form action="verify-otp-process.php" method="POST">
                 <div class="nameinput">
-                        Enter The Otp Sent to you Email
+                        Enter the OTP sent to your email
                     <br>
                     <input type="text" id="otp" name="otp" required>
                 </div>

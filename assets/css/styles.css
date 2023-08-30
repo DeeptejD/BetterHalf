@@ -12,7 +12,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 html{
     overflow: hidden;
 }
-#background-video{
+
+
+
+.background-img{
     margin: 0px;
     width: 100%;
     right:0;
@@ -52,7 +55,7 @@ span{
 }
 
 h1{
-    color: white;
+    color: red;
     font-weight: 500;
     text-align: center;
     padding-top: 2.5rem;
@@ -64,10 +67,10 @@ h1{
     position: relative;
     z-index: 2;
     background: rgba(256, 256, 256, 0.25);
-    color: white;
+    color: red;
     width: 300px;
     height: 500px;
-    margin-left: 40%;
+    margin-left: 100px 0 0 0;
     top: 5rem;
     border-radius: 1.5rem;
 }

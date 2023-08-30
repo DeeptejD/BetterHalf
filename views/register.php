@@ -40,11 +40,11 @@ if (isset($_POST['submit'])) {
             $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
             $phpmailer->SMTPAuth = true;
             $phpmailer->Port = 2525;
-            $phpmailer->Username = '62c2d6ef1e94b4';
-            $phpmailer->Password = '7e0ed9a9aba60e';
+            $phpmailer->Username = 'deeptejdhauskar2003@gmail.com';
+            $phpmailer->Password = 'xpepytdgzjhuxjxf';
             $phpmailer->SMTPSecure = 'tls';
             $phpmailer->Port = 587;
-            $phpmailer->setFrom('62c2d6ef1e94b4', 'Astro'); // (EMAIL, NAME)
+            $phpmailer->setFrom('avnishcursorgec@gmail.com', 'gamilesh'); // (EMAIL, NAME)
             $phpmailer->addAddress($email, $name);
             $phpmailer->Subject = 'Here\'s your OTP!';
             $phpmailer->isHTML(true);
@@ -60,16 +60,16 @@ if (isset($_POST['submit'])) {
             // $mail->isSMTP();
             // $mail->Host = 'smtp.gmail.com';
             // $mail->SMTPAuth = true;
-            // $mail->Username = ''; // EMAIL 
-            // $mail->Password = ''; // APP PASSWORD
-            //$mail->SMTPSecure = 'tls';
-            //$mail->Port = 587;
+            // $mail->Username = 'deeptejdhauskar2003@gmail.com'; // EMAIL 
+            // $mail->Password = 'xpepytdgzjhuxjxf'; // APP PASSWORD
+            // $mail->SMTPSecure = 'tls';
+            // $mail->Port = 587;
 
             //$mail->setFrom('62c2d6ef1e94b4', 'Astro'); // (EMAIL, NAME)
             //$mail->addAddress($email, $name);
             //$mail->Subject = 'Here\'s your OTP!';
             //$mail->isHTML(true);
-            //$mail->Body = '
+            //$mail->Body = $otpEmailTemplate;'
 
             //if (!$mail->send()) {
 
@@ -77,15 +77,14 @@ if (isset($_POST['submit'])) {
                 echo 'OTP could not be sent. Please try again later.';
             } else {
                 echo 'OTP sent successfully! Please check your email.';
+                $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
+                mysqli_query($conn, $insertOtpQuery);
+    
+                $_SESSION['email'] = $email; // SESSION EMAIL
+                header('location:verify-otp.php');
             }
 
-            $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$hashedPassword')";
-            mysqli_query($conn, $insert);
-            $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
-            mysqli_query($conn, $insertOtpQuery);
-
-            $_SESSION['email'] = $email; // SESSION EMAIL
-            header('location:verify-otp.php');
+            
         }
     }
 
@@ -105,10 +104,11 @@ if (isset($_POST['submit'])) {
             <nav class="link">
                     <a href="login.php">Sign In</a>
             </nav>
-            <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+            <!-- <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
                 <source src="../assets/GradientBg.mp4" type="video/mp4">
-                </video>
+                </video> -->
 
+            <img class="background-img"  src="bg.avif" alt="Background Image">
                 
 
                 <div class="form">

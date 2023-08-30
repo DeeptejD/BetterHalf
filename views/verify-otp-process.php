@@ -33,6 +33,9 @@
             } elseif (mysqli_num_rows($result) > 0) {
                 echo '<div class="verification-icon success">&#10004;</div>';
                 echo '<div class="verification-message success">OTP verified successfully!</div>';
+                
+                $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$hashedPassword')";
+                mysqli_query($conn, $insert);
             } else {
                 echo '<div class="verification-icon failure">:(</div>';
                 echo '<div class="verification-message failure">Invalid OTP. Redirecting....</div>';
