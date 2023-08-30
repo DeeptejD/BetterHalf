@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     if ($row && password_verify($pass, $row['user_password'])) {
         session_start();
         $_SESSION['user_email'] = $row['user_email'];
-        header("location: home.php");
+        header("location: get-started.php");
         exit();
     } else {
         echo '<script> 

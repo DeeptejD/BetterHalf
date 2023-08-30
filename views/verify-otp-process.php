@@ -36,6 +36,7 @@
                 
                 $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$hashedPassword')";
                 mysqli_query($conn, $insert);
+                header('location:login.php');
             } else {
                 echo '<div class="verification-icon failure">:(</div>';
                 echo '<div class="verification-message failure">Invalid OTP. Redirecting....</div>';
