@@ -16,7 +16,7 @@ if (isset($_POST['email'])) {
     date_default_timezone_set('Asia/Kolkata');
     $expiryTime = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
-    $insertTokenQuery = "INSERT INTO password_reset_tokens (user_email, token, token_expiry) VALUES ('$email', '$token', '$expiryTime')";
+    $insertTokenQuery = "INSERT INTO password_reset_tokens (token, token_expiry, user_email) VALUES ('$token', '$expiryTime', '$email')";
     mysqli_query($conn, $insertTokenQuery);
 
     $resetLink = "http://localhost/DBMSProj/forgot-password/reset-password.php?token=$token";
@@ -25,12 +25,12 @@ if (isset($_POST['email'])) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = ''; // EMAIL
-    $mail->Password = ''; // APP PASSWORD
+    $mail->Username = 'matrimonydbms@gmail.com';
+    $mail->Password = 'jotbnkrvqpkugzcv';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    $mail->setFrom('', 'Astro'); // (EMAIL, NAME)
+    $mail->setFrom('matrimonydbms@gmail.com', 'Matrimony Project');
     $mail->addAddress($email);
     $mail->Subject = 'Forgot Password Request';
     $mail->isHTML(true);
