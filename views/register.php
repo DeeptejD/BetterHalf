@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
 
         $error[] = 'User already exists!';
-
     } else {
         if (($name == "") || ($email == "") || !password_verify($cpass, $cHashedPassword)) {
             $error[] = 'Registration Failed. Please recheck your entered details.';
@@ -37,14 +36,16 @@ if (isset($_POST['submit'])) {
 
             $phpmailer = new PHPMailer();
             $phpmailer->isSMTP();
-            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->Host = 'smtp.gmail.com';
             $phpmailer->SMTPAuth = true;
             $phpmailer->Port = 2525;
-            $phpmailer->Username = 'deeptejdhauskar2003@gmail.com';
-            $phpmailer->Password = 'xpepytdgzjhuxjxf';
-            $phpmailer->SMTPSecure = 'tls';
-            $phpmailer->Port = 587;
-            $phpmailer->setFrom('avnishcursorgec@gmail.com', 'gamilesh'); // (EMAIL, NAME)
+            $phpmailer->Username = 'matrimonydbms@gmail.com';
+            $phpmailer->Password = 'jotbnkrvqpkugzcv';
+            // $phpmailer->SMTPSecure = 'tls';
+            $phpmailer->SMTPSecure = 'ssl';
+            // $phpmailer->Port = 587;
+            $phpmailer->Port = 465;
+            $phpmailer->setFrom('matrimonydbms@gmail.com', 'Matrimony Project'); // (EMAIL, NAME)
             $phpmailer->addAddress($email, $name);
             $phpmailer->Subject = 'Here\'s your OTP!';
             $phpmailer->isHTML(true);
@@ -56,129 +57,113 @@ if (isset($_POST['submit'])) {
 
             $phpmailer->Body = $otpEmailTemplate;
 
-            // $mail = new PHPMailer();
-            // $mail->isSMTP();
-            // $mail->Host = 'smtp.gmail.com';
-            // $mail->SMTPAuth = true;
-            // $mail->Username = 'deeptejdhauskar2003@gmail.com'; // EMAIL 
-            // $mail->Password = 'xpepytdgzjhuxjxf'; // APP PASSWORD
-            // $mail->SMTPSecure = 'tls';
-            // $mail->Port = 587;
-
-            //$mail->setFrom('62c2d6ef1e94b4', 'Astro'); // (EMAIL, NAME)
-            //$mail->addAddress($email, $name);
-            //$mail->Subject = 'Here\'s your OTP!';
-            //$mail->isHTML(true);
-            //$mail->Body = $otpEmailTemplate;'
-
-            //if (!$mail->send()) {
-
             if (!$phpmailer->send()) {
-                echo 'OTP could not be sent. Please try again later.';
+                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
             } else {
-                echo 'OTP sent successfully! Please check your email.';
+                echo 'OTP sent successfully! Please check your inbox.';
                 $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
                 mysqli_query($conn, $insertOtpQuery);
-    
-                $_SESSION['email'] = $email; // SESSION EMAIL
+
+                $_SESSION['name'] = $name;
+                $_SESSION['hashedPassword'] = $hashedPassword;
+                $_SESSION['email'] = $email;
                 header('location:verify-otp.php');
             }
-
-            
         }
     }
-
 }
 ?>
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <?php include './partials/head-content.php'; ?>
-        <link rel="stylesheet" href="../assets/css/styles.css">
-        <!-- for the google OAuth -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-    </head>
-    <body>
-            <nav class="link">
-                    <a href="login.php">Sign In</a>
-            </nav>
-            <!-- <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+
+<head>
+    <?php include './partials/head-content.php'; ?>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <!-- for the google OAuth -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <nav class="link">
+        <a href="login.php">Sign In</a>
+    </nav>
+    <!-- <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
                 <source src="../assets/GradientBg.mp4" type="video/mp4">
                 </video> -->
 
-            <img class="background-img"  src="bg.avif" alt="Background Image">
-                
+    <img class="background-img" src="bg.avif" alt="Background Image">
 
-                <div class="form">
-                    <h1 class="deez">Create an account</h1>
-                    <form action="register.php" method="POST">
-                            <?php
-                            if (isset($error)) {
-                                foreach ($error as $error) {
-                                    echo '<span color="white" class="error-msg">' . $error . '</span>';
-                                }
-                                ;
-                            }
-                            ;
 
-                            ?>
-                        <div class="nameinput">
-                            Name
-                            <br>
-                            <input id="name" type="text" placeholder="Enter Your Name" name="username">
-                        </div>
-                        <div class="nameinput">
-                            Email Address
-                        <br>
-                        <input id="email" type="email" placeholder="Enter You Email Id" name="email">
-                        </div>
-                        <div class="nameinput">
-                            Password
-                        <br>
-                        <input id="pass" type="password" placeholder="Enter You Password" name="password">
-                        </div>
-                        <div class="nameinput">
-                            Confirm Password
-                        <br>
-                        <input id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
-                        </div>
-                        <input id="sbmitbtn" type="submit" value="Submit" name="submit">
-                        <p style="text-align: center;">OR</p>
-                        <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
-                    </form>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-            <script>
-                    $("#sbmitbtn").on("click",function(){
-        // var deez = $("#pass").value;
-        var deez = document.getElementById("pass").value;
-        var deeze = document.getElementById("email").value;
-        var deezn = document.getElementById("name").value;
-        var cnfpswd = document.getElementById("cnfrm-pass").value;
-        
+    <div class="form">
+        <h1 class="deez">Create an account</h1>
+        <form action="register.php" method="POST">
+            <?php
+            if (isset($error)) {
+                foreach ($error as $error) {
+                    echo '<span color="white" class="error-msg">' . $error . '</span>';
+                }
+                ;
+            }
+            ;
 
-        if((deezn.length == 0)) {
-            alert("Enter A Name");
-            document.getElementById("pass").value = "";
-            document.getElementById("cnfrm-pass").value = "";
-        }
-        if((deeze.length == 0)) {
-            alert("Enter Valid Email Please");
-            document.getElementById("pass").value = "";
-            document.getElementById("cnfrm-pass").value = "";
-        }
-        if ((deez !== cnfpswd)) {
-            alert("The Passwords entered differ!");
-            document.getElementById("pass").value = "";
-            document.getElementById("cnfrm-pass").value = "";
-        }
-        if((deez.length < 8)) {
-            alert("Password must exceed 8 characters");
-            document.getElementById("pass").value = "";
-            document.getElementById("cnfrm-pass").value = "";
-        }
-    })
-            </script>
-    </body>
+            ?>
+            <div class="nameinput">
+                Name
+                <br>
+                <input id="name" type="text" placeholder="Enter Your Name" name="username">
+            </div>
+            <div class="nameinput">
+                Email Address
+                <br>
+                <input id="email" type="email" placeholder="Enter You Email Id" name="email">
+            </div>
+            <div class="nameinput">
+                Password
+                <br>
+                <input id="pass" type="password" placeholder="Enter You Password" name="password">
+            </div>
+            <div class="nameinput">
+                Confirm Password
+                <br>
+                <input id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
+            </div>
+            <input id="sbmitbtn" type="submit" value="Submit" name="submit">
+            <p style="text-align: center;">OR</p>
+            <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $("#sbmitbtn").on("click", function() {
+                // var deez = $("#pass").value;
+                var deez = document.getElementById("pass").value;
+                var deeze = document.getElementById("email").value;
+                var deezn = document.getElementById("name").value;
+                var cnfpswd = document.getElementById("cnfrm-pass").value;
+
+
+                if ((deezn.length == 0)) {
+                    alert("Enter A Name");
+                    document.getElementById("pass").value = "";
+                    document.getElementById("cnfrm-pass").value = "";
+                }
+                if ((deeze.length == 0)) {
+                    alert("Enter Valid Email Please");
+                    document.getElementById("pass").value = "";
+                    document.getElementById("cnfrm-pass").value = "";
+                }
+                if ((deez !== cnfpswd)) {
+                    alert("The Passwords entered differ!");
+                    document.getElementById("pass").value = "";
+                    document.getElementById("cnfrm-pass").value = "";
+                }
+                if ((deez.length < 8)) {
+                    alert("Password must exceed 8 characters");
+                    document.getElementById("pass").value = "";
+                    document.getElementById("cnfrm-pass").value = "";
+                }
+            })
+        </script>
+</body>
+
 </html>

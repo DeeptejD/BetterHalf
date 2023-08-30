@@ -18,6 +18,8 @@
         if (isset($_POST['otp'])) {
             $enteredOTP = mysqli_real_escape_string($conn, $_POST['otp']);
             $email = $_SESSION['email'];
+            $name = $_SESSION['name'];
+            $hashedPassword = $_SESSION['hashedPassword'];
 
             $select = "SELECT * FROM `otp_data` WHERE user_email = '$email' AND otp_code = '$enteredOTP' AND otp_expiry > NOW()";
             $result = mysqli_query($conn, $select);
@@ -33,7 +35,7 @@
             } elseif (mysqli_num_rows($result) > 0) {
                 echo '<div class="verification-icon success">&#10004;</div>';
                 echo '<div class="verification-message success">OTP verified successfully!</div>';
-                
+
                 $insert = "INSERT INTO `register` (user_name, user_email, user_password) VALUES ('$name', '$email', '$hashedPassword')";
                 mysqli_query($conn, $insert);
                 header('location:login.php');
@@ -50,7 +52,7 @@
         ?>
     </div>
     <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
-                <source src="../assets/GradientBg.mp4" type="video/mp4">
-                </video>
+        <source src="../assets/GradientBg.mp4" type="video/mp4">
+    </video>
 </body>
 </html>
