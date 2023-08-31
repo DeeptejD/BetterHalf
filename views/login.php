@@ -58,7 +58,6 @@ if (isset($_POST['submit'])) {
             <a href="register.php">Sign Up</a>
         </div>
     </nav>
-    </head>
     <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center "
         style="background-image: url(bg.jpg);">
 

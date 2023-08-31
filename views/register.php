@@ -80,60 +80,61 @@ if (isset($_POST['submit'])) {
 
 <head>
     <?php include './partials/head-content.php'; ?>
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    
     <!-- for the google OAuth -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
-<body>
+<body class="flex-col justify-center items-center">
     <nav class="link">
         <a href="login.php">Sign In</a>
     </nav>
     <!-- <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
                 <source src="../assets/GradientBg.mp4" type="video/mp4">
                 </video> -->
+    <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center "
+        style="background-image: url(bg.jpg);">
+        <div class="rounded-2xl w-54 h-6/7 bg-white p-2 mr-4 text-black flex     justify-center items-center shadow-2xl">
+            <form class="flex-col" action="register.php" method="POST">
+                <h1 class="ml-10 mb-10 font-bold text-4xl">Create an account</h1>
+                    <?php
+                    if (isset($error)) {
+                        foreach ($error as $error) {
+                            echo '<span color="white" class="error-msg">' . $error . '</span>';
+                        }
+                        ;
+                    }
+                    ;
 
-    <img class="background-img" src="bg.avif" alt="Background Image">
-
-
-    <div class="form">
-        <h1 class="deez">Create an account</h1>
-        <form action="register.php" method="POST">
-            <?php
-            if (isset($error)) {
-                foreach ($error as $error) {
-                    echo '<span color="white" class="error-msg">' . $error . '</span>';
-                }
-                ;
-            }
-            ;
-
-            ?>
-            <div class="nameinput">
-                Name
-                <br>
-                <input id="name" type="text" placeholder="Enter Your Name" name="username">
-            </div>
-            <div class="nameinput">
-                Email Address
-                <br>
-                <input id="email" type="email" placeholder="Enter You Email Id" name="email">
-            </div>
-            <div class="nameinput">
-                Password
-                <br>
-                <input id="pass" type="password" placeholder="Enter You Password" name="password">
-            </div>
-            <div class="nameinput">
-                Confirm Password
-                <br>
-                <input id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
-            </div>
-            <input id="sbmitbtn" type="submit" value="Submit" name="submit">
-            <p style="text-align: center;">OR</p>
-            <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
-        </form>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                    ?>
+                    <div class="nameinput">
+                        Name
+                        <br>
+                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="name" type="text" placeholder="Enter Your Name" name="username">
+                    </div>
+                    <div class="mb-5">
+                        Email Address
+                        <br>
+                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="email" type="email" placeholder="Enter You Email Id" name="email">
+                    </div>
+                    <div class="mb-8">
+                        Password
+                        <br>
+                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="pass" type="password" placeholder="Enter You Password" name="password">
+                    </div>
+                    <div class="mb-8">
+                        Confirm Password
+                        <br>
+                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
+                    </div>
+                    <input class="mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black" id="sbmitbtn" type="submit" value="Submit" name="submit">
+                    <p style="text-align: center;">OR</p>
+                    <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
+        
+            </form>
+        </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
             $("#sbmitbtn").on("click", function() {
                 // var deez = $("#pass").value;
