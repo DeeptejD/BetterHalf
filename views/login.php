@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
         session_start();
         // i commented this cuz the new database does not have a user_id attribute
         // $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['user_email'] = $row['user_email'];
         echo "verified";
         header("location: get-started.php");
         exit();
