@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
             }
         </style>
 </head>
-<<<<<<< HEAD hello <body class="flex-col justify-center items-center">
+<body class="flex-col justify-center items-center">
     <nav class="h-10">
         <div>
             <a href="register.php">Sign Up</a>
@@ -87,39 +87,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <input
                     class="mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black"
-                    type="submit" name="submit" value="Submit">
-                =======
-            </form>
-
-            <body>
-                <div class="link">
-                    <a href="register.php">Sign Up</a>
-                </div>
-                <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
-                    <source src="../assets/GradientBg.mp4" type="video/mp4">
-                </video>
-
-                <div class="form">
-                    <h1 class="deez">Sign In</h1>
-                    <form action="login.php" method="POST">
-                        <div class="nameinput">
-                            Email Address
-                            <br>
-                            <input type="email" name="email" placeholder="Enter Your Email Id">
-                        </div>
-                        <div class="nameinput">
-                            Password
-                            <br>
-                            <input id="password" type="password" name="password" placeholder="Enter Your Password">
-                        </div>
-                        <div class="nameinput">
-                            <a href="../forgot-password/forgot-password.php">Forgot Password?</a>
-                        </div>
-                        <div class="nameinput">
-                            <a href="register.php">Don't have an account?</a>
-                        </div>
-                        <input id="sbmitbtn" type="submit" name="submit" value="Submit">
-                        >>>>>>> 1a3c91168e7b05cda5613dae24f8f79620116307
+                    type="submit" name="submit" value="Submit">  
 
                     </form>
                 </div>
