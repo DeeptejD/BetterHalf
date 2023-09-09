@@ -96,8 +96,8 @@ if (isset($_POST['submit'])) {
     <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center "
         style="background-image: url(bg.jpg);">
         <div class="rounded-2xl w-54 h-6/7 bg-white p-2 mr-4 text-black flex     justify-center items-center shadow-2xl">
-            <form class="flex-col" action="register.php" method="POST">
-                <h1 class="ml-10 mb-10 font-bold text-4xl">Create an account</h1>
+            <form class="flex-col items-center" action="register.php" method="POST">
+                <h1 class="ml-auto mb-10 font-bold text-4xl">Create an account</h1>
                     <?php
                     if (isset($error)) {
                         foreach ($error as $error) {
@@ -108,30 +108,30 @@ if (isset($_POST['submit'])) {
                     ;
 
                     ?>
-                    <div class="nameinput">
+                    <div class="block text-gray-700 text-sm font-bold mb-2 mb-5mb-5">
                         Name
                         <br>
-                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="name" type="text" placeholder="Enter Your Name" name="username">
+                        <input class="font-thin text-slate-300 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Enter Your Name" name="username">
                     </div>
-                    <div class="mb-5">
+                    <div class="block text-gray-700 text-sm font-bold mb-2 mb-5mb-5">
                         Email Address
                         <br>
-                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="email" type="email" placeholder="Enter You Email Id" name="email">
+                        <input class="font-thin text-slate-300 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Enter You Email Id" name="email">
                     </div>
-                    <div class="mb-8">
+                    <div class="block text-gray-700 text-sm font-bold mb-2 mb-5mb-8">
                         Password
                         <br>
-                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="pass" type="password" placeholder="Enter You Password" name="password">
+                        <input class="font-thin text-slate-300 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="pass" type="password" placeholder="Enter You Password" name="password">
                     </div>
-                    <div class="mb-8">
+                    <div class="block text-gray-700 text-sm font-bold mb-2 mb-5mb-8">
                         Confirm Password
                         <br>
-                        <input class=" p-2 border-2 rounded-xl text-black  border-black" id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
+                        <input class="font-thin text-slate-300 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cnfrm-pass" type="password" placeholder="Enter Your Password" name="cpassword">
                     </div>
-                    <input class="mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black" id="sbmitbtn" type="submit" value="Submit" name="submit">
-                    <p style="text-align: center;">OR</p>
+                    <input class="ml-10 mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black" id="sbmitbtn" type="submit" value="Submit" name="submit">
+                    <!-- <p style="text-align: center;">OR</p>
                     <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google</div>
-        
+         -->
             </form>
         </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
