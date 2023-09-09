@@ -66,16 +66,16 @@ if (isset($_POST['submit'])) {
 
             <form class="flex-col" action="login.php" method="POST">
                 <h1 class="ml-10 mb-10 font-bold text-4xl">Sign In</h1>
-                <div class="mb-5">
-                    Email Address a
+                <div class="block text-gray-700 text-sm font-bold mb-2 mb-5">
+                    Email Address
                     <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" type="email" name="email"
+                    <input class="font-thin shadow appearance-none border rounded w-full py-2 px-3 text-slate-300 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email"
                         placeholder="Enter Your Email Id">
                 </div>
-                <div class="mb-8">
+                <div class="block text-gray-700 text-sm font-bold mb-2 mb-8">
                     Password
                     <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" id="pass" type="password"
+                    <input class="font-thin shadow appearance-none border rounded w-full py-2 px-3 text-slate-300 leading-tight focus:outline-none focus:shadow-outline" id="pass" type="password"
                         name="password" placeholder="Enter Your Password">
                 </div>
                 <div class="mb-8">
