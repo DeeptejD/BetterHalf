@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 07:51 PM
+-- Generation Time: Sep 17, 2023 at 10:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,9 +39,7 @@ CREATE TABLE `otp_data` (
 --
 
 INSERT INTO `otp_data` (`id`, `user_email`, `otp_code`, `otp_expiry`) VALUES
-(11, 'ayushsalelkar@gmail.com', 743326, '2023-08-30 13:10:29'),
-(12, 'salelkarayush@gmail.com', 899078, '2023-08-30 22:22:56'),
-(13, 'salelkarayush@gmail.com', 200852, '2023-08-30 22:23:27');
+(1, 'deeptejdhauskar2003@gmail.com', 406963, '2023-09-17 13:51:47');
 
 -- --------------------------------------------------------
 
@@ -72,7 +70,7 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`user_name`, `user_email`, `user_password`) VALUES
-('a', 'salelkarayush@gmail.com', '$2y$10$gpJcfospOqP8o0ji/uhGjupFhSiE/p5jTN2jRN9z7/2/Rjz5uapXK');
+('Deeptej', 'deeptejdhauskar2003@gmail.com', '$2y$10$/GlOt9tYTWG6pRedJSN6SefjW/GWGjyNr/ngcT1pmF1n0DbTR.wm6');
 
 --
 -- Indexes for dumped tables
@@ -104,7 +102,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `otp_data`
 --
 ALTER TABLE `otp_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
