@@ -81,7 +81,8 @@ if (isset($_POST['submit'])) {
 <head>
     <?php include '../partials/head-content.php'; ?>
     <title>Register</title>
-    <link rel="stylesheet" href="../../build/css/tailwind.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="../../build/css/tailwind.css"> -->
 </head>
 
 <body class="flex-col justify-center items-center">
