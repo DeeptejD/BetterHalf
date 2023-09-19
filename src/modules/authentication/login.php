@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
     <div class="rounded-2xl w-72 h-2/3 bg-white p-2 mr-4 text-black flex justify-center items-center shadow-2xl">
       <form class="flex-col" action="login.php" method="POST">
         <h1 class="ml-10 mb-10 font-bold text-4xl">Sign In</h1>
-        <div class="mb-5">
+        <div styles="left:10p" class="mb-5">
           Email Address
           <br />
           <input class="p-2 border-2 rounded-xl text-black border-black" type="email" name="email"
