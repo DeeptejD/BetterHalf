@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen flex flex-col px-5"
     style="background-image: url('../../images/dashboard/background-2.jpg');">
     <!-- this right here is the nav -->
-    <div class="m-4 mb-0" style="backdrop-filter: blur(8px);">
+    <div class="m-4 mb-0">
       <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
         style="backdrop-filter: blur(8px);">
         <a href=" #" class=" m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo
@@ -73,12 +73,12 @@ if (isset($_POST['submit'])) {
           <div class="pt-2">
             <label for="email" class="text-white text-lg font-semibold shadow-2xl pl-2">Email</label>
             <input type="email" name="email" id="email"
-              class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+              class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
           </div>
           <div class="pt-2">
             <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
             <input type="password" name="password" id="pass"
-              class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+              class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
           </div>
           <div class="flex flex-row pt-6 space-x-6">
             <a href="./forgot-password/forgot-password.php" class="text-white text-md text-base underline">Forgot
