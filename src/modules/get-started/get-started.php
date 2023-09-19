@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter&family=Merriweather:ital,wght@1,300&family=Playfair+Display&display=swap"
         rel="stylesheet"> -->
 
-    <title>Get Started</title>
+    <title>Getting Started</title>
 </head>
 
 <body>
@@ -30,8 +30,7 @@
                         <div class="space-y-1 p-5 flex flex-col justify-center items-center h-full">
                             <form action="#" class="w-full py-6 px-2">
                                 <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold pb-3 mb-6">
-                                    Personal
-                                    Information</h1>
+                                    Personal Information</h1>
 
                                 <div class="flex flex-row space-x-3">
                                     <!-- DOB -->
@@ -51,7 +50,9 @@
                                         <select name="marital" id="marital"
                                             class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none">
                                             <option value="single">Single</option>
-                                            <option value="married">Married</option>
+                                            <option value="married">Divorced</option>
+                                            <option value="married">Widow</option>
+
                                         </select>
                                     </div>
                                     <!-- Gender -->
