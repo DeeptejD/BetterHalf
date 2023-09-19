@@ -37,41 +37,60 @@ if (isset($_POST['submit'])) {
   <title>Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- <link rel="stylesheet" href="../../build/css/tailwind.css" /> -->
+  <style>
+    ::selection {
+      background-color: rgb(197, 242, 197);
+      color: black;
+    }
+  </style>
 </head>
 
-<body class="flex-col justify-center items-center overflow-hidden">
-  <nav class="h-10">
-    <div>
-      <a href="register.php">Sign Up</a>
+<body>
+  <div class="bg-cover bg-center overflow-hidden h-screen w-screen flex flex-col px-5"
+    style="background-image: url('../../images/dashboard/background-2.jpg');">
+    <!-- this right here is the nav -->
+    <div class="m-4 mb-0" style="backdrop-filter: blur(8px);">
+      <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
+        style="backdrop-filter: blur(8px);">
+        <a href=" #" class=" m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo
+          goes here</a>
+        <a href="register.php" class=" m-2 text-semibold flex justify-center items-center font-semibold pr-6">Sign
+          Up</a>
+      </nav>
     </div>
-  </nav>
-  <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center"
-    style="background-image: url(../../images/registration-bg.jpg)">
-    <div class="rounded-2xl w-72 h-2/3 bg-white p-2 mr-4 text-black flex justify-center items-center shadow-2xl">
-      <form class="flex-col" action="login.php" method="POST">
-        <h1 class="ml-10 mb-10 font-bold text-4xl">Sign In</h1>
-        <div styles="left:10p" class="mb-5">
-          Email Address
-          <br />
-          <input class="p-2 border-2 rounded-xl text-black border-black" type="email" name="email"
-            placeholder="Enter Your Email Id" />
-        </div>
-        <div class="mb-8">
-          Password
-          <br />
-          <input class="p-2 border-2 rounded-xl text-black border-black" id="pass" type="password" name="password"
-            placeholder="Enter Your Password" />
-        </div>
-        <div class="mb-8">
-          <a href="./forgot-password/forgot-password.php">Forgot Password?</a>
-        </div>
-        <div class="mb-8">
-          <a href="register.php">Don't have an account?</a>
-        </div>
-        <input
-          class="mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black"
-          type="submit" name="submit" value="Submit" />
-      </form>
+
+    <!-- this is where the part under the nav starts -->
+    <div class="flex-grow bg-white m-4 rounded-xl flex flex-row bg-opacity-25 shadow-2xl"
+      style="backdrop-filter: blur(8px);">
+      <div class="bg-gray-900 rounded-l-xl w-1/3 h-full overflow-hidden">
+        <img src="../../images/login/hero-gif.gif" alt=""
+          class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+      </div>
+      <div class="flex-grow rounded-r-xl ml-5 p-5 flex flex-col justify-center items-center">
+        <form action="login.php" method="post" class="w-full py-6 px-2">
+          <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold pb-3 mb-6">
+            Enter your Login Info</h1>
+          <div class="pt-2">
+            <label for="email" class="text-white text-lg font-semibold shadow-2xl pl-2">Email</label>
+            <input type="email" name="email" id="email"
+              class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+          </div>
+          <div class="pt-2">
+            <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
+            <input type="password" name="password" id="pass"
+              class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+          </div>
+          <div class="flex flex-row pt-6 space-x-6">
+            <a href="./forgot-password/forgot-password.php" class="text-white text-md text-base underline">Forgot
+              Password?</a>
+            <a href="register.php" class="text-white text-md text-base underline">Dont have an account?</a>
+          </div>
+          <div class="flex flex-row justify-end pt-11">
+            <input type="submit" name="submit" id="submit"
+              class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-lime-100 active:bg-lime-200  active:shadow-inner font-semibold transition transform duration-500 hover:scale-110 focus:outline-none" />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

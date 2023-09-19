@@ -32,7 +32,7 @@
                 <div class="bg-gray-200 bg-opacity-25 bg-blur rounded-xl flex flex-row h-full w-full "
                     style="backdrop-filter: blur(8px);">
                     <div class="bg-gray-900 rounded-l-xl w-1/3 h-full overflow-hidden">
-                        <img src="../../images/get-started/step-1-alt-2.png" alt=""
+                        <img src="../../images/get-started/the-gif.gif" alt=""
                             class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
                     </div>
                     <!-- this was where there was the red color -->
@@ -52,7 +52,7 @@
                                                 class="text-gray-950 text-lg font-semibold shadow-2xl pl-2">Date of
                                                 birth</label>
                                             <input type="date" name="dob" id="dob"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5">
+                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5 focus:outline-none">
                                         </div>
 
                                         <!-- Marital -->
@@ -61,7 +61,7 @@
                                                 class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Marital
                                                 Status</label>
                                             <select name="marital" id="marital"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none">
+                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="single">Single</option>
                                                 <option value="married">Married</option>
                                             </select>
@@ -72,7 +72,7 @@
                                                 class="text-gray-950  text-lg font-semibold shadow-2xl  pl-2">Select
                                                 Gender</label>
                                             <select name="gender" id="gender"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none">
+                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="nonBinary">Non Binary</option>
@@ -87,7 +87,7 @@
                                             <label for="religion"
                                                 class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Religion</label>
                                             <select name="religion" id="religion"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none"
+                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none"
                                                 onchange="updateCasteOptions()">
                                                 <option value="hindu">Hindu</option>
                                                 <option value="muslim">Muslim</option>
@@ -100,7 +100,7 @@
                                             <label for="caste"
                                                 class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Caste</label>
                                             <select name="caste" id="caste"
-                                                class="w-full rounded-2xl appearance-none shadow-2xl bg-gray-200 active:bg-gray-300 p-5">
+                                                class="w-full rounded-2xl appearance-none shadow-2xl bg-gray-200 active:bg-gray-300 p-5 focus:outline-none">
                                                 <option value="brahmin">Brahmin</option>
                                                 <option value="kshatriya">Kshatriya</option>
                                                 <option value="vaishya">Vaishya</option>
@@ -113,13 +113,13 @@
                                             <label for="age"
                                                 class="text-gray-950 text-lg font-semibold shadow-2xl pl-2">Age</label>
                                             <input type="number" name="age" id="age" min="18" max="100"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5">
+                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5 focus:outline-none">
                                         </div>
 
                                     </div>
                                     <div class="flex flex-row justify-end pt-7">
                                         <a href="#"
-                                            class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
                                             onclick="showStepTwo()">Next</a>
                                     </div>
                                 </div>
@@ -159,15 +159,15 @@
                                     </div>
                                     <div class="flex flex-row justify-between pt-7">
                                         <a href="#"
-                                            class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
                                             onclick="showStepOne()">Previous</a>
 
                                         <a href="#" id="upload-another"
-                                            class="hidden w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
+                                            class="focus:outline-none hidden w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
                                             onclick="showFileInput()">Change</a>
 
                                         <a href=" #"
-                                            class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
                                             onclick="showStepThree()">Next</a>
                                     </div>
                                 </div>
@@ -184,12 +184,12 @@
                                     <p id="bio-counter" class="text-gray-100 text-sm">Remaining words: 50</p>
                                     <div class="flex flex-row justify-between pt-7">
                                         <a href="#"
-                                            class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
                                             onclick="showStepTwo()">Previous</a>
 
 
                                         <a href=" #"
-                                            class="w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110">Submit</a>
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110">Submit</a>
                                     </div>
                                 </div>
                             </form>

@@ -85,8 +85,8 @@ if (isset($_POST['submit'])) {
     <!-- <link rel="stylesheet" href="../../build/css/tailwind.css"> -->
 </head>
 
-<body class="flex-col justify-center items-center">
-    <nav class="link">
+<body>
+    <!-- <nav class="link">
         <a href="login.php">Sign In</a>
     </nav>
     <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center "
@@ -168,7 +168,68 @@ if (isset($_POST['submit'])) {
                     document.getElementById("cnfrm-pass").value = "";
                 }
             })
-        </script>
+        </script> -->
+    <div class="bg-cover bg-center overflow-hidden h-screen w-screen flex flex-col px-5"
+        style="background-image: url('../../images/dashboard/background-2.jpg');">
+        <div class="m-4 mb-0" style="backdrop-filter: blur(8px);">
+            <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
+                style="backdrop-filter: blur(8px);">
+                <a href=" #" class=" m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo
+                    goes here</a>
+                <a href="login.php" class=" m-2 text-semibold flex justify-center items-center font-semibold pr-6">Log
+                    In</a>
+            </nav>
+        </div>
+        <div class="flex-grow bg-white m-4 rounded-xl flex flex-row bg-opacity-25 shadow-2xl"
+            style="backdrop-filter: blur(8px);">
+            <div class="bg-gray-900 rounded-l-xl w-1/3 h-full overflow-hidden">
+                <img src="../../images/login/hero-gif.gif" alt=""
+                    class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+            </div>
+            <div class="flex-grow rounded-r-xl ml-5 p-5 flex flex-col justify-center items-center">
+                <form action="register.php" method="POST" class="w-full py-3 px-2">
+                    <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold mb-3">
+                        Create an Account</h1>
+                    <?php
+                    if (isset($error)) {
+                        foreach ($error as $error) {
+                            echo '<span color="white" class="error-msg">' . $error . '</span>';
+                        }
+                        ;
+                    }
+                    ;
+
+                    ?>
+                    <div class="pt-2">
+                        <label for="name" class="text-white text-lg font-semibold shadow-2xl pl-2">Name</label>
+                        <input type="text" placeholder="Enter your full name" name="username" id="name"
+                            class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+                    </div>
+                    <div class="pt-2">
+                        <label for="email" class="text-white text-lg font-semibold shadow-2xl pl-2">Email</label>
+                        <input type="emai" placeholder="johndoe@example.com" name="email" id="email"
+                            class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+                    </div>
+                    <div class="pt-2">
+                        <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
+                        <input type="password" name="password" id="pass" placeholder="Min 8 characters"
+                            class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+                    </div>
+                    <div class="pt-2">
+                        <label for="cpassword" class="text-white text-lg font-semibold shadow-2xl pl-2">Confirm
+                            Password</label>
+                        <input type="password" placeholder="* * * * * * * *" name="cpassword" id="cnfrm-pass"
+                            class="w-full rounded-2xl shadow-2xl bg-gray-200 p-5  focus:outline-none">
+                    </div>
+                    <div class="flex flex-row justify-end pt-11">
+                        <input type="submit" name="submit" id="submit"
+                            class="w-1/5 text-center p-5 pt-4 h-full rounded-xl bg-slate-200 hover:bg-lime-100 active:bg-lime-200  active:shadow-inner font-semibold transition transform duration-500 hover:scale-110 focus:outline-none" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
