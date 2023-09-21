@@ -168,27 +168,30 @@ if (isset($_POST['submit'])) {
                 }
             })
         </script> -->
-    <div class="bg-cover bg-center overflow-hidden h-screen w-screen flex flex-col px-5"
+    <div class="bg-cover bg-center md:overflow-hidden h-full md:h-screen w-screen flex flex-col md:px-5"
         style="background-image: url('../../images/dashboard/background-2.jpg');">
         <div class="m-4 mb-0">
             <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
                 style="backdrop-filter: blur(8px);">
                 <a href=" #" class=" m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo
                     goes here</a>
+                    
                 <div class=""><a href="login.php"
                         class="m-1 text-semibold flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
                         In</a></div>
             </nav>
         </div>
-        <div class="flex-grow bg-white m-4 rounded-xl flex flex-row bg-opacity-25 shadow-2xl"
+        <div class="flex-grow bg-white m-4 rounded-xl rounded-t-xl flex flex-col md:flex-row bg-opacity-25 shadow-xl"
             style="backdrop-filter: blur(8px);">
-            <div class="bg-gray-900 rounded-l-xl w-1/3 h-full overflow-hidden">
+            <div class="bg-gray-900 rounded-t-xl md:rounded-l-xl w-full md:w-1/3 h-full overflow-hidden">
                 <img src="../../images/login/hero-gif.gif" alt=""
-                    class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                    class="hidden md:block object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img src="../../images/login/hero-mobile.gif" alt=""
+                    class="md:hidden block object-cover rounded-t-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
             </div>
-            <div class="flex-grow rounded-r-xl ml-5 p-5 flex flex-col justify-center items-center">
+            <div class="flex-grow rounded-r-xl md:ml-5 p-5 flex flex-col justify-center items-center">
                 <form action="register.php" method="POST" class="w-full py-3 px-2">
-                    <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold mb-3">
+                    <h1 class="text-gray-100  text-2xl md:text-3xl font-bold pb-1 mb-2">
                         Create an account</h1>
                     <?php
                     if (isset($error)) {
@@ -223,7 +226,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="flex flex-row justify-end pt-11">
                         <input type="submit" name="submit" id="submit"
-                            class="w-1/5 text-center p-5 pt-4 h-full rounded-xl bg-slate-200 hover:bg-lime-100 active:bg-lime-200  active:shadow-inner font-semibold transition transform duration-500 hover:scale-110 focus:outline-none" />
+                            class="md:w-1/5 w-full shadow-2xl text-center p-5 h-full rounded-xl bg-lime-100 hover:bg-lime-100 active:bg-lime-200  active:shadow-inner font-semibold transition transform duration-500 hover:scale-90 active:scale-80 focus:outline-none" />
                     </div>
                 </form>
             </div>
