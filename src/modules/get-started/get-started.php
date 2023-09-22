@@ -15,32 +15,32 @@ if(isset($_SESSION['user_email'])){
         $tmpname = $_FILES['image']['tmp_name'];
         $error = $_FILES['image']['error'];
         $bio = $_POST['bio'];
-        if($error === 0){
-            if($imgsize > 125000){
-                $em = "file too big";
-                header("location: get-started.php?error=$em");
-            }
-            else{
-                $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
-                $img_ex_lc = strtolower($img_ex);
-                $allowed_exs("jpg", "jpeg", "png");
-                if (in_array($img_ex_lc, $allowed_exs)) {
-                    $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
-                    $img_upload_path = "../../uploads/". $new_img_name;
-                    move_uploaded_file($tmpname,$img_upload_path);
-                    $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
-                    mysqli_query($conn, $insertquery);
-                    header("location: ../dashboard/dash.html");
-                }
-                else{
-                    $em = "You cant upload files of this type";
-                    header("location: get-started.php?error=$em");
-                }
-            }
+        if($imgsize > 125000){
+            echo "crossed size limit";
+                echo '<script> 
+                window.location.href = "get-started.php";
+                alert("Please insert a file with smaller size");
+            </script>';
         }
         else{
-            $em = "unknown error";
-            header("location: get-started.php?error=$em");
+            $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            $allowed_exs("jpg", "jpeg", "png");
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
+                $img_upload_path = "../../uploads/". $new_img_name;
+                move_uploaded_file($tmpname,$img_upload_path);
+                $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
+                mysqli_query($conn, $insertquery);
+                header("location: ../dashboard/dash.html");
+            }
+            else{
+                echo "incorrect file type";
+                echo '<script> 
+                window.location.href = "get-started.php";
+                alert("Please insert a valid file type!");
+            </script>';
+            }
         }
     }
 }
