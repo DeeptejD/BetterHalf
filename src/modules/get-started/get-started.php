@@ -25,7 +25,7 @@ if(isset($_SESSION['user_email'])){
         else{
             $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
-            $allowed_exs("jpg", "jpeg", "png");
+            $allowed_exs = array("jpg", "jpeg", "png");
             if (in_array($img_ex_lc, $allowed_exs)) {
                 $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
                 $img_upload_path = "../../uploads/". $new_img_name;
