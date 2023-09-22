@@ -15,32 +15,40 @@ if(isset($_SESSION['user_email'])){
         $tmpname = $_FILES['image']['tmp_name'];
         $error = $_FILES['image']['error'];
         $bio = $_POST['bio'];
-        if($imgsize > 125000){
-            echo "crossed size limit";
-                echo '<script> 
-                window.location.href = "get-started.php";
-                alert("Please insert a file with smaller size");
-            </script>';
-        }
-        else{
-            $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
-            $allowed_exs = array("jpg", "jpeg", "png");
-            if (in_array($img_ex_lc, $allowed_exs)) {
-                $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
-                $img_upload_path = "../../uploads/". $new_img_name;
-                move_uploaded_file($tmpname,$img_upload_path);
-                $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
-                mysqli_query($conn, $insertquery);
-                header("location: ../dashboard/dash.html");
+        if($error === 0){
+            if($imgsize > 125000){
+                echo "crossed size limit";
+                    echo '<script> 
+                    window.location.href = "get-started.php";
+                    alert("Please insert a file with smaller size");
+                </script>';
             }
             else{
-                echo "incorrect file type";
-                echo '<script> 
-                window.location.href = "get-started.php";
-                alert("Please insert a valid file type!");
-            </script>';
+                $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+                $img_ex_lc = strtolower($img_ex);
+                $allowed_exs("jpg", "jpeg", "png");
+                if (in_array($img_ex_lc, $allowed_exs)) {
+                    $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
+                    $img_upload_path = "../../uploads/". $new_img_name;
+                    move_uploaded_file($tmpname,$img_upload_path);
+                    $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
+                    mysqli_query($conn, $insertquery);
+                    header("location: ../dashboard/dash.html");
+                }
+                else{
+                    echo "incorrect file type";
+                    echo '<script> 
+                    window.location.href = "get-started.php";
+                    alert("Please insert a valid file type!");
+                </script>';
+                }
             }
+        }else{
+            echo "unknown error occured";
+                    echo '<script> 
+                    window.location.href = "";
+                    alert("unknown error");
+                </script>';
         }
     }
 }
@@ -93,7 +101,7 @@ else{
                     <!-- this was where there was the red color -->
                     <div class="w-2/3 h-full p-4 rounded-r-xl">
                         <div class="space-y-1 p-5 flex flex-col justify-center items-center h-full">
-                            <form action="get-started.php" class="w-full py-6 px-2" method="post">
+                            <form action="" class="w-full py-6 px-2" method="post">
                                 <!-- Part-1 -->
                                 <div class="part part-1 active" id="part-1">
                                     <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold pb-3 mb-6">
