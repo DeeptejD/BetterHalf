@@ -7,19 +7,17 @@ if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $pass = $_POST['password'];
 
-  $select = "SELECT user_password FROM `register` WHERE user_email = '$email'";
+  $select = "SELECT * FROM `register` WHERE user_email = '$email'";
   $result = mysqli_query($conn, $select);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $count = mysqli_num_rows($result);
 
   if (password_verify($pass, $row['user_password'])) {
     session_start();
-    // i commented this cuz the new database does not have a user_id attribute
-    // $_SESSION['user_id'] = $row['user_id'];
-    $_SESSION['user_email'] = $row['user_email'];
+    $_SESSION['user_email'] = $email;
+    $_SESSION['user_id'] = $row['user_id'];
     echo "verified";
     header("location: ../get-started/get-started.php");
-    exit();
   } else {
     echo "not verified";
     echo '<script> 

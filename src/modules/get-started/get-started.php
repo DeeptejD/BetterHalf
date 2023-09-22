@@ -1,3 +1,58 @@
+<?php
+@include '../config.php';
+session_start();
+if(isset($_SESSION['user_email'])){
+    if (isset($_POST['submit'])) {
+        $userid = $_SESSION['user_id'];
+        $dob = $_POST['dob'];
+        $mstatus = $_POST['marital'];
+        $gender = $_POST['gender'];
+        $religion = $_POST['religion'];
+        $caste = $_POST['caste'];
+        $age = $_POST['age'];
+        $imgname = $_FILES['image']['name'];
+        $imgsize = $_FILES['image']['size'];
+        $tmpname = $_FILES['image']['tmp_name'];
+        $error = $_FILES['image']['error'];
+        $bio = $_POST['bio'];
+        if($error === 0){
+            if($imgsize > 125000){
+                $em = "file too big";
+                header("location: get-started.php?error=$em");
+            }
+            else{
+                $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+                $img_ex_lc = strtolower($img_ex);
+                $allowed_exs("jpg", "jpeg", "png");
+                if (in_array($img_ex_lc, $allowed_exs)) {
+                    $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
+                    $img_upload_path = "../../uploads/". $new_img_name;
+                    move_uploaded_file($tmpname,$img_upload_path);
+                    $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
+                    mysqli_query($conn, $insertquery);
+                    header("location: ../dashboard/dash.html");
+                }
+                else{
+                    $em = "You cant upload files of this type";
+                    header("location: get-started.php?error=$em");
+                }
+            }
+        }
+        else{
+            $em = "unknown error";
+            header("location: get-started.php?error=$em");
+        }
+    }
+}
+else{
+    echo "Please login to continue";
+    echo '<script> 
+                window.location.href = "../authentication/login.php";
+                alert("Please login to continue with this page");
+            </script>';
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -38,7 +93,7 @@
                     <!-- this was where there was the red color -->
                     <div class="w-2/3 h-full p-4 rounded-r-xl">
                         <div class="space-y-1 p-5 flex flex-col justify-center items-center h-full">
-                            <form action="#" class="w-full py-6 px-2">
+                            <form action="get-started.php" class="w-full py-6 px-2" method="post">
                                 <!-- Part-1 -->
                                 <div class="part part-1 active" id="part-1">
                                     <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold pb-3 mb-6">
@@ -148,7 +203,7 @@
                                                         (MAX. 800x400px)</p>
                                                 </div>
                                             </div>
-                                            <input id="dropzone-file" type="file" class="hidden"
+                                            <input id="dropzone-file" name="image" type="file" class="hidden"
                                                 onchange="previewImage(this)" accept="image/*" />
                                         </label>
                                     </div>
@@ -178,7 +233,7 @@
                                         Enter your bio</h1>
                                     <p class="text-gray-100 font-bold mb-6  pb-3">
                                         Write a snappy bio that defines YOU!</p>
-                                    <textarea id="bio-input" rows="4" cols="50" maxlength="500"
+                                    <textarea id="bio-input" name="bio" rows="4" cols="50" maxlength="500"
                                         placeholder="You really dont need more than a 50 words to write something catchy"
                                         class="w-full h-60 rounded-xl p-5 appearance-none"></textarea>
                                     <p id="bio-counter" class="text-gray-100 text-sm">Remaining words: 50</p>
@@ -188,8 +243,8 @@
                                             onclick="showStepTwo()">Previous</a>
 
 
-                                        <a href=" #"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110">Submit</a>
+                                        <input type="submit" name="submit" id="submit" href=" #"
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"/>
                                     </div>
                                 </div>
                             </form>
