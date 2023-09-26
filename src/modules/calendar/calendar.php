@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+// Check if the user is logged in (adjust this according to your authentication mechanism)
+if (!isset($_SESSION['user_email'])) {
+    echo "User is not logged in.";
+    exit();
+}
+
+// echo $_SESSION['user_email'];
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "loginpage";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Fetch events for the logged-in user
+    $user_email = $_SESSION['user_email'];
+    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date FROM calendar WHERE user_email = :user_email");
+    $stmt->bindParam(':user_email', $user_email);
+    $stmt->execute();
+
+    $events = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $startDateTime = new DateTime($row['start_date']);
+        $endDateTime = new DateTime($row['end_date']);
+
+        $formattedStart = $startDateTime->format('Y-m-d\TH:i:s');
+        $formattedEnd = $endDateTime->format('Y-m-d\TH:i:s');
+
+        $event = new stdClass();
+        // $event->id = $row['id'];
+        $event->title = $row['event_title'];
+        $event->start = $formattedStart;
+        $event->end = $formattedEnd;
+
+        $events[] = $event;
+    }
+
+    // echo json_encode($events);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -6,7 +55,12 @@
     <meta name="description" content="Schedule Events using the integrated Calendar">
     <meta property="og:image" content="../../images/OG-images/calendar-meta.png">
 
+    <title>Calendar</title>
+
     <!-- scripts necessary to run fullcalendar -->
+    <script src="
+https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
+"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.9/index.global.min.js"></script>
     <script src='fullcalendar/dist/index.global.js'></script>
@@ -209,7 +263,7 @@
                                     event details
                                 </h3>
                                 <hr class="my-4 border-gray-600">
-                                <form class="space-y-6" action="calendar-backend.php" method="POST">
+                                <form class="space-y-6" action="insert_event.php" method="POST">
                                     <!-- title -->
                                     <div>
                                         <label for="event_title"
@@ -230,9 +284,9 @@
                                     <hr class="my-4 border-gray-600">
 
                                     <!-- date time select -->
-                                    <!-- <div class="flex flex-col w-full space-y-3"> -->
-                                    <!-- start -->
-                                    <!-- <label for="startDate"
+                                    <div class="flex flex-col w-full space-y-3">
+                                        <!-- start -->
+                                        <label for="startDate"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start</label>
                                         <div class="flex flex-row space-x-3 w-full h-full">
                                             <input type="date" name="startDate" id="startDate"
@@ -241,21 +295,21 @@
                                             <input type="time" name="startTime" id="startTime"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                 required>
-                                        </div> -->
-                                    <!-- end -->
-                                    <!-- <label for="event_title"
+                                        </div>
+                                        <!-- end -->
+                                        <label for="endDate"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End</label>
                                         <div class="flex flex-row space-x-3 w-full h-full">
-                                            <input type="date" name="startDate" id="startDate"
+                                            <input type="date" name="endDate" id="endDate"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                 required>
-                                            <input type="time" name="startDate" id="startDate"
+                                            <input type="time" name="endTime" id="endTime"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                 required>
                                         </div>
-                                    </div> -->
+                                    </div>
 
-                                    <div date-rangepicker class="flex items-center w-full">
+                                    <!-- <div date-rangepicker class="flex items-center w-full">
                                         <div class="relative w-1/2">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -285,35 +339,21 @@
                                                 class=" border border-gray-300 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Select date end">
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="flex flex-row">
                                         <!-- allday -->
                                         <div class="flex items-center w-1/2">
                                             <div class="flex items-center h-5">
-                                                <input id="allday" type="checkbox" value=""
+                                                <input id="allDay" type="checkbox" value="" name="allDay"
                                                     class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                                                     required>
                                             </div>
-                                            <label for="allday"
+                                            <label for="allDay"
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">All
                                                 Day</label>
                                         </div>
-
-                                        <!-- Color -->
-                                        <!-- <div>
-                                            <select name="event_color" id="event_color"
-                                                class="appearance-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                                                <div class="flex flex-row">
-                                                    <div class="w-1/6 h-full bg-red-500"></div>
-                                                    <option value="red" style="background-color: red; color: white;">Red
-                                                    </option>
-                                                </div>
-                                                <option value=" blue" `>Blue</option>
-                                                <option value="green">Green</option>
-                                            </select>
-                                        </div> -->
                                     </div>
 
                                     <hr class="my-4 border-gray-600">
@@ -322,7 +362,7 @@
                                     <label for="eventDescription"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
                                         Description</label>
-                                    <textarea id="eventDescription" rows="4"
+                                    <textarea id="eventDescription" rows="4" name="eventDescription"
                                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="Enter Event Description here ..."></textarea>
 
@@ -356,9 +396,7 @@
 
 
     <script>
-
         // retrieve events from database
-
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var user_email = "deeptejdhauskar2003@gmail.com";
@@ -372,37 +410,35 @@
                 },
                 selectable: true,
                 navLinks: true,
-                selectMirror: true,
-                unselectAuto: true,
-                // events fetch
-                events: {
-                    url: 'retrieve_events.php',
-                    method: 'POST',
-                    extraParams: {
-                        user_email: user_email
-                    }
+                timeZone: 'local',
+                events: <?php echo json_encode($events); ?>,
+                eventClick: function (info) {
+                    alert('Event: ' + info.event.title + '\n\n'
+                        + 'Starts:' + info.event.start + '\n\n' + 'Ends:' + info.event.end
+                    );
+                    // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                    // alert('View: ' + info.view.type);
                 }
-                // events: 'retrieve-events.php'
-
             });
 
             calendar.render();
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var daycalendarEl = document.getElementById('daycalendar');
-            var daycalendar = new FullCalendar.Calendar(daycalendarEl, {
-                initialView: 'listDay',
-                headerToolbar: {
-                    start: '',
-                    center: '',
-                    end: '',
-                },
-                selectable: true,
-            });
 
-            daycalendar.render();
+        var daycalendarEl = document.getElementById('daycalendar');
+        var daycalendar = new FullCalendar.Calendar(daycalendarEl, {
+            initialView: 'listDay',
+            headerToolbar: {
+                start: '',
+                center: '',
+                end: '',
+            },
+            selectable: true,
+            events: <?php echo json_encode($events); ?>
         });
+
+        daycalendar.render();
+
     </script>
 </body>
 
