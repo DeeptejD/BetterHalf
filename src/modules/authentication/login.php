@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) {
     $_SESSION['user_email'] = $email;
     $_SESSION['user_id'] = $row['user_id'];
     echo "verified";
-    header("location: ../get-started/get-started.php");
+    // header("location: ../get-started/get-started.php");
+    header("location: ../calendar/calendar.php");
   } else {
     echo "not verified";
     echo '<script> 
@@ -54,7 +55,7 @@ if (isset($_POST['submit'])) {
           goes here</a>
         <a href=" #" class=" md:hidden m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo</a>
         <div class="flex flex-row space-x-4">
-          <a href="../register.php" class=" m-2 text-semibold flex justify-center items-center font-semibold pr-6">Sign
+          <a href="register.php" class=" m-2 text-semibold flex justify-center items-center font-semibold pr-6">Sign
             Up</a>
         </div>
       </nav>

@@ -10,38 +10,55 @@
 </head>
 
 <body>
-  <div class="bg-cover bg-center overflow-hidden h-screen w-screen" style="background-image: url('../../images/dashboard/background-4.jpg');">
+  <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
+    style="background-image: url('../../images/dashboard/background-4.jpg');">
     <div class="flex justify-between h-full py-3">
       <div class="mx-0 pr-4 h-full w-1/4">
         <div class=" shadow-2xl rounded-r-xl h-full">
-          <div class="flex flex-row col-span-2 h-full bg-gray-700 rounded-r-xl shadow-2xl bg-opacity-50 p-4" style="backdrop-filter: blur(8px);"">
-          <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
-            <div class="h-4/5 space-y-4">
-              <div class="flex flex-row items-center justify-center">
-                <div class="bg-gray-900 rounded-full w-20 h-20"></div>
+          <div class="flex flex-row col-span-2 h-full bg-gray-700 rounded-r-xl shadow-2xl bg-opacity-50 p-4"
+            style="backdrop-filter: blur(8px);">
+            <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
+              <div class="h-4/5 space-y-4">
+                <div class="flex flex-row items-center justify-center">
+                  <a href="../dashboard/dash.html">
+                    <div class="bg-gray-900 rounded-full w-20 h-20"></div>
+                  </a>
+                </div>
+                <div class="h-1/2 w-full rounded-xl space-y-4">
+                  <button
+                    class="text-gray-900 md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-2xl text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
+                    Home
+                  </button>
+                  <button
+                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
+                    Chat
+                  </button>
+                  <a href="../calendar/calendar.html">
+                    <button
+                      class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
+                      Calendar
+                    </button>
+                  </a>
+                  <button
+                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
+                    Kundali
+                  </button>
+                  <button
+                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
+                    Map
+                  </button>
+                </div>
               </div>
-              <div class="h-1/2 w-full rounded-xl space-y-4">
-                <button class="text-gray-900 md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-2xl text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                  Home 
-                </button>
-                <button class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                  Chat
-                </button>
-                <button class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                  Kundali
-                </button>
-                <button class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
-                  Map
-                </button>
+              <div class="h-1/5">
+                <div class="rounded-xl w-full h-full pt-10">
+                  <a href="../authentication/login.php">
+                    <button
+                      class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
+                      Log-Out
+                    </button>
+                  </a>
+                </div>
               </div>
-            </div>
-            <div class="h-1/5">
-              <div class="rounded-xl w-full h-full pt-10">
-                <button class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
-                  Log-Out
-                </button>
-              </div>
-            </div>
             </nav>
           </div>
         </div>
@@ -51,7 +68,8 @@
           <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4">
             <div class="w-full h-full bg-gray-900 rounded-xl flex flex-row space-x-4">
               <div class="w-1/3 h-full bg-red-900 rounded-l-xl overflow-hidden">
-                <img src="../../images/dashboard/profile-2.jpg" alt="" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img src="../../images/dashboard/profile-2.jpg" alt=""
+                  class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full bg-red-900 rounded-r-xl flex flex-col space-y-4">
                 <div class="bg-violet-900 w-full h-1/3 rounded-xl"></div>
@@ -61,11 +79,17 @@
           </div>
         </div>
         <div class="flex flex-row gap-4 pb-0 pr-4 col-span-9 row-span-3 row-start-4">
-          <div class="col-span-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 " style="backdrop-filter: blur(8px);">
+          <div
+            class="col-span-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
+            style="backdrop-filter: blur(8px);">
           </div>
-          <div class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 " style="backdrop-filter: blur(8px);">
+          <div
+            class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
+            style="backdrop-filter: blur(8px);">
           </div>
-          <div class="col-span-3 w-1/3 bg-gray-700 rounded-2xl bg-opacity-60 transition duration-500 ease-in-out transform hover:scale-105" style="backdrop-filter: blur(8px);">
+          <div
+            class="col-span-3 w-1/3 bg-gray-700 rounded-2xl bg-opacity-60 transition duration-500 ease-in-out transform hover:scale-105"
+            style="backdrop-filter: blur(8px);">
           </div>
         </div>
       </div>
