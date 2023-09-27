@@ -13,13 +13,10 @@ $password = "";
 $database = "loginpage";
 
 try {
-    // Create a PDO instance
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
 
-    // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Retrieve POST data and assign them to variables
     $user_email = $_SESSION['user_email'];
     $event_title = $_POST['event_title'];
     $start_date = $_POST['startDate'];
@@ -32,10 +29,8 @@ try {
     $event_link = $_POST['eventLink'];
     $all_day = $_POST['allDay'];
 
-    // Prepare an SQL statement for insertion
     $stmt = $conn->prepare("INSERT INTO calendar (user_email, event_title, start_date, end_date, event_description, event_link, allDay) VALUES (:user_email, :event_title, :start_date, :end_date, :event_description, :event_link, :all_day)");
 
-    // Bind parameters
     $stmt->bindParam(':user_email', $user_email);
     $stmt->bindParam(':event_title', $event_title);
     $stmt->bindParam(':start_date', $start_date);
@@ -44,7 +39,6 @@ try {
     $stmt->bindParam(':event_link', $event_link);
     $stmt->bindParam(':all_day', $all_day);
 
-    // Execute the prepared statement
     $stmt->execute();
 
     echo "Record inserted successfully";
@@ -53,7 +47,7 @@ try {
 }
 
 
-// refresh
+// refresh part
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -86,8 +80,9 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-// Close the database connection
+// brk conn
 $conn = null;
 
+// return to the calendar
 header("location: calendar.php");
 ?>

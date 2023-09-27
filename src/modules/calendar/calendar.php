@@ -3,8 +3,7 @@ session_start();
 
 // Check if the user is logged in (adjust this according to your authentication mechanism)
 if (!isset($_SESSION['user_email'])) {
-    echo "User is not logged in.";
-    exit();
+    header("location: ../not_logged_in.html");
 }
 
 // echo $_SESSION['user_email'];
@@ -232,7 +231,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
                     <!-- Modal toggle -->
                     <div class="h-1/6 rounded-2xl">
-                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        <button data-modal-target="new-event-modal" data-modal-toggle="new-event-modal"
                             class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
                             type="button">
                             Create
@@ -241,7 +240,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 </div>
 
                 <!-- Main modal -->
-                <div id="authentication-modal"
+                <div id="new-event-modal"
                     class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
                     style="backdrop-filter: blur(8px);">
                     <div class="relative w-full max-w-2xl max-h-full">
@@ -250,7 +249,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                             style="backdrop-filter: blur(8px);">
                             <button type="button"
                                 class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="authentication-modal">
+                                data-modal-hide="new-event-modal">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
