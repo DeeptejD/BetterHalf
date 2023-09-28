@@ -19,7 +19,7 @@ try {
 
     // Fetch events for the logged-in user
     $user_email = $_SESSION['user_email'];
-    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date FROM calendar WHERE user_email = :user_email");
+    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date, allDay, event_link, color  FROM calendar WHERE user_email = :user_email");
     $stmt->bindParam(':user_email', $user_email);
     $stmt->execute();
 
@@ -36,6 +36,9 @@ try {
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
+        $event->allDay = $row['allDay'];
+        $event->url = $row['event_link'];
+        $event->color = $row['color'];
 
         $events[] = $event;
     }
@@ -76,78 +79,44 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
     <!-- datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
+
 </head>
 
 <body>
     <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
         style="background-image: url('../../images/dashboard/background-4.jpg');">
         <div class="flex justify-between h-full py-3">
+
             <!-- this is the side nav, do not touch -->
-            <div class="mx-0 pr-4 h-full w-1/4">
-                <div class=" shadow-2xl rounded-r-xl h-full">
-                    <div class="flex flex-row col-span-2 h-full bg-gray-700 rounded-r-xl shadow-2xl bg-opacity-50 p-4"
-                        style="backdrop-filter: blur(8px);"">
-                  <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
-                        <div class="h-4/5 space-y-4">
-                            <div class="flex flex-row items-center justify-center">
-                                <a href="../dashboard/dash.html">
-                                    <div class="bg-gray-900 rounded-full w-20 h-20"></div>
-                                </a>
+            <?php include '../partials/nav.php' ?>
 
-                            </div>
-                            <div class="h-1/2 w-full rounded-xl space-y-4">
-                                <button
-                                    class="text-gray-900 md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-2xl text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                                    Home
-                                </button>
-                                <button
-                                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                                    Chat
-                                </button>
-                                <a href="../calendar/calendar.html">
-                                    <button
-                                        class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                                        Calendar
-                                    </button>
-                                </a>
-                                <button
-                                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                                    Kundali
-                                </button>
-                                <button
-                                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
-                                    Map
-                                </button>
-                            </div>
-                        </div>
-                        <div class="h-1/5">
-                            <div class="rounded-xl w-full h-full pt-10">
-                                <a href="../authentication/login.php">
-                                    <button
-                                        class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
-                                        Log-Out
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
             <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
-                <div class="col-span-2 row-span-5 w-full h-full rounded-xl pr-4 bg-gray-700 bg-opacity-50 p-4 flex flex-col space-y-2"
+                <div class="col-span-2 row-span-5 w-full h-full rounded-xl pr-4 bg-gray-700 bg-opacity-50 p-4 flex flex-col space-y-3"
                     style="backdrop-filter: blur(8px);">
-                    <div class="bg-gray-700 shadow-xl bg-opacity-50 h-3/6 rounded-t-2xl flex flex-col">
-                        <div class="h-1/6 w-full flex flex-col items-center justify-center bg-white rounded-t-xl">
-                            <h1 class="text-center text-gray-900 text-xl font-sans">Upcoming Events</h1>
+                    <div class="h-5/6 w-full">
+                        <div class="bg-gray-700 shadow-xl bg-opacity-50 h-3/5 rounded-t-2xl flex flex-col">
+                            <div class="h-1/6 w-full flex flex-col items-center justify-center bg-white rounded-t-xl">
+                                <h1 class="text-center text-gray-900 text-xl font-sans">Upcoming Events</h1>
+                            </div>
+                            <div id="daycalendar"
+                                class="w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl  bg-opacity-50 text-xl font-bold text-gray-950"
+                                style="backdrop-filter: blur(8px);"></div>
                         </div>
-                        <div id="daycalendar"
-                            class="w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl  bg-opacity-50 text-xl font-bold text-gray-950 shadow-2xl"
-                            style="backdrop-filter: blur(8px);"></div>
-                    </div>
 
-                    <!-- this is supposed to show the single date or something -->
-                    <div class="w-full h-2/6 bg-gray-700 shadow-xl bg-opacity-50 rounded-2xl">
+                        <!-- this is supposed to show the single date or something -->
+                        <div class="w-full h-2/5 bg-gray-700 shadow-xl bg-opacity-50 rounded-b-2xl">
+                            <div class="option-window w-full h-full bg-gray-200 overflow-y-auto">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur numquam ipsam
+                                    impedit minima aliquid, maxime voluptas, sunt reprehenderit soluta distinctio
+                                    accusantium! Harum, amet dolorem. Aspernatur culpa est nesciunt debitis doloremque!
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem iure
+                                    voluptatem, illo quasi officiis doloribus soluta modi commodi sapiente eos fugit
+                                    quia, sit porro? Ratione perferendis dolorum ullam necessitatibus. Lorem ipsum dolor
+                                    sit amet consectetur adipisicing elit. Qui deleniti odio consequatur, eligendi
+                                    expedita ratione pariatur molestiae ullam ut fugiat. Veniam quos reiciendis quo non
+                                    dicta eaque laboriosam vero aspernatur.</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Modal toggle -->
@@ -193,14 +162,6 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                             placeholder="Enter your event title here" required>
                                     </div>
 
-                                    <!-- <div>
-                                        <label for="email"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                        <input type="email" name="email" id="email"
-                                            class="shadow-indigo-500/100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="johndoe@example.com" required>
-                                    </div> -->
-
                                     <hr class="my-4 border-gray-600">
 
                                     <!-- date time select -->
@@ -229,46 +190,12 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         </div>
                                     </div>
 
-                                    <!-- <div date-rangepicker class="flex items-center w-full">
-                                        <div class="relative w-1/2">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input name="start" type="text"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border border-gray-300"
-                                                placeholder="Select date start">
-                                        </div>
-                                        <span class="mx-4 text-gray-500">to</span>
-                                        <div class="relative w-1/2">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input name="end" type="text"
-                                                class=" border border-gray-300 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Select date end">
-                                        </div>
-                                    </div> -->
-
-
                                     <div class="flex flex-row">
                                         <!-- allday -->
                                         <div class="flex items-center w-1/2">
                                             <div class="flex items-center h-5">
-                                                <input id="allDay" type="checkbox" value="" name="allDay"
-                                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                                                    required>
+                                                <input id="allDay" type="checkbox" value="1" name="allDay"
+                                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
                                             </div>
                                             <label for="allDay"
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">All
@@ -276,27 +203,46 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         </div>
                                     </div>
 
-                                    <hr class="my-4 border-gray-600">
+                                    <!-- dropdown for color selection -->
+                                    <div class="flex flex-col w-full space-y-3">
+                                        <label for="color"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color</label>
+                                        <div class="relative inline-block w-full text-gray-700">
+                                            <select id="color" name="color"
+                                                class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                required>
+                                                <option class="bg-red-500 " value="red">Red</option>
+                                                <option class="bg-yellow-500 " value="#a5b00b">Yellow</option>
+                                                <option class="bg-green-500 " value="green">Green</option>
+                                                <option class="bg-blue-500 " value="blue">Blue</option>
+                                                <option class="bg-indigo-500 " value="indigo">Indigo</option>
+                                                <option class="bg-purple-500 " value="purple">Purple</option>
+                                                <option class="bg-pink-500 " value="pink">Pink</option>
+                                                <option class="bg-gray-500 " value="gray">Gray</option>
+                                            </select>
+                                        </div>
 
-                                    <!-- desc -->
-                                    <label for="eventDescription"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
-                                        Description</label>
-                                    <textarea id="eventDescription" rows="4" name="eventDescription"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        placeholder="Enter Event Description here ..."></textarea>
+                                        <hr class="my-4 border-gray-600">
 
-                                    <div>
-                                        <label for="eventLink"
+                                        <!-- desc -->
+                                        <label for="eventDescription"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
-                                            URL</label>
-                                        <input type="url" name="eventLink" id="eventLink"
-                                            placeholder="https://example.com"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                                    </div>
+                                            Description</label>
+                                        <textarea id="eventDescription" rows="4" name="eventDescription"
+                                            class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                            placeholder="Enter Event Description here ..."></textarea>
 
-                                    <input type="submit" name="submit" id="submit"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-indigo-500 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 transform duration-100 hover:scale-105 w-full text-center h-full hover:shadow-2xl font-semibold" />
+                                        <div>
+                                            <label for="eventLink"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
+                                                URL</label>
+                                            <input type="url" name="eventLink" id="eventLink"
+                                                placeholder="https://example.com"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                        </div>
+
+                                        <input type="submit" name="submit" id="submit"
+                                            class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-indigo-500 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 transform duration-100 hover:scale-105 w-full text-center h-full hover:shadow-2xl font-semibold" />
                                 </form>
                             </div>
                         </div>
@@ -304,12 +250,12 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 </div>
 
 
-                <div class="col-span-7 col-start-3 row-span-5 mr-4 rounded-2xl shadow-2xl bg-cover bg-center"
-                    style="background-image: url('../../images/dashboard/background-2.jpg');">
-                    <div id='calendar'
-                        class=" w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl p-4 rounded-2xl bg-opacity-50 text-xl font-bold text-gray-950 shadow-2xl"
-                        style="backdrop-filter: blur(8px);"></div>
-                </div>
+            </div>
+            <div class="col-span-7 col-start-3 row-span-5 mr-4 rounded-2xl shadow-2xl bg-cover bg-center"
+                style="background-image: url('../../images/dashboard/background-2.jpg');">
+                <div id='calendar'
+                    class=" w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl p-4 rounded-2xl bg-opacity-50 text-xl font-bold text-gray-950 shadow-2xl"
+                    style="backdrop-filter: blur(8px);"></div>
             </div>
         </div>
     </div>
@@ -334,7 +280,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 events: <?php echo json_encode($events); ?>,
                 eventClick: function (info) {
                     alert('Event: ' + info.event.title + '\n\n'
-                        + 'Starts:' + info.event.start + '\n\n' + 'Ends:' + info.event.end
+                        + 'Starts: ' + info.event.start + '\n\n' + 'Ends: ' + info.event.end + "\n\n" + 'Link: ' + info.event.url + '\n\n' + 'Color: ' + info.event.color + '\n\n' + 'All Day: ' + info.event.allDay
                     );
                     // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
                     // alert('View: ' + info.view.type);

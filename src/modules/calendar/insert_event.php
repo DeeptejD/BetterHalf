@@ -6,7 +6,6 @@ if (!isset($_SESSION['user_email'])) {
     exit();
 }
 
-// Database connection configuration
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -27,9 +26,13 @@ try {
     $end_date = $end_date . "T" . $end_time;
     $event_description = $_POST['eventDescription'];
     $event_link = $_POST['eventLink'];
-    $all_day = $_POST['allDay'];
+    if (isset($_POST['allDay']))
+        $all_day = $_POST['allDay'];
+    else
+        $all_day = 0;
+    $color = $_POST['color'];
 
-    $stmt = $conn->prepare("INSERT INTO calendar (user_email, event_title, start_date, end_date, event_description, event_link, allDay) VALUES (:user_email, :event_title, :start_date, :end_date, :event_description, :event_link, :all_day)");
+    $stmt = $conn->prepare("INSERT INTO calendar (user_email, event_title, start_date, end_date, event_description, event_link, allDay, color) VALUES (:user_email, :event_title, :start_date, :end_date, :event_description, :event_link, :all_day, :color)");
 
     $stmt->bindParam(':user_email', $user_email);
     $stmt->bindParam(':event_title', $event_title);
@@ -38,6 +41,8 @@ try {
     $stmt->bindParam(':event_description', $event_description);
     $stmt->bindParam(':event_link', $event_link);
     $stmt->bindParam(':all_day', $all_day);
+    $stmt->bindParam(':color', $color);
+
 
     $stmt->execute();
 
@@ -47,14 +52,13 @@ try {
 }
 
 
-// refresh part
+// refresh
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Fetch events for the logged-in user
     $user_email = $_SESSION['user_email'];
-    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date FROM calendar WHERE user_email = :user_email");
+    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date, event_link, allDay, color FROM calendar WHERE user_email = :user_email");
     $stmt->bindParam(':user_email', $user_email);
     $stmt->execute();
 
@@ -67,10 +71,13 @@ try {
         $formattedEnd = $endDateTime->format('Y-m-d\TH:i:s');
 
         $event = new stdClass();
-        // $event->id = $row['id'];
+
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
+        $event->allDay = $row['allDay'];
+        $event->url = $row['event_link'];
+        $event->color = $row['color'];
 
         $events[] = $event;
     }
