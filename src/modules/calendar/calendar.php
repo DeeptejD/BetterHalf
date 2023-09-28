@@ -106,15 +106,13 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                         <!-- this is supposed to show the single date or something -->
                         <div class="w-full h-2/5 bg-gray-700 shadow-xl bg-opacity-50 rounded-b-2xl">
                             <div class="option-window w-full h-full bg-gray-200 overflow-y-auto">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur numquam ipsam
-                                    impedit minima aliquid, maxime voluptas, sunt reprehenderit soluta distinctio
-                                    accusantium! Harum, amet dolorem. Aspernatur culpa est nesciunt debitis doloremque!
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit autem iure
-                                    voluptatem, illo quasi officiis doloribus soluta modi commodi sapiente eos fugit
-                                    quia, sit porro? Ratione perferendis dolorum ullam necessitatibus. Lorem ipsum dolor
-                                    sit amet consectetur adipisicing elit. Qui deleniti odio consequatur, eligendi
-                                    expedita ratione pariatur molestiae ullam ut fugiat. Veniam quos reiciendis quo non
-                                    dicta eaque laboriosam vero aspernatur.</p>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -251,7 +249,8 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
 
             </div>
-            <div class="col-span-7 col-start-3 row-span-5 mr-4 rounded-2xl shadow-2xl bg-cover bg-center"
+            <div id="calendarbg"
+                class="col-span-7 col-start-3 row-span-5 mr-4 rounded-2xl shadow-2xl bg-cover bg-center"
                 style="background-image: url('../../images/dashboard/background-2.jpg');">
                 <div id='calendar'
                     class=" w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl p-4 rounded-2xl bg-opacity-50 text-xl font-bold text-gray-950 shadow-2xl"
@@ -304,6 +303,17 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
         });
 
         daycalendar.render();
+
+        const bg = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'];
+
+        var random = -1;
+        function changebg() {
+            random++;
+            if (random == bg.length) {
+                random = 0;
+            }
+            document.getElementById("calendarbg").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
+        }
 
     </script>
 </body>
