@@ -113,6 +113,13 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         Change BG
                                     </button>
                                 </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
