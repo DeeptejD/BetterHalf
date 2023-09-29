@@ -80,6 +80,10 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
     <!-- datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
 
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
@@ -120,6 +124,27 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         Change BG
                                     </button>
                                 </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +161,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
                 <!-- Main modal -->
                 <div id="new-event-modal"
-                    class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                    class="transition transform fixed top-0 left-0 right-0 z-50 hidden h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
                     style="backdrop-filter: blur(8px);">
                     <div class="relative w-full max-w-2xl max-h-full">
                         <!-- Modal content -->
@@ -285,9 +310,30 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 timeZone: 'local',
                 events: <?php echo json_encode($events); ?>,
                 eventClick: function (info) {
-                    alert('Event: ' + info.event.title + '\n\n'
-                        + 'Starts: ' + info.event.start + '\n\n' + 'Ends: ' + info.event.end + "\n\n" + 'Link: ' + info.event.url + '\n\n' + 'Color: ' + info.event.color + '\n\n' + 'All Day: ' + info.event.allDay
-                    );
+                    Swal.fire({
+                        icon: 'info',
+                        title: info.event.title,
+                        html:
+                            'Starts: ' + info.event.start.toLocaleString(undefined, {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric'
+                            }) + '<br>' +
+                            'Ends: ' + info.event.end.toLocaleString(undefined, {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric'
+                            }) + '<br><br>' +
+                            (info.event.url ? 'Link: ' + info.event.url + '<br>' : '') +
+                            'Color: ' + (info.event.color || 'Default') + '<br>' +
+                            'All Day: ' + info.event.allDay,
+                    });
+
+
                     // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
                     // alert('View: ' + info.view.type);
                 }
@@ -321,6 +367,8 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
             }
             document.getElementById("calendarbg").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
         }
+
+
 
     </script>
 </body>
