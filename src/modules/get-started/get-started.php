@@ -16,7 +16,7 @@ if(isset($_SESSION['user_email'])){
         $error = $_FILES['image']['error'];
         $bio = $_POST['bio'];
         if($error === 0){
-            if($imgsize > 125000){
+            if($imgsize > 1250000){
                 echo "crossed size limit";
                     echo '<script> 
                     window.location.href = "get-started.php";
@@ -26,12 +26,12 @@ if(isset($_SESSION['user_email'])){
             else{
                 $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
                 $img_ex_lc = strtolower($img_ex);
-                $allowed_exs("jpg", "jpeg", "png");
+                $allowed_exs = array("jpg", "jpeg", "png");
                 if (in_array($img_ex_lc, $allowed_exs)) {
                     $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
-                    $img_upload_path = "../../uploads/". $new_img_name;
-                    move_uploaded_file($tmpname,$img_upload_path);
-                    $insertquery = "INSERT INTO `details` values($userid, '$dob', '$mstatus', '$gender', '$religion', '$caste', $age, '$new_img_name', '$bio')";
+                    $img_upload_path = "../../../uploads/". $new_img_name;
+                    move_uploaded_file($tmpname, $img_upload_path);
+                    $insertquery = "INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$new_img_name', '$bio')";
                     mysqli_query($conn, $insertquery);
                     header("location: ../dashboard/dash.html");
                 }
@@ -45,10 +45,10 @@ if(isset($_SESSION['user_email'])){
             }
         }else{
             echo "unknown error occured";
-                    echo '<script> 
-                    window.location.href = "";
-                    alert("unknown error");
-                </script>';
+                    // echo '<script> 
+                    // window.location.href = "";
+                    // alert("unknown error");
+                    //         </script>';
         }
     }
 }
@@ -101,7 +101,7 @@ else{
                     <!-- this was where there was the red color -->
                     <div class="w-2/3 h-full p-4 rounded-r-xl">
                         <div class="space-y-1 p-5 flex flex-col justify-center items-center h-full">
-                            <form action="" class="w-full py-6 px-2" method="post">
+                            <form action="" class="w-full py-6 px-2" enctype="multipart/form-data" method="post">
                                 <!-- Part-1 -->
                                 <div class="part part-1 active" id="part-1">
                                     <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold pb-3 mb-6">
@@ -211,13 +211,13 @@ else{
                                                         (MAX. 800x400px)</p>
                                                 </div>
                                             </div>
-                                            <input id="dropzone-file" name="image" type="file" class="hidden"
+                                            <input type="file" id="dropzone-file" name="image"  class="hidden"
                                                 onchange="previewImage(this)" accept="image/*" />
                                         </label>
                                     </div>
                                     <!-- Displaying the uploaded profile picture -->
                                     <div class="flex justify-center items-center border-gray-700 ">
-                                        <img id="profile-picture" class="rounded-full h-32 w-32 object-cover hidden"
+                                        <img id="profile-picture" name ="image" class="rounded-full h-32 w-32 object-cover hidden"
                                             src="" alt="Profile Picture" />
                                     </div>
                                     <div class="flex flex-row justify-between pt-7">
