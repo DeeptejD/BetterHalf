@@ -45,10 +45,10 @@ if(isset($_SESSION['user_email'])){
             }
         }else{
             echo "unknown error occured";
-                    // echo '<script> 
-                    // window.location.href = "";
-                    // alert("unknown error");
-                    //         </script>';
+                    echo    '<script> 
+                                window.location.href = "";
+                                alert("unknown error");
+                            </script>';
         }
     }
 }
