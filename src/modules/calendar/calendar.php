@@ -58,6 +58,7 @@ try {
     <meta property="og:image" content="../../images/OG-images/calendar-meta.png">
 
     <title>Calendar</title>
+    <link rel="icon" href="../../images/calendar/favicon.ico" type="image/x-icon">
 
     <!-- scripts necessary to run fullcalendar -->
     <script src="
