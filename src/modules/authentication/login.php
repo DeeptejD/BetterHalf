@@ -17,8 +17,8 @@ if (isset($_POST['submit'])) {
     $_SESSION['user_email'] = $email;
     $_SESSION['user_id'] = $row['user_id'];
     echo "verified";
-    // header("location: ../get-started/get-started.php");
-    header("location: ../calendar/calendar.php");
+    header("location: ../get-started/get-started.php");
+    // header("location: ../calendar/calendar.php");
   } else {
     echo "not verified";
     echo '<script> 
@@ -35,7 +35,6 @@ if (isset($_POST['submit'])) {
   <?php include '../partials/head-content.php'; ?>
   <title>Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- <link rel="stylesheet" href="../../build/css/tailwind.css" /> -->
   <style>
     ::selection {
       background-color: rgb(197, 242, 197);
