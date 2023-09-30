@@ -32,7 +32,7 @@ try {
         $formattedEnd = $endDateTime->format('Y-m-d\TH:i:s');
 
         $event = new stdClass();
-        // $event->id = $row['id'];
+        $event->id = $row['id'];
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
@@ -84,6 +84,17 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
 
+    <!-- swal themes -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <style>
+        .fc-header-toolbar {
+            /* height: 0;
+            width: 0; */
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,58 +106,64 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
             <?php include '../partials/nav.php' ?>
 
             <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
-                <div class="col-span-2 row-span-5 w-full h-full rounded-xl pr-4 bg-gray-700 bg-opacity-50 p-4 flex flex-col space-y-3"
+                <div class="col-span-2 row-span-5 w-full h-full rounded-xl pr-4 bg-gray-700 bg-opacity-50 p-4 flex flex-col space-y-3 z-50"
                     style="backdrop-filter: blur(8px);">
                     <div class="h-5/6 w-full">
-                        <div class="bg-gray-700 shadow-xl bg-opacity-50 h-3/5 rounded-t-2xl flex flex-col">
+                        <div class="bg-gray-700 shadow-xl bg-opacity-50 h-full rounded-t-2xl flex flex-col">
                             <div class="h-1/6 w-full flex flex-col items-center justify-center bg-white rounded-t-xl">
                                 <h1 class="text-center text-gray-900 text-xl font-sans">Upcoming Events</h1>
                             </div>
-                            <div id="daycalendar"
-                                class="w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl  bg-opacity-50 text-xl font-bold text-gray-950"
-                                style="backdrop-filter: blur(8px);"></div>
-                        </div>
-
-                        <!-- this is supposed to show the single date or something -->
-                        <div class="w-full h-2/5 bg-gray-700 shadow-xl bg-opacity-50 rounded-b-2xl">
-                            <div class="option-window w-full h-full bg-gray-200 overflow-y-auto">
-                                <div class="m-2 h-2/6 rounded-2xl">
-                                    <button id="changebgbtn"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
-                                        type="button" onclick="changebg()">
-                                        Change BG
-                                    </button>
-                                </div>
-                                <div class="m-2 h-2/6 rounded-2xl">
-                                    <button id="changebgbtn"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
-                                        type="button" onclick="changebg()">
-                                        Change BG
-                                    </button>
-                                </div>
-                                <div class="m-2 h-2/6 rounded-2xl">
-                                    <button id="changebgbtn"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
-                                        type="button" onclick="changebg()">
-                                        Change BG
-                                    </button>
-                                </div>
-                                <div class="m-2 h-2/6 rounded-2xl">
-                                    <button id="changebgbtn"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
-                                        type="button" onclick="changebg()">
-                                        Change BG
-                                    </button>
-                                </div>
-                                <div class="m-2 h-2/6 rounded-2xl">
-                                    <button id="changebgbtn"
-                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
-                                        type="button" onclick="changebg()">
-                                        Change BG
-                                    </button>
+                            <div id="calendarbgday"
+                                class="col-span-7 col-start-3 row-span-5 h-full shadow-2xl bg-cover bg-center"
+                                style="background-image: url('../../images/dashboard/background-2.jpg');">
+                                <div id="daycalendar" class="w-full font-sans h-full text-xl bg-gray-700 bg-opacity-50"
+                                    style="backdrop-filter: blur(8px);">
                                 </div>
                             </div>
                         </div>
+
+                        <!-- this is supposed to show the single date or something -->
+                        <!-- <div class="w-full h-1/5 bg-gray-700 shadow-xl bg-opacity-50 rounded-b-2xl">
+                            <div class="option-window w-full h-full bg-gray-200 overflow-y-auto"> -->
+
+                        <!-- <div class="m-2 h-3/6 rounded-2xl">
+                                    <button id="delbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-red-500 shadow-lg hover:shadow-red-500/100 hover:text-indigo-950 hover:bg-red-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="delevent()">
+                                        Delete Event
+                                    </button>
+                                </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div>
+                                <div class="m-2 h-2/6 rounded-2xl">
+                                    <button id="changebgbtn"
+                                        class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                                        type="button" onclick="changebg()">
+                                        Change BG
+                                    </button>
+                                </div> -->
+                        <!-- </div>
+                        </div> -->
+                    </div>
+
+                    <div class=" h-1/6 rounded-2xl">
+                        <button id="changebgbtn"
+                            class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                            type="button" onclick="changebg()">
+                            Change BG
+                        </button>
                     </div>
 
                     <!-- Modal toggle -->
@@ -294,6 +311,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
     <script>
         // retrieve events from database
+        console.log(<?php echo json_encode($events) ?>);
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var user_email = "deeptejdhauskar2003@gmail.com";
@@ -310,7 +328,10 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 timeZone: 'local',
                 events: <?php echo json_encode($events); ?>,
                 eventClick: function (info) {
-                    Swal.fire({
+                    info.jsEvent.preventDefault();
+
+                    console.log(info.event.id);
+                    const swalOptions = {
                         icon: 'info',
                         title: info.event.title,
                         html:
@@ -328,21 +349,52 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                 hour: 'numeric',
                                 minute: 'numeric'
                             }) + '<br><br>' +
-                            (info.event.url ? 'Link: ' + info.event.url + '<br>' : '') +
-                            'Color: ' + (info.event.color || 'Default') + '<br>' +
-                            'All Day: ' + info.event.allDay,
+                            'All Day: ' + (info.event.allDay ? 'Yes' : 'No'),
+                        showCancelButton: true,
+                        cancelButtonText: 'Delete Event',
+                        cancelButtonColor: '#d33',
+                        showCloseButton: true,
+
+                    };
+
+                    if (info.event.url) {
+                        swalOptions.showConfirmButton = true;
+                        swalOptions.confirmButtonText = 'Event Link';
+                        swalOptions.confirmButtonColor = '#3085d6';
+                    }
+
+                    Swal.fire(swalOptions).then((result) => {
+                        if (result.isConfirmed && info.event.url) {
+                            window.open(info.event.url, '_blank');
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            const eventId = info.event.id;
+
+                            //ajax request
+                            const xhr = new XMLHttpRequest();
+                            xhr.open('POST', 'delete_event.php', true);
+                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                            const data = 'event_id=' + info.event.id;
+
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    console.log(xhr.responseText);
+                                } else {
+                                    console.error('Error:', xhr.status);
+                                }
+                            };
+
+                            xhr.send(data);
+                            location.reload();
+                        }
                     });
-
-
-                    // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-                    // alert('View: ' + info.view.type);
                 }
             });
 
             calendar.render();
         });
 
-
+        // code to render the sidebar wala calendar
         var daycalendarEl = document.getElementById('daycalendar');
         var daycalendar = new FullCalendar.Calendar(daycalendarEl, {
             initialView: 'listDay',
@@ -357,6 +409,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
         daycalendar.render();
 
+        // code to change the background of the calendar
         const bg = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'];
 
         var random = -1;
@@ -366,9 +419,8 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                 random = 0;
             }
             document.getElementById("calendarbg").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
+            document.getElementById("calendarbgday").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
         }
-
-
 
     </script>
 </body>

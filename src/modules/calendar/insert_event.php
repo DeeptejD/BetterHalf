@@ -71,7 +71,7 @@ try {
         $formattedEnd = $endDateTime->format('Y-m-d\TH:i:s');
 
         $event = new stdClass();
-
+        $event->id = $row['id'];
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
