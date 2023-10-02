@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
   if (password_verify($pass, $row['user_password'])) {
     session_start();
     $_SESSION['user_email'] = $email;
+    $_SESSION['user_name'] = $row['user_name'];
     $_SESSION['user_id'] = $row['user_id'];
     echo "verified";
     header("location: ../get-started/get-started.php");

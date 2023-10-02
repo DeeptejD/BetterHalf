@@ -5,6 +5,8 @@ $uid = $_SESSION['user_id'];
 $result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $pfp = $row['imgurl'];
+$name = $_SESSION['user_name'];
+$biodat = $row['bio'];
 if(isset($_POST['submit'])){
   session_destroy();
   header('location:../authentication/login.php');
@@ -86,8 +88,8 @@ if(isset($_POST['submit'])){
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full bg-red-900 rounded-r-xl flex flex-col space-y-4">
-                <div class="bg-violet-900 w-full h-1/3 rounded-xl"></div>
-                <div class="bg-violet-900 w-full h-2/3 rounded-xl"></div>
+                <div class="bg-violet-900 w-full h-1/3 rounded-xl"><?php echo $name; ?></div>
+                <div class="bg-violet-900 w-full h-2/3 rounded-xl"><?php echo $biodat; ?></div>
               </div>
             </div>
           </div>
