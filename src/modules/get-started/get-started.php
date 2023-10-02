@@ -1,63 +1,69 @@
 <?php
 @include '../config.php';
 session_start();
-if(isset($_SESSION['user_email'])){
-    if (isset($_POST['submit'])) {
-        $userid = $_SESSION['user_id'];
-        $dob = $_POST['dob'];
-        $mstatus = $_POST['marital'];
-        $gender = $_POST['gender'];
-        $religion = $_POST['religion'];
-        $caste = $_POST['caste'];
-        $age = $_POST['age'];
-        $imgname = $_FILES['image']['name'];
-        $imgsize = $_FILES['image']['size'];
-        $tmpname = $_FILES['image']['tmp_name'];
-        $error = $_FILES['image']['error'];
-        $bio = $_POST['bio'];
-        if($error === 0){
-            if($imgsize > 1250000){
-                echo "crossed size limit";
-                    echo '<script> 
-                    window.location.href = "get-started.php";
-                    alert("Please insert a file with smaller size");
-                </script>';
-            }
-            else{
-                $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
-                $img_ex_lc = strtolower($img_ex);
-                $allowed_exs = array("jpg", "jpeg", "png");
-                if (in_array($img_ex_lc, $allowed_exs)) {
-                    $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
-                    $img_upload_path = "../../../uploads/". $new_img_name;
-                    move_uploaded_file($tmpname, $img_upload_path);
-                    $insertquery = "INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$img_upload_path', '$bio')";
-                    mysqli_query($conn, $insertquery);
-                    header("location: ../dashboard/dash.php");
+$userid = $_SESSION['user_id'];
+$userexists = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$userid'");
+if (mysqli_num_rows($userexists) > 0) {
+    header("location: ../dashboard/dash.php");
+}else{
+    if(isset($_SESSION['user_email'])){
+        if (isset($_POST['submit'])) {
+            ;
+            $dob = $_POST['dob'];
+            $mstatus = $_POST['marital'];
+            $gender = $_POST['gender'];
+            $religion = $_POST['religion'];
+            $caste = $_POST['caste'];
+            $age = $_POST['age'];
+            $imgname = $_FILES['image']['name'];
+            $imgsize = $_FILES['image']['size'];
+            $tmpname = $_FILES['image']['tmp_name'];
+            $error = $_FILES['image']['error'];
+            $bio = $_POST['bio'];
+            if($error === 0){
+                if($imgsize > 1250000){
+                    echo "crossed size limit";
+                        echo '<script> 
+                        window.location.href = "get-started.php";
+                        alert("Please insert a file with smaller size");
+                    </script>';
                 }
                 else{
-                    echo "incorrect file type";
-                    echo '<script> 
-                    window.location.href = "get-started.php";
-                    alert("Please insert a valid file type!");
-                </script>';
+                    $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+                    $img_ex_lc = strtolower($img_ex);
+                    $allowed_exs = array("jpg", "jpeg", "png");
+                    if (in_array($img_ex_lc, $allowed_exs)) {
+                        $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
+                        $img_upload_path = "../../../uploads/". $new_img_name;
+                        move_uploaded_file($tmpname, $img_upload_path);
+                        $insertquery = "INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$img_upload_path', '$bio')";
+                        mysqli_query($conn, $insertquery);
+                        header("location: ../dashboard/dash.php");
+                    }
+                    else{
+                        echo "incorrect file type";
+                        echo '<script> 
+                        window.location.href = "get-started.php";
+                        alert("Please insert a valid file type!");
+                    </script>';
+                    }
                 }
+            }else{
+                echo "unknown error occured";
+                        echo    '<script> 
+                                    window.location.href = "";
+                                    alert("unknown error");
+                                </script>';
             }
-        }else{
-            echo "unknown error occured";
-                    echo    '<script> 
-                                window.location.href = "";
-                                alert("unknown error");
-                            </script>';
         }
     }
-}
-else{
-    echo "Please login to continue";
-    echo '<script> 
-                window.location.href = "../authentication/login.php";
-                alert("Please login to continue with this page");
-            </script>';
+    else{
+        echo "Please login to continue";
+        echo '<script> 
+                    window.location.href = "../authentication/login.php";
+                    alert("Please login to continue with this page");
+                </script>';
+    }
 }
 ?>
 
