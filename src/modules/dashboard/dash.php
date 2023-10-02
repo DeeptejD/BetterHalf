@@ -1,3 +1,12 @@
+<?php
+@include '../config.php';
+session_start();
+$uid = $_SESSION['user_id'];
+$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$pfp = $row['imgurl'];
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -68,7 +77,7 @@
           <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4">
             <div class="w-full h-full bg-gray-900 rounded-xl flex flex-row space-x-4">
               <div class="w-1/3 h-full bg-red-900 rounded-l-xl overflow-hidden">
-                <img src="../../images/dashboard/profile-2.jpg" alt=""
+                <img src="<?php echo $pfp;?>" alt=""
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full bg-red-900 rounded-r-xl flex flex-col space-y-4">
