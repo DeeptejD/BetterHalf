@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
                     class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
                     Chat
                   </button>
-                  <a href="../calendar/calendar.html">
+                  <a href="../calendar/calendar.php">
                     <button
                       class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
                       Calendar
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full bg-red-900 rounded-r-xl flex flex-col space-y-4">
-                <div class="bg-violet-900 w-full h-1/3 rounded-xl"><?php echo $name; ?></div>
+                <div class="bg-violet-900 w-full h-1/3 rounded-xl"><p><?php echo $name; ?></p></div>
                 <div class="bg-violet-900 w-full h-2/3 rounded-xl"><?php echo $biodat; ?></div>
               </div>
             </div>

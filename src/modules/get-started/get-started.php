@@ -21,7 +21,7 @@ if (mysqli_num_rows($userexists) > 0) {
             $error = $_FILES['image']['error'];
             $bio = $_POST['bio'];
             if($error === 0){
-                if($imgsize > 1250000){
+                if($imgsize > 3000000){
                     echo "crossed size limit";
                         echo '<script> 
                         window.location.href = "get-started.php";
