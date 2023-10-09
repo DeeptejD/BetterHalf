@@ -1,3 +1,17 @@
+<?php
+@include '../config.php';
+session_start();
+$uid = $_SESSION['user_id'];
+$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$pfp = $row['imgurl'];
+$name = $_SESSION['user_name'];
+$biodat = $row['bio'];
+if(isset($_POST['submit'])){
+  session_destroy();
+  header('location:../authentication/login.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +47,7 @@
                     class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
                     Chat
                   </button>
-                  <a href="../calendar/calendar.html">
+                  <a href="../calendar/calendar.php">
                     <button
                       class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
                       Calendar
@@ -51,11 +65,13 @@
               </div>
               <div class="h-1/5">
                 <div class="rounded-xl w-full h-full pt-10">
-                  <a href="../authentication/login.php">
-                    <button
-                      class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
-                      Log-Out
-                    </button>
+                <form action="" method="post">
+                  <a name="logout" href="../authentication/login.php">
+                    <button type="submit" name="submit"
+                    class="text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
+                    Log-Out
+                  </button>
+                </form>
                   </a>
                 </div>
               </div>
@@ -68,12 +84,12 @@
           <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4">
             <div class="w-full h-full bg-gray-900 rounded-xl flex flex-row space-x-4">
               <div class="w-1/3 h-full bg-red-900 rounded-l-xl overflow-hidden">
-                <img src="../../images/dashboard/profile-2.jpg" alt=""
+                <img src="<?php echo $pfp;?>" alt=""
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full bg-red-900 rounded-r-xl flex flex-col space-y-4">
-                <div class="bg-violet-900 w-full h-1/3 rounded-xl"></div>
-                <div class="bg-violet-900 w-full h-2/3 rounded-xl"></div>
+                <div class="bg-violet-900 w-full h-1/3 rounded-xl"><p><?php echo $name; ?></p></div>
+                <div class="bg-violet-900 w-full h-2/3 rounded-xl"><?php echo $biodat; ?></div>
               </div>
             </div>
           </div>
@@ -87,7 +103,7 @@
             class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
             style="backdrop-filter: blur(8px);">
           </div>
-          <div
+          <divs
             class="col-span-3 w-1/3 bg-gray-700 rounded-2xl bg-opacity-60 transition duration-500 ease-in-out transform hover:scale-105"
             style="backdrop-filter: blur(8px);">
           </div>
