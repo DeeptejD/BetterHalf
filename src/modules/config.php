@@ -35,7 +35,9 @@ $createCalendarTableQuery = "
             start_date DATETIME NOT NULL,
             end_date DATETIME NOT NULL,
             event_description TEXT,
-            event_link VARCHAR(255)
+            event_link VARCHAR(255),
+            allDay BOOLEAN NOT NULL,
+            color VARCHAR(255)
         );
     ";
 mysqli_query($conn, $createCalendarTableQuery);
