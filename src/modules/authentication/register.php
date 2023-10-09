@@ -85,89 +85,6 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <!-- <nav class="link">
-        <a href="login.php">Sign In</a>
-    </nav>
-    <div class="z-0 p-2 h-screen w-screen bg-repeat-x bg-contain bg-center flex justify-center items-center "
-        style="background-image: url(../../images/registration-bg.jpg);">
-        <div class="rounded-2xl w-54 h-6/7 bg-white p-2  text-black flex  justify-center items-center shadow-2xl">
-            <form class="flex-col text-center items-center" action="register.php" method="POST">
-                <h1 class="font-bold text-4xl text-center">Create an account</h1>
-                <?php
-                if (isset($error)) {
-                    foreach ($error as $error) {
-                        echo '<span color="white" class="error-msg">' . $error . '</span>';
-                    }
-                    ;
-                }
-                ;
-
-                ?>
-                <div class="nameinput">
-                    Name
-                    <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" id="name" type="text"
-                        placeholder="Enter Your Name" name="username">
-                </div>
-                <div class="mb-5">
-                    Email Address
-                    <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" id="email" type="email"
-                        placeholder="Enter You Email Id" name="email">
-                </div>
-                <div class="mb-8">
-                    Password
-                    <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" id="pass" type="password"
-                        placeholder="Enter You Password" name="password">
-                </div>
-                <div class="mb-8">
-                    Confirm Password
-                    <br>
-                    <input class=" p-2 border-2 rounded-xl text-black  border-black" id="cnfrm-pass" type="password"
-                        placeholder="Enter Your Password" name="cpassword">
-                </div>
-                <input
-                    class="mb-5 p-3 w-52 bg-black rounded-xl text-white hover:border-2 hover:border-black hover:bg-white hover:text-black"
-                    id="sbmitbtn" type="submit" value="Submit" name="submit">
-                <p style="text-align: center;">OR</p>
-                <div class="g-signin2" data-onsuccess="onGoogleSignIn" style="text-align: center;">Sign in with Google
-                </div>
-
-            </form>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script>
-            $("#sbmitbtn").on("click", function () {
-                // var deez = $("#pass").value;
-                var deez = document.getElementById("pass").value;
-                var deeze = document.getElementById("email").value;
-                var deezn = document.getElementById("name").value;
-                var cnfpswd = document.getElementById("cnfrm-pass").value;
-
-
-                if ((deezn.length == 0)) {
-                    alert("Enter A Name");
-                    document.getElementById("pass").value = "";
-                    document.getElementById("cnfrm-pass").value = "";
-                }
-                if ((deeze.length == 0)) {
-                    alert("Enter Valid Email Please");
-                    document.getElementById("pass").value = "";
-                    document.getElementById("cnfrm-pass").value = "";
-                }
-                if ((deez !== cnfpswd)) {
-                    alert("The Passwords entered differ!");
-                    document.getElementById("pass").value = "";
-                    document.getElementById("cnfrm-pass").value = "";
-                }
-                if ((deez.length < 8)) {
-                    alert("Password must exceed 8 characters");
-                    document.getElementById("pass").value = "";
-                    document.getElementById("cnfrm-pass").value = "";
-                }
-            })
-        </script> -->
     <div class="bg-cover bg-center md:overflow-hidden h-full md:h-screen w-screen flex flex-col md:px-5"
         style="background-image: url('../../images/dashboard/background-2.jpg');">
         <div class="m-4 mb-0">
@@ -192,7 +109,7 @@ if (isset($_POST['submit'])) {
             <div class="flex-grow rounded-r-xl md:ml-5 p-5 flex flex-col justify-center items-center">
                 <form action="register.php" method="POST" class="w-full py-3 px-2">
                     <h1 class="text-gray-100  text-2xl md:text-3xl font-bold pb-1 mb-2">
-                        Create an account</h1>
+                       Make the first move!</h1>
                     <?php
                     if (isset($error)) {
                         foreach ($error as $error) {

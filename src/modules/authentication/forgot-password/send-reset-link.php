@@ -59,7 +59,7 @@
                     $insertTokenQuery = "INSERT INTO password_reset_tokens (token, otp_expiry, user_email) VALUES ('$token', '$expiryTime', '$email')";
                     mysqli_query($conn, $insertTokenQuery);
 
-                    $resetLink = "http://localhost/redesign/src/modules/authentication/forgot-password/reset-password.php?token=$token";
+                    $resetLink = "http://localhost/DBMSproj/src/modules/authentication/forgot-password/reset-password.php?token=$token";
 
                     $mail = new PHPMailer();
                     $mail->isSMTP();
