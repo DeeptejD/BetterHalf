@@ -7,8 +7,9 @@ if (!isset($_SESSION['user_email'])) {
 ?>
 <?php include_once "header.php"; ?>
 
-<body>
+<body style="background-image: url('../../images/dashboard/background.jpg'); backdrop-filter: blur(8px);">
   <div class="wrapper">
+    <a href="../dashboard/dash.php" class="ml-5">Home</a>
     <section class="users">
       <header>
         <div class="content">
@@ -19,7 +20,10 @@ if (!isset($_SESSION['user_email'])) {
           }
           ?>
           <div class="details">
-            <span>
+            <span class="flex flex-row space-x-2">
+              <img
+                src="https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="">
               <?php echo $row['user_name'] ?>
             </span>
             <!-- <p><?php echo $row['status']; ?></p> -->
@@ -27,7 +31,7 @@ if (!isset($_SESSION['user_email'])) {
         </div>
         <!-- <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a> -->
       </header>
-      
+
       <div class="search">
         <span class="text">Select an user to start chat</span>
         <input type="text" placeholder="Enter name to search...">

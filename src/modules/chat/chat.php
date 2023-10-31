@@ -20,9 +20,6 @@
           }
         ?>
 
-
-
-
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
         <img src="https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
         <div class="details">
