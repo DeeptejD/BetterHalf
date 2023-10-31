@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include_once "config.php";
-    $outgoing_id = $_SESSION['unique_id'];
-    $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
+    include_once "../../config.php";
+    $outgoing_id = $_SESSION['user_email'];
+    $sql = "SELECT * FROM register WHERE NOT user_email = '{$outgoing_id}' ORDER BY user_id DESC";
     $query = mysqli_query($conn, $sql);
     $output = "";
     if(mysqli_num_rows($query) == 0){

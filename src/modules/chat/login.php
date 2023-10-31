@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if(isset($_SESSION['unique_id'])){
+  if(isset($_SESSION['user_email'])){
     header("location: users.php");
   }
 ?>
