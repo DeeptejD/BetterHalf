@@ -86,15 +86,14 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="bg-cover bg-center md:overflow-hidden h-full md:h-screen w-screen flex flex-col md:px-5"
-        style="background-image: url('../../images/dashboard/background-2.jpg');">
+        style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="m-4 mb-0">
             <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
                 style="backdrop-filter: blur(8px);">
-                <a href=" #" class=" m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo
-                    goes here</a>
+                <img src="../../images/OG-images/logo.png" class="pl-2">
                     
                 <div class=""><a href="login.php"
-                        class="m-1 text-semibold flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
+                        class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
                         In</a></div>
             </nav>
         </div>
@@ -123,23 +122,23 @@ if (isset($_POST['submit'])) {
                     <div class="pt-2">
                         <label for="name" class="text-white text-lg font-semibold shadow-2xl pl-2">Name</label>
                         <input type="text" placeholder="Enter your full name" name="username" id="name"
-                            class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
+                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="email" class="text-white text-lg font-semibold shadow-2xl pl-2">Email</label>
                         <input type="emai" placeholder="johndoe@example.com" name="email" id="email"
-                            class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
+                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
                         <input type="password" name="password" id="pass" placeholder="Min 8 characters"
-                            class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
+                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="cpassword" class="text-white text-lg font-semibold shadow-2xl pl-2">Confirm
                             Password</label>
                         <input type="password" placeholder="* * * * * * * *" name="cpassword" id="cnfrm-pass"
-                            class="w-full rounded-2xl shadow-2xl bg-white p-5  focus:outline-none">
+                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="flex flex-row justify-end pt-11">
                         <input type="submit" name="submit" id="submit"

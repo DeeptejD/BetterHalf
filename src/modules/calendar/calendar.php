@@ -92,7 +92,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
 <body>
     <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
-        style="background-image: url('../../images/dashboard/background-4.jpg');">
+        style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="flex justify-between h-full py-3">
 
             <!-- this is the side nav, do not touch -->
@@ -108,9 +108,9 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                             </div>
                             <div id="calendarbgday"
                                 class="col-span-7 col-start-3 row-span-5 h-full shadow-2xl bg-cover bg-center"
-                                style="background-image: url('../../images/dashboard/background-2.jpg');">
+                                >
                                 <div id="daycalendar" class="w-full font-sans h-full text-xl bg-gray-700 bg-opacity-50"
-                                    style="backdrop-filter: blur(8px);">
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
                     <div class=" h-1/6 rounded-2xl">
                         <button id="changebgbtn"
-                            class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                            class="block text-gray-200 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow hover:text-white hover:bg-gray-700 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-medium"
                             type="button" onclick="changebg()">
                             Change BG
                         </button>
@@ -162,7 +162,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                     <!-- Modal toggle -->
                     <div class="h-1/6 rounded-2xl">
                         <button data-modal-target="new-event-modal" data-modal-toggle="new-event-modal"
-                            class="block text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow-indigo-500/100 hover:text-indigo-950 hover:bg-indigo-300 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-semibold"
+                            class="block text-gray-200 text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl text-center  font-sans p-8 pt-4 pb-4 rounded-xl  hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-gray-700 shadow-lg hover:shadow hover:text-white hover:bg-gray-700 bg-opacity-30 transform duration-100 hover:scale-90 w-full text-center h-full hover:shadow-2xl font-medium"
                             type="button">
                             Create
                         </button>
@@ -293,7 +293,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
             </div>
             <div id="calendarbg"
                 class="col-span-7 col-start-3 row-span-5 mr-4 rounded-2xl shadow-2xl bg-cover bg-center"
-                style="background-image: url('../../images/dashboard/background-2.jpg');">
+                >
                 <div id='calendar'
                     class=" w-full font-sans font-light h-full bg-gray-700 text-white text-shadow-2xl p-4 rounded-2xl bg-opacity-50 text-xl font-bold text-gray-950 shadow-2xl"
                     style="backdrop-filter: blur(8px);"></div>
