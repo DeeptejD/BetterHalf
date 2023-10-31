@@ -89,8 +89,8 @@ if(isset($_POST['submit'])){
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full rounded-r-xl flex flex-col space-y-4">
-                <div class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-1/3 rounded-xl"><h1 class="font-sans font-thin font-bold text-4xl text-center">Hi!<br> <?php echo $name; ?></h1></div>
-                <div class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-2/3 font-thin rounded-xl"><h3 class="text-xl text-center font-bold">Your Bio:</h3><?php echo $biodat; ?></div>
+                <div class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-1/3 rounded-r-xl"><h1 class="font-sans font-thin font-bold text-4xl text-center">Hi!<br> <?php echo $name; ?></h1></div>
+                <div class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-2/3 font-thin rounded-r-xl"><h3 class="text-xl text-center font-bold">Your Bio:</h3><?php echo $biodat; ?></div>
               </div>
             </div>
           </div>
