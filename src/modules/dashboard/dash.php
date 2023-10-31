@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
         <div class="col-span-9 row-span-3 pr-4 rounded-xl">
           <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4" style="backdrop-filter: blur(8px);">
             <div class="w-full h-full rounded-xl flex flex-row space-x-4">
-              <div class="w-1/3 h-full bg-gray-300 rounded-l-xl overflow-hidden">
+              <div class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
                 <img src="<?php echo $pfp; ?>" alt="Profile picture"
                   class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
