@@ -1,8 +1,8 @@
 <?php 
   session_start();
-  include_once "php/config.php";
-  if(!isset($_SESSION['unique_id'])){
-    header("location: login.php");
+  include_once "../config.php";
+  if(!isset($_SESSION['user_email'])){
+    header("location: ../authentication/login.php");
   }
 ?>
 <?php include_once "header.php"; ?>
@@ -12,18 +12,23 @@
       <header>
         <?php 
           $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+          $sql = mysqli_query($conn, "SELECT * FROM register WHERE user_email = '{$user_id}'");
           if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
           }else{
             header("location: users.php");
           }
         ?>
+
+
+
+
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <img src="https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
         <div class="details">
-          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <span><?php echo $row['user_name'] ?></span>
+          <!-- <p><?php echo $row['status']; ?></p> -->
+          <p>Online</p>
         </div>
       </header>
       <div class="chat-box">
