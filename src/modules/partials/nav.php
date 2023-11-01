@@ -5,8 +5,8 @@
             <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
                 <div class="h-4/5 space-y-4">
                     <div class="flex flex-row items-center justify-center">
-                        <a href="../dashboard/dash.html">
-                            <div class="bg-gray-900 rounded-full w-20 h-20"></div>
+                        <a href="../dashboard/dash.php">
+                            <div class="rounded-full w-20 h-20 " style="background-image: url('../../images/OG-images/logo.png');"></div>
                         </a>
 
                     </div>

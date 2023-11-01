@@ -4,6 +4,11 @@
   if(!isset($_SESSION['user_email'])){
     header("location: ../authentication/login.php");
   }
+  $uid = $_SESSION['user_id'];
+  $result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
+  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $pfp = $row['imgurl'];
+
 ?>
 <?php include_once "header.php"; ?>
 <body>
@@ -21,7 +26,7 @@
         ?>
 
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <img src="<?php echo $pfp; ?>" alt="">
         <div class="details">
           <span><?php echo $row['user_name'] ?></span>
           <!-- <p><?php echo $row['status']; ?></p> -->
