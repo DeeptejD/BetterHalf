@@ -5,6 +5,16 @@ $db_name = "loginpage";
 
 $conn = mysqli_connect('localhost', $username, $password, $db_name);
 
+
+$createregisterTableQuery = "
+        CREATE TABLE IF NOT EXISTS `register` (
+            `user_id` int(10) NOT NULL,
+            `user_name` varchar(50) DEFAULT NULL,
+            `user_email` varchar(50) NOT NULL,
+            `user_password` varchar(256) DEFAULT NULL
+        );
+    ";
+mysqli_query($conn, $createregisterTableQuery);
 // this creates the otp table
 $createOtpTableQuery = "
         CREATE TABLE IF NOT EXISTS `otp_data` (
