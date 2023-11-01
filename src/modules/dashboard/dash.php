@@ -125,6 +125,7 @@ $result = $conn->query($sql);
                     echo '<div class="flex  bg-white border-black m-4 bg-opacity-20 rounded-xl">';
                     echo '<img src="' . $row['imgurl'] . '" alt="Profile Picture" class="object-cover rounded-full shadow-xl h-16 w-16 m-2">';
                     echo '<p class="text-center ml-4 mt-6 font-thin text-white">' . $row["bio"] . '</p>';
+                    echo '<button class="group cursor-pointer outline-none hover:rotate-90 duration-300 "><svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24" class="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path><path d="M8 12H16" stroke-width="1.5"></path><path d="M12 16V8" stroke-width="1.5"></path></svg></button>';
                     echo '</div>';
                 }
             } else {
@@ -132,7 +133,7 @@ $result = $conn->query($sql);
             }
             
             ?>
-              </div>
+           </div>
           </div>
           <div
             class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "

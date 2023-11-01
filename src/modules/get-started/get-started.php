@@ -95,7 +95,7 @@ if (mysqli_num_rows($userexists) > 0) {
 
 <body>
     <div class="bg-cover bg-center overflow-hidden h-screen w-screen "
-        style="background-image: url('../../images/dashboard/background-2.jpg');">
+        style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="min-h-screen flex items-center justify-center shadow-2xl">
             <div class="h-screen w-screen py-11 px-52">
                 <div class="bg-gray-200 bg-opacity-25 bg-blur rounded-xl flex flex-row h-full w-full "
