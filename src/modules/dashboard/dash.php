@@ -117,7 +117,7 @@ $result = $conn->query($sql);
             class="col-span-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
             style="backdrop-filter: blur(8px);">
               <div>
-                <h1 class='font-sans   text-4xl text-center text-white'>Available:</h1>
+                <h1 class='font-sans mt-2  text-4xl text-center text-white'>Available:</h1>
               <?php
               if ($result->num_rows > 0) {
                 // output data of each row
