@@ -11,6 +11,9 @@ if (isset($_POST['submit'])) {
   session_destroy();
   header('location:../authentication/login.php');
 }
+
+$sql = "SELECT * FROM details ";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -113,6 +116,23 @@ if (isset($_POST['submit'])) {
           <div
             class="col-span-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
             style="backdrop-filter: blur(8px);">
+              <div>
+                <h1 class='font-sans   text-4xl text-center text-white'>Available:</h1>
+              <?php
+              if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="flex  bg-white border-black m-4 bg-opacity-20 rounded-xl">';
+                    echo '<img src="' . $row['imgurl'] . '" alt="Profile Picture" class="object-cover rounded-full shadow-xl h-16 w-16 m-2">';
+                    echo '<p class="text-center ml-4 mt-6 font-thin text-white">' . $row["bio"] . '</p>';
+                    echo '</div>';
+                }
+            } else {
+                echo "0 results";
+            }
+            
+            ?>
+              </div>
           </div>
           <div
             class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
