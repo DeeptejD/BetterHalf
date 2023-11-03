@@ -15,7 +15,7 @@ $pfp = $row['imgurl'];
 <?php include_once "header.php"; ?>
 
 <body class="">
-  <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
+  <div class="bg-cover bg-center overflow-hidden h-screen w-screen "
     style="background-image: url('../../images/dashboard/background.jpg');">
     <div class="flex flex-row h-full py-3">
 
@@ -23,7 +23,7 @@ $pfp = $row['imgurl'];
       <?php include '../../modules/partials/nav.php' ?>
 
       <!-- chat part -->
-      <div class="wrapper mr-4 bg-opacity-50 bg-gray-700 shadow-2xl" style="backdrop-filter: blur(10px);">
+      <div class="wrapper mr-4 bg-opacity-20 bg-gray-950 shadow-2xl backdrop-blur-xl">
         <section class="users">
           <header>
             <div class="content">

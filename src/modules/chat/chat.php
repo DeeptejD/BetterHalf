@@ -22,9 +22,9 @@ $pfp = $row['imgurl'];
 
       <!-- chat part -->
       <div class="wrapper flex flex-col items-center justify-center bg-opacity-50 backdrop-blur-xl mr-4">
-    <section class="chat-area w-full h-full flex flex-col">
-      <header class="bg-gray-950 rounded-t-2xl bg-opacity-40 text-white backdrop-blur-xl">
-        <?php
+        <section class="chat-area w-full h-full flex flex-col">
+          <header class="bg-gray-950 rounded-t-2xl bg-opacity-40 text-white backdrop-blur-xl">
+            <?php
             $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
             $sql = mysqli_query($conn, "SELECT * FROM register WHERE user_email = '{$user_id}'");
             if (mysqli_num_rows($sql) > 0) {
@@ -33,7 +33,7 @@ $pfp = $row['imgurl'];
               header("location: users.php");
             }
             ?>
-      
+
             <a href="users.php" class="back-icon"><i class="fas fa-arrow-left text-white"></i></a>
             <img src="<?php echo $pfp; ?>" alt="" class="rounded-xl">
             <div class="details">
@@ -45,16 +45,17 @@ $pfp = $row['imgurl'];
             </div>
           </header>
           <div class="chat-box bg-opacity-20 backdrop-blur-xl bg-gray-950">
-      
+
           </div>
           <form action="#" class="typing-area bg-gray-950 bg-opacity-40 text-white backdrop-blur-xl flex-grow">
             <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
-            <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+            <input type="text" name="message" class="input-field text-gray-950" placeholder="Type a message here..."
+              autocomplete="off">
             <button><i class="fab fa-telegram-plane"></i></button>
           </form>
         </section>
       </div>
-      
+
       <script src="javascript/chat.js"></script>
 
     </div>
