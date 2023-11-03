@@ -53,7 +53,7 @@ $createCalendarTableQuery = "
 mysqli_query($conn, $createCalendarTableQuery);
 
 $createMessagesTableQuery = "
-        CREATE TABLE IF NOT EXISTS `MESSAGES` (msg_id  INT(11) PRIMARY KEY AUTO_INCREMENT, incoming_msg_id INT(255), outgoing_msg_id INT(255), msg VARCHAR(255));
+        CREATE TABLE IF NOT EXISTS `MESSAGES` (msg_id  INT(11) PRIMARY KEY AUTO_INCREMENT, incoming_msg_id VARCHAR(255), outgoing_msg_id VARCHAR(255), msg VARCHAR(255));
     ";
 mysqli_query($conn, $createMessagesTableQuery);
 
