@@ -1,7 +1,7 @@
 <?php
 while ($row = mysqli_fetch_assoc($query)) {
-    $sql2 = "SELECT * FROM messages WHERE (incoming_msg_id = '{$row['user_id']}'
-                OR outgoing_msg_id = '{$row['user_id']}') AND (outgoing_msg_id = '{$outgoing_id}'
+    $sql2 = "SELECT * FROM messages WHERE (incoming_msg_id = '{$row['user_email']}'
+                OR outgoing_msg_id = '{$row['user_email']}') AND (outgoing_msg_id = '{$outgoing_id}'
                 OR incoming_msg_id = '{$outgoing_id}') ORDER BY msg_id DESC LIMIT 1";
     $query2 = mysqli_query($conn, $sql2);
     $row2 = mysqli_fetch_assoc($query2);

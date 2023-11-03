@@ -11,7 +11,8 @@ $createregisterTableQuery = "
             `user_id` int(10) NOT NULL,
             `user_name` varchar(50) DEFAULT NULL,
             `user_email` varchar(50) NOT NULL,
-            `user_password` varchar(256) DEFAULT NULL
+            `user_password` varchar(256) DEFAULT NULL,
+            `status` varchar(255) DEFAULT 'Online'
         );
     ";
 mysqli_query($conn, $createregisterTableQuery);
@@ -53,8 +54,19 @@ $createCalendarTableQuery = "
 mysqli_query($conn, $createCalendarTableQuery);
 
 $createMessagesTableQuery = "
-        CREATE TABLE IF NOT EXISTS `MESSAGES` (msg_id  INT(11) PRIMARY KEY AUTO_INCREMENT, incoming_msg_id INT(255), outgoing_msg_id INT(255), msg VARCHAR(255));
+        CREATE TABLE IF NOT EXISTS `MESSAGES` (msg_id  INT(11) PRIMARY KEY AUTO_INCREMENT, incoming_msg_id VARCHAR(255), outgoing_msg_id VARCHAR(255), msg VARCHAR(255));
     ";
 mysqli_query($conn, $createMessagesTableQuery);
+
+
+$createDetailsTableQuery = "
+        CREATE TABLE IF NOT EXISTS `details` (user_id  INT(11), DOB date, m_status varchar(50), gender varchar(50), religion varchar(50), caste varchar(50), age int(11), imgurl text, bio text, user_email VARCHAR(255));
+    ";
+mysqli_query($conn, $createDetailsTableQuery);
+
+$createUsersTableQuery = "
+        CREATE TABLE IF NOT EXISTS `users` (user_id  INT(11) PRIMARY KEY AUTO_INCREMENT, user_name VARCHAR(255), user_email VARCHAR(255), status VARCHAR(255));
+    ";
+mysqli_query($conn, $createUsersTableQuery);
 
 ?>

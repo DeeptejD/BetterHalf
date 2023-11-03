@@ -4,13 +4,15 @@ include_once "../config.php";
 if (!isset($_SESSION['user_email'])) {
   header("location: ../authentication/login.php");
 }
-$uid = $_SESSION['user_id'];
-$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
+$uid = $_SESSION['user_email'];
+$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$uid'");
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $pfp = $row['imgurl'];
 
 ?>
+
 <?php include_once "header.php"; ?>
+<link rel="icon" type="image/x-icon" href="../../images/chat/favicon.ico">
 
 <body class="">
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
@@ -35,13 +37,22 @@ $pfp = $row['imgurl'];
             ?>
 
             <a href="users.php" class="back-icon"><i class="fas fa-arrow-left text-white"></i></a>
-            <img src="<?php echo $pfp; ?>" alt="" class="rounded-xl">
-            <div class="details">
-              <span>
-                <?php echo $row['user_name'] ?>
-              </span>
-              <!-- <p><?php echo $row['status']; ?></p> -->
-              <p>Online</p>
+            <div class="flex flex-row items-center justify-center">
+              <img src="<?php echo $pfp; ?>" alt="" class="rounded-xl ">
+              <div class="details flex flex-row space-x-3 items-center justify-center">
+                <span class="font-4xl">
+                  <?php echo $row['user_name'] ?>
+                </span>
+                <div
+                  class="p-2 rounded-xl bg-gray-100 bg-opacity-20 backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center">
+                  <div
+                    class="<?php echo $row['status'] === 'Online' ? 'w-2 h-2 rounded-full bg-green-500' : 'w-2 h-2 rounded-full bg-red-500'; ?>">
+                  </div>
+                  <div>
+                    <?php echo $row['status']; ?>
+                  </div>
+                </div>
+              </div>
             </div>
           </header>
           <div class="chat-box bg-opacity-20 backdrop-blur-xl bg-gray-950">

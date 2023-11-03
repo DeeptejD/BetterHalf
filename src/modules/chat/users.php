@@ -13,6 +13,7 @@ $pfp = $row['imgurl'];
 <!-- PHP END HTML STARTS -->
 
 <?php include_once "header.php"; ?>
+<link rel="icon" type="image/x-icon" href="../../images/chat/favicon.ico">
 
 <body class="">
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen "
@@ -36,15 +37,21 @@ $pfp = $row['imgurl'];
               <a href="../dashboard/dash.php">
                 <div class="details">
                   <span class="flex flex-row space-x-0">
-                    <div class="rounded-l-xl shadow-2xl"><img src="<?php echo $pfp; ?>" alt="Profile Picture" class="shadow-2xl rounded-l-xl"></div>
+                    <div class="rounded-l-xl shadow-2xl"><img src="<?php echo $pfp; ?>" alt="Profile Picture"
+                        class="shadow-2xl rounded-l-xl"></div>
                     <div
                       class="flex flex-col justify-center items-center bg-gray-100 px-4 bg-opacity-20 backdrop-blur-xl rounded-r-xl shadow-2xl text-white font-semibold">
                       <?php echo $row['user_name'] ?>
                     </div>
                   </span>
-                  <!-- <p><?php echo $row['status']; ?></p> -->
                 </div>
               </a>
+            </div>
+            <div
+              class="p-2 rounded-xl bg-gray-100 bg-opacity-20 backdrop-blur-xl w-fit px-2 space-x-2 mt-2 flex flex-row items-center justify-center">
+              <div class="<?php echo $row['status'] === 'Online' ? 'w-2 h-2 rounded-full bg-green-500' : 'w-2 h-2 rounded-full bg-red-500'; ?>"></div>              <div>
+                <?php echo $row['status']; ?>
+              </div>
             </div>
             <!-- <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a> -->
           </header>
