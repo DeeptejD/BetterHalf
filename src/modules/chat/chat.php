@@ -6,8 +6,8 @@ if (!isset($_SESSION['user_email'])) {
 }
 $uid = $_SESSION['user_id'];
 $result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-$pfp = $row['imgurl'];
+$info = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$pfp = $info['imgurl'];
 
 ?>
 <?php include_once "header.php"; ?>
