@@ -23,7 +23,7 @@ $pfp = $row['imgurl'];
       <?php include '../../modules/partials/nav.php' ?>
 
       <!-- chat part -->
-      <div class="wrapper mr-4 bg-opacity-70 backdrop-blur-2xl">
+      <div class="wrapper mr-4 bg-opacity-50 bg-gray-700 shadow-2xl" style="backdrop-filter: blur(10px);">
         <section class="users">
           <header>
             <div class="content">
@@ -33,13 +33,18 @@ $pfp = $row['imgurl'];
                 $row = mysqli_fetch_assoc($sql);
               }
               ?>
-              <div class="details">
-                <span class="flex flex-row space-x-5">
-                  <div><img src="<?php echo $pfp; ?>" alt="Profile Picture" class="shadow-2xl"></div>
-                  <div class="flex flex-col justify-center items-center ml-10"><?php echo $row['user_name'] ?></div>
-                </span>
-                <!-- <p><?php echo $row['status']; ?></p> -->
-              </div>
+              <a href="../dashboard/dash.php">
+                <div class="details">
+                  <span class="flex flex-row space-x-0">
+                    <div class="rounded-l-xl shadow-2xl"><img src="<?php echo $pfp; ?>" alt="Profile Picture" class="shadow-2xl rounded-l-xl"></div>
+                    <div
+                      class="flex flex-col justify-center items-center bg-gray-100 px-4 bg-opacity-20 backdrop-blur-xl rounded-r-xl shadow-2xl text-white font-semibold">
+                      <?php echo $row['user_name'] ?>
+                    </div>
+                  </span>
+                  <!-- <p><?php echo $row['status']; ?></p> -->
+                </div>
+              </a>
             </div>
             <!-- <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a> -->
           </header>

@@ -135,7 +135,7 @@ body{
 }
 .wrapper img{
   object-fit: cover;
-  border-radius: 20%;
+  /* border-radius: 20%; */
 }
 .users header img{
   height: 50px;
@@ -147,7 +147,7 @@ body{
 }
 :is(.users, .users-list) .content .details{
   color: #000;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 :is(.users, .users-list) .details span{
   font-size: 18px;
@@ -220,21 +220,21 @@ body{
   width: 0px;
 }
 .users-list a{
-  padding-bottom: 10px;
+  padding: 15px;
   margin-bottom: 15px;
-  padding-right: 15px;
-  border-bottom-color: #f1f1f1;
+  /* padding-right: 15px; */
+  /* border-bottom-color: #f1f1f1; */
 }
 .users-list a:last-child{
   margin-bottom: 0px;
-  border-bottom: none;
+  /* border-bottom: none; */
 }
 .users-list a img{
   height: 40px;
   width: 40px;
 }
 .users-list a .details p{
-  color: #67676a;
+  color: #000000cc;
 }
 .users-list a .status-dot{
   font-size: 12px;
@@ -267,10 +267,10 @@ body{
 .chat-box{
   position: relative;
   min-height: 500px;
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: auto;
   padding: 10px 30px 20px 30px;
-  background: #f7f7f7;
+  /* background: #f7f7f7; */
   box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
               inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
 }
