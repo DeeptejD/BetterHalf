@@ -1,7 +1,7 @@
 <?php
 include_once "../../config.php";
 session_start();
-if (isset($_SESSION['user_email'])) {
+if (isset($_SESSION['user_email'])){
     $outgoing_id = $_SESSION['user_email'];
     $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
     $output = "";
