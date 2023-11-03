@@ -28,60 +28,10 @@ if (isset($_POST['submit'])) {
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
     style="background-image: url('../../images/dashboard/background.jpg');">
     <div class="flex justify-between h-full py-3">
-      <div class="mx-0 pr-4 h-full w-1/4">
-        <div class=" shadow-2xl rounded-r-xl h-full">
-          <div class="flex flex-row col-span-2 h-full bg-gray-700 rounded-r-xl shadow-2xl bg-opacity-50 p-4"
-            style="backdrop-filter: blur(8px);">
-            <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
-              <div class="h-4/5 space-y-4">
-                <div class="flex flex-row items-center justify-center">
-                  <a href="../dashboard/dash.php">
-                    <img src="../../images/OG-images/logo.png" class="h-28 w-28">
-                  </a>
-                </div>
-                <div class="h-1/2 w-full rounded-xl space-y-4">
-                  <button
-                    class="text-white md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-2xl text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                    Home
-                  </button>
-                  <a href="../chat/users.php">
-                  <button
-                    class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                    Chat
-                  </button>
-                  </a>
-                  <a href="../calendar/calendar.php">
-                    <button
-                      class="text-white  text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                      Calendar
-                    </button>
-                  </a>
-                  <button
-                    class="text-white  text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                    Kundali
-                  </button>
-                  <button
-                    class="text-white  text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
-                    Map
-                  </button>
-                </div>
-              </div>
-              <div class="h-1/5">
-                <div class="rounded-xl w-full h-full pt-10">
-                  <form action="" method="post">
-                    <a name="logout" href="../authentication/login.php">
-                      <button type="submit" name="submit"
-                        class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-light font-sans p-8 pt-4 pb-4 rounded-xl hover:bg-red-700 hover:text-white hover:opacity-100 transition ease-in-out hover:shadow-2xl space-y-12 bg-opacity-30 transform duration-100 hover:scale-105 w-full ">
-                        Log-Out
-                      </button>
-                  </form>
-                  </a>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
+
+    <!-- nav -->
+      <?php include '../../modules/partials/nav.php' ?>
+      
       <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
         <div class="col-span-9 row-span-3 pr-4 rounded-xl">
           <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4" style="backdrop-filter: blur(8px);">

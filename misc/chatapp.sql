@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 03:28 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Feb 18, 2021 at 11:44 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,21 +32,7 @@ CREATE TABLE `messages` (
   `incoming_msg_id` int(255) NOT NULL,
   `outgoing_msg_id` int(255) NOT NULL,
   `msg` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`msg_id`, `incoming_msg_id`, `outgoing_msg_id`, `msg`) VALUES
-(1, 322915019, 1515105951, 'Hey Niosha'),
-(2, 1515105951, 322915019, 'hi avnish'),
-(3, 322915019, 1515105951, 'Hello how are YOU?'),
-(4, 1515105951, 322915019, 'im good'),
-(5, 322915019, 196048216, 'Sup bro'),
-(6, 1515105951, 741682541, 'hello'),
-(7, 741682541, 322915019, 'Hi Ma'),
-(8, 322915019, 741682541, 'HI Gucci');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -63,7 +49,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -89,13 +75,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
