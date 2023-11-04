@@ -218,6 +218,7 @@ $profile_picture = $detail_rows['imgurl'];
               contain people who are interested to be commited in a relationship with you. Accepting one will change
               your status to commited with that person</span>
 
+                
             <div class="w-full h-full overflow-y-auto flex flex-col space-y-2 scrollbar-hide">
               <div class="w-full h-fit ">
                 <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Interest Requests</h1>
@@ -237,6 +238,7 @@ $profile_picture = $detail_rows['imgurl'];
                     $fetch_sender_result = $conn->query($fetch_sender);
                     $fetch_sender_row = $fetch_sender_result->fetch_assoc();
 
+                    echo '<a href="../profile/user_profile.php?current_user_email=' . $sender_id . '">';
                     echo '<div class="w-full transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1">';
 
                     // profile image
@@ -278,6 +280,7 @@ $profile_picture = $detail_rows['imgurl'];
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+                    echo '</a>';
 
                   }
                 }
