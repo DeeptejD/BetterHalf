@@ -5,8 +5,8 @@ $userid = $_SESSION['user_id'];
 $userexists = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$userid'");
 if (mysqli_num_rows($userexists) > 0) {
     header("location: ../dashboard/dash.php");
-}else{
-    if(isset($_SESSION['user_email'])){
+} else {
+    if (isset($_SESSION['user_email'])) {
         if (isset($_POST['submit'])) {
             ;
             $dob = $_POST['dob'];
@@ -24,35 +24,33 @@ if (mysqli_num_rows($userexists) > 0) {
             $error = $_FILES['image']['error'];
             $bio = $_POST['bio'];
 
-            if ($age < 18) {
-                echo "Age must be greater than 18";
+            if ($age < 20) {
+                echo "You need to be more than 20 years old";
                 echo '<script>
                     window.location.href = "get-started.php";
-                    alert("Age must be greater than 18");
+                    alert("Minimum age for marriage is 21, this aint rajasthan");
                     </script>';
             }
 
-            if($error === 0){
-                if($imgsize > 3000000){
+            if ($error === 0) {
+                if ($imgsize > 3000000) {
                     echo "crossed size limit";
-                        echo '<script> 
+                    echo '<script> 
                         window.location.href = "get-started.php";
                         alert("Please insert a file with smaller size");
                     </script>';
-                }
-                else{
+                } else {
                     $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
                     $img_ex_lc = strtolower($img_ex);
                     $allowed_exs = array("jpg", "jpeg", "png");
                     if (in_array($img_ex_lc, $allowed_exs)) {
-                        $new_img_name = uniqid("IMG-", true).".". $img_ex_lc;
-                        $img_upload_path = "../../../uploads/". $new_img_name;
+                        $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
+                        $img_upload_path = "../../../uploads/" . $new_img_name;
                         move_uploaded_file($tmpname, $img_upload_path);
-                        $insertquery = "INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`, `user_email`) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$img_upload_path', '$bio', '$user_email')";
+                        $insertquery = 'INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`, `user_email`) VALUES ("$userid", "$dob", "$mstatus", "$gender", "$religion", "$caste", "$age", "$img_upload_path", "$bio", "$user_email")';
                         mysqli_query($conn, $insertquery);
                         header("location: ../dashboard/dash.php");
-                    }
-                    else{
+                    } else {
                         echo "incorrect file type";
                         echo '<script> 
                         window.location.href = "get-started.php";
@@ -60,16 +58,15 @@ if (mysqli_num_rows($userexists) > 0) {
                     </script>';
                     }
                 }
-            }else{
+            } else {
                 echo "unknown error occured";
-                        echo    '<script> 
+                echo '<script> 
                                     window.location.href = "";
                                     alert("unknown error");
                                 </script>';
             }
         }
-    }
-    else{
+    } else {
         echo "Please login to continue";
         echo '<script> 
                     window.location.href = "../authentication/login.php";
@@ -144,7 +141,10 @@ if (mysqli_num_rows($userexists) > 0) {
                                             <select name="marital" id="marital"
                                                 class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="single">Single</option>
-                                                <option value="married">Married</option>
+                                                <option value="seperated">Seperated</option>
+                                                <option value="divorced">Divorced</option>
+                                                <option value="widowed">Widowed</option>
+
                                             </select>
                                         </div>
                                         <!-- Gender -->
@@ -156,7 +156,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                                 class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="male">Male</option>
                                                 <option value="Female">Female</option>
-                                                <option value="nonBinary">Non Binary</option>
+                                                <!-- <option value="nonBinary">Non Binary</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -173,6 +173,15 @@ if (mysqli_num_rows($userexists) > 0) {
                                                 <option value="hindu">Hindu</option>
                                                 <option value="muslim">Muslim</option>
                                                 <option value="christian">Christian</option>
+                                                <option value="buddhism">Buddhism</option>
+                                                <option value="Sikhism">Sikhism</option>
+                                                <option value="Judaism">Judaism</option>
+                                                <option value="Jainism">Jainism</option>
+                                                <option value="Zoroastrianism">Zoroastrianism</option>
+                                                <option value="NonReligious">Non-religious/Atheist</option>
+                                                <option value="Agnostic">Agnostic</option>
+                                                <option value="Bahai">Baháí Faith</option>
+                                                <option value="Spiritual">Spiritual but not Religious</option>
                                             </select>
                                         </div>
 
@@ -186,7 +195,6 @@ if (mysqli_num_rows($userexists) > 0) {
                                                 <option value="kshatriya">Kshatriya</option>
                                                 <option value="vaishya">Vaishya</option>
                                                 <option value="shudra">Shudra</option>
-                                                <option value="others-hindu">Others</option>
                                             </select>
                                         </div>
 
@@ -222,14 +230,15 @@ if (mysqli_num_rows($userexists) > 0) {
                                                         (MAX. 800x400px)</p>
                                                 </div>
                                             </div>
-                                            <input type="file" id="dropzone-file" name="image"  class="hidden"
+                                            <input type="file" id="dropzone-file" name="image" class="hidden"
                                                 onchange="previewImage(this)" accept="image/*" />
                                         </label>
                                     </div>
                                     <!-- Displaying the uploaded profile picture -->
                                     <div class="flex justify-center items-center border-gray-700 ">
-                                        <img id="profile-picture" name ="image" class="rounded-full h-32 w-32 object-cover hidden"
-                                            src="" alt="Profile Picture" />
+                                        <img id="profile-picture" name="image"
+                                            class="rounded-full h-32 w-32 object-cover hidden" src=""
+                                            alt="Profile Picture" />
                                     </div>
                                     <div class="flex flex-row justify-between pt-7">
                                         <a href="#"
@@ -263,7 +272,7 @@ if (mysqli_num_rows($userexists) > 0) {
 
 
                                         <input type="submit" name="submit" id="submit" href=" #"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"/>
+                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" />
                                     </div>
                                 </div>
                             </form>
@@ -295,6 +304,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                         case "christian":
                                             casteSelect.add(new Option("Catholic", "catholic"));
                                             casteSelect.add(new Option("Protestant", "protestant"));
+                                            casteSelect.add(new Option("Orthodox", "orthodox"));
                                             casteSelect.add(new Option("Others", "christian-others"));
                                             break;
                                         default:
