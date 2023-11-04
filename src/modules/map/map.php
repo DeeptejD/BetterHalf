@@ -24,7 +24,7 @@ if (!isset($_SESSION['user_email'])) {
 // }
 
 // FETCHING USERS WITHOUT THEIR IMAGES
-$sql = "SELECT gis.user_email, gis.latitude, gis.longitude, register.user_name FROM gis JOIN register ON gis.user_email = register.user_email";
+$sql = "SELECT gis.user_email, gis.latitude, gis.longitude, register.user_name FROM gis JOIN register ON gis.user_email = register.user_email WHERE UPPER(gis.ghost)='OFF'";
 $result = $conn->query($sql);
 
 // Fetch user data as an associative array

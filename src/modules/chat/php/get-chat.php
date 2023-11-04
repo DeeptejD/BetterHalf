@@ -20,7 +20,7 @@ if (isset($_SESSION['user_email'])){
                                 </div>';
             } else {
                 $output .= '<div class="chat incoming">
-                                <img src="https://images.pexels.com/photos/4588052/pexels-photo-4588052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        
                                 <div class="details">
                                     <p>' . $row['msg'] . '</p>
                                 </div>

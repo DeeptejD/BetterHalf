@@ -14,14 +14,14 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $pfp = $row['imgurl'];
 $name = $_SESSION['user_name'];
 $biodat = $row['bio'];
-
+$gender = $row['gender'];
 // if (isset($_POST['submit'])) {
 //   session_destroy();
 //   header('location:../authentication/login.php');
 // }
 
 // query to fetch users to be displayed under available users
-$sql = "SELECT * FROM details  WHERE user_email != '$uid'";
+$sql = "SELECT * FROM details  WHERE user_email != '$uid' AND gender != '$gender'";
 $result = $conn->query($sql);
 ?>
 
@@ -112,7 +112,7 @@ $result = $conn->query($sql);
             </div>
 
             <!-- vertically scrollable div -->
-            <div class="w-full h-fit overflow-y-auto overflow-x-hidden scrollbar-hide">
+            <div class="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide">
 
               <!-- php code to fetch users -->
               <?php
@@ -165,18 +165,26 @@ $result = $conn->query($sql);
                   echo '</div>';
                   echo '</div>';
                   echo '</a>';
-                  
-                  }
-                } else {
-                echo "No users available";
+
+                }
+              } else {
+                echo '<div class="text-center flex-grow mt-20 text-2xl text-white font-semibold">';
+                echo 'No users available';
+                echo '</div>';
               }
 
               ?>
             </div>
           </div>
+
+          <!-- SECOND BLOCK -->
           <div
             class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
             style="backdrop-filter: blur(8px);">
+
+            <!-- GHOST MODE BUTTON -->
+
+
           </div>
           <divs
             class="col-span-3 w-1/3 bg-gray-700 rounded-2xl bg-opacity-60 transition duration-500 ease-in-out transform hover:scale-105"
@@ -186,6 +194,12 @@ $result = $conn->query($sql);
     </div>
   </div>
   </div>
+
+  <!-- SCRIPT TO HANDLE GHOST MODE TOGGLE -->
+  <script>
+
+  </script>
+
 </body>
 
 </html>

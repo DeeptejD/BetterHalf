@@ -57,10 +57,10 @@ $pfp = $row['imgurl'];
               </div>
             </div>
           </header>
-          <div class="chat-box bg-opacity-20 backdrop-blur-xl bg-gray-950">
+          <div class="chat-box bg-opacity-20 backdrop-blur-xl bg-gray-950 flex-grow">
 
           </div>
-          <form action="#" class="typing-area bg-gray-950 bg-opacity-40 text-white backdrop-blur-xl flex-grow">
+          <form action="#" class="typing-area bg-gray-950 bg-opacity-40 text-white backdrop-blur-xl ">
             <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
             <input type="text" name="message" class="input-field text-gray-950" placeholder="Type a message here..."
               autocomplete="off">
