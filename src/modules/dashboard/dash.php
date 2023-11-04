@@ -23,6 +23,13 @@ $gender = $row['gender'];
 // query to fetch users to be displayed under available users
 $sql = "SELECT * FROM details  WHERE user_email != '$uid' AND gender != '$gender'";
 $result = $conn->query($sql);
+
+
+// this code to make that phenomenal background
+$details = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$uid'");
+$detail_rows = mysqli_fetch_array($details, MYSQLI_ASSOC);
+$profile_picture = $detail_rows['imgurl'];
+
 ?>
 
 <!-- PHP ends here -->
@@ -54,12 +61,41 @@ $result = $conn->query($sql);
       scrollbar-width: none;
       /* Firefox */
     }
+
+
+    /* Custom tooltip styles */
+    .tooltip {
+      position: relative;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 300px;
+      background-color: #000000d9;
+      color: #fff;
+      text-align: center;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+      margin-bottom: 1rem;
+      position: absolute;
+      z-index: 10;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 
 <body>
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
-    style="background-image: url('../../images/dashboard/background.jpg');">
+    style="background-image: url('<?php echo $profile_picture ?>');">
     <div class="flex justify-between h-full py-3">
 
       <!-- nav -->
@@ -116,9 +152,6 @@ $result = $conn->query($sql);
 
               <!-- php code to fetch users -->
               <?php
-
-
-
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   $current_email = $row['user_email'];
@@ -179,10 +212,78 @@ $result = $conn->query($sql);
 
           <!-- SECOND BLOCK -->
           <div
-            class="col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
+            class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
             style="backdrop-filter: blur(8px);">
+            <span class="tooltiptext absolute text-sm bg-gray-950 text-white p-1 rounded-md">Interest Requests
+              contain people who are interested to be commited in a relationship with you. Accepting one will change
+              your status to commited with that person</span>
 
-            <!-- GHOST MODE BUTTON -->
+            <div class="w-full h-full overflow-y-auto flex flex-col space-y-2 scrollbar-hide">
+              <div class="w-full h-fit ">
+                <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Interest Requests</h1>
+              </div>
+
+              <!-- vertically scrollable div to show requests -->
+              <div class="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide">
+                <?php
+                $fetch_requests = "SELECT * FROM `interest_requests` WHERE receiver_id = '$uid'";
+                $fetch_result = $conn->query($fetch_requests);
+
+                if ($fetch_result->num_rows > 0) {
+                  while ($row = $fetch_result->fetch_assoc()) {
+                    $sender_id = $row['sender_id'];
+                    $request_id = $row['request_id'];
+                    $fetch_sender = "SELECT * FROM `details` WHERE user_email = '$sender_id'";
+                    $fetch_sender_result = $conn->query($fetch_sender);
+                    $fetch_sender_row = $fetch_sender_result->fetch_assoc();
+
+                    echo '<div class="w-full transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1">';
+
+                    // profile image
+                    echo '<div class="flex bg-white m-3 p-2 bg-opacity-30 rounded-xl bg-cover bg-center ">';
+                    echo '<img src="' . $fetch_sender_row['imgurl'] . '" alt="Profile Picture" class="object-cover rounded-lg shadow-xl h-16 w-16 m-2">';
+
+                    // fetching the name of the user to be displayed
+                    echo '<div class="flex flex-col flex-grow pl-2 h-full justify-center mt-1 space-y-1 justify-center ">';
+
+                    // name of the user
+                
+                    $fetch_sender_name = "SELECT * FROM `register` WHERE user_email = '$sender_id'";
+                    $fetch_sender_name_result = $conn->query($fetch_sender_name);
+                    $fetch_sender_name_row = $fetch_sender_name_result->fetch_assoc();
+
+                    echo '<div>';
+                    echo '<p class="font-bold text-white flex-grow pr-3 h-fit">' . $fetch_sender_name_row["user_name"] . '</p>';
+                    echo '</div>';
+
+                    // marital status wala badge
+                    echo '<div class="p-2 rounded-xl bg-gray-950 bg-opacity-50 text-white backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center shadow-2xl">';
+                    if (strtoupper($fetch_sender_row['m_status']) === 'SINGLE') {
+                      echo '<div class="mr-2">👀</div>';
+                    } else {
+                      echo '<div class="mr-2">💖</div>';
+                    }
+                    echo ucwords($fetch_sender_row['m_status']);
+                    echo '</div>';
+
+                    echo '</div>';
+
+                    echo '<div class="flex flex-row justify-center items-center space-x-1">';
+                    echo '<button class="accept-button shadow-2xl p-4 rounded-xl bg-opacity-50 bg-lime-400 text-black font-semibold h-fit hover:bg-opacity-100 transition transition-all duration-300" data-request-id="' . $request_id . '">';
+                    echo 'Accept';
+                    echo '</button>';
+                    echo '<button class="reject-button shadow-2xl p-4 rounded-xl bg-opacity-50 bg-red-800 text-white font-semibold h-fit hover:bg-opacity-100 transition transition-all duration-300" data-request-id="' . $request_id . '">';
+                    echo 'Reject';
+                    echo '</button>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+
+                  }
+                }
+                ?>
+              </div>
+            </div>
 
 
           </div>
@@ -195,8 +296,33 @@ $result = $conn->query($sql);
   </div>
   </div>
 
-  <!-- SCRIPT TO HANDLE GHOST MODE TOGGLE -->
+  <!-- SCRIPT TO HANDLE ACCEPT DECLINES-->
   <script>
+    function handleRequestAction(buttonElement, action) {
+      const requestId = buttonElement.getAttribute('data-request-id');
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'update_request.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      const data = 'request_id=' + requestId + '&action=' + action;
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // The request was successful, and you can handle the response here if needed.
+          // For example, you might update the UI to reflect the accepted or rejected status.
+        }
+      };
+
+      xhr.send(data);
+    }
+
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('accept-button')) {
+        handleRequestAction(event.target, 'accept');
+      } else if (event.target.classList.contains('reject-button')) {
+        handleRequestAction(event.target, 'reject');
+      }
+    });
 
   </script>
 

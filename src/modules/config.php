@@ -78,4 +78,12 @@ CREATE TABLE IF NOT EXISTS `GIS` (
 ";
 mysqli_query($conn, $createGIS);
 
+$interest = "CREATE TABLE IF NOT EXISTS `interest_requests` (
+    request_id INT PRIMARY KEY,
+    sender_id INT,
+    receiver_id INT,
+    status ENUM('pending', 'accepted') DEFAULT 'pending'
+);";
+mysqli_query($conn, $interest);
+
 ?>

@@ -17,7 +17,7 @@ $pfp = $row['imgurl'];
 
 <body class="">
   <div class="bg-cover bg-center overflow-hidden h-screen w-screen "
-    style="background-image: url('../../images/dashboard/background.jpg');">
+    style="background-image: url('<?php echo $pfp ?>');">
     <div class="flex flex-row h-full py-3">
 
       <!-- nav -->
