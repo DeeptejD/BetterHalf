@@ -47,7 +47,7 @@ if (mysqli_num_rows($userexists) > 0) {
                         $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
                         $img_upload_path = "../../../uploads/" . $new_img_name;
                         move_uploaded_file($tmpname, $img_upload_path);
-                        $insertquery = 'INSERT INTO `details`(`user_id`, `DOB`, `m_status`, `gender`, `Religion`, `Caste`, `Age`, `imgurl`, `bio`, `user_email`) VALUES ("$userid", "$dob", "$mstatus", "$gender", "$religion", "$caste", "$age", "$img_upload_path", "$bio", "$user_email")';
+                        $insertquery = "INSERT INTO `details` (user_id, DOB, m_status, gender, Religion, Caste, Age, imgurl, bio, user_email) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$img_upload_path', '$bio', '$user_email')";
                         mysqli_query($conn, $insertquery);
                         header("location: ../dashboard/dash.php");
                     } else {
@@ -290,6 +290,7 @@ if (mysqli_num_rows($userexists) > 0) {
 
                                     switch (selectedReligion) {
                                         case "hindu":
+                                            casteSelect.add(new Option("Hindu", "Hindu"));
                                             casteSelect.add(new Option("Brahmin", "brahmin"));
                                             casteSelect.add(new Option("Kshatriya", "kshatriya"));
                                             casteSelect.add(new Option("Vaishya", "vaishya"));
@@ -297,6 +298,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                             casteSelect.add(new Option("Others", "hindu-others"));
                                             break;
                                         case "muslim":
+                                            casteSelect.add(new Option("Muslim", "Muslim"));
                                             casteSelect.add(new Option("Sunni", "sunni"));
                                             casteSelect.add(new Option("Shia", "shia"));
                                             casteSelect.add(new Option("Others", "muslim-others"));
@@ -308,6 +310,8 @@ if (mysqli_num_rows($userexists) > 0) {
                                             casteSelect.add(new Option("Others", "christian-others"));
                                             break;
                                         default:
+                                            casteSelect.add(new Option("None", "none"));
+
                                             break;
                                     }
                                 }
