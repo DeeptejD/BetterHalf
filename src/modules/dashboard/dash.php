@@ -106,7 +106,7 @@ $result = $conn->query($sql);
 
             <!-- heading -->
             <div class="w-full h-fit ">
-              <h1 class='font-sans mt-2  text-2xl text-center text-white mt-5'>Available Users</h1>
+              <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Available Users</h1>
             </div>
 
             <!-- vertically scrollable div -->
@@ -117,16 +117,49 @@ $result = $conn->query($sql);
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   echo '<div class="w-full transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1">';
-                  echo '<div class="flex bg-white m-4 p-2 bg-opacity-30 rounded-xl">';
+
+                  // profile image
+                  echo '<div class="flex bg-white m-3 p-2 bg-opacity-30 rounded-xl bg-cover bg-center ">';
                   echo '<img src="' . $row['imgurl'] . '" alt="Profile Picture" class="object-cover rounded-lg shadow-xl h-16 w-16 m-2">';
-                  echo '<p class="font-normal text-white flex-grow flex flex-col justify-center px-2 pr-3">' . $row["bio"] . '</p>';
-                  echo '<button class="group cursor-pointer outline-none hover:rotate-90 duration-300 flex flex-col items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="stroke-white fill-none group-hover:fill-green-800 group-active:stroke-white group-active:fill-zinc-600 group-active:duration-0 duration-300"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path><path d="M8 12H16" stroke-width="1.5"></path><path d="M12 16V8" stroke-width="1.5"></path></svg></button>';
+                  
+                  // fetching the name of the user to be displayed
+                  $current_email = $row['user_email'];
+                  $fetch_sql = "SELECT * FROM `register` WHERE user_email = '$current_email'";
+                  $fetch_result = $conn->query($fetch_sql);
+                  $fetch_row = $fetch_result->fetch_assoc();
+                  
+                  echo '<div class="flex flex-col flex-grow pl-2 space-y-1 justify-center ">';
+
+                  // name of the user
+                  echo '<div>';
+                  echo '<p class="font-bold text-white flex-grow pr-3 h-fit">' . $fetch_row["user_name"] . '</p>';
                   echo '</div>';
+
+                  // marital status wala badge
+                  echo '<div class="p-2 rounded-xl bg-gray-950 bg-opacity-50 text-white backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center shadow-2xl">';
+                  if (strtoupper($row['m_status']) === 'SINGLE') {
+                    echo '<div class="mr-2">👀</div>';
+                  } else {
+                    echo '<div class="mr-2">💖</div>';
+                  }
+                  echo ucwords($row['m_status']);
                   echo '</div>';
-                }
-              } else {
+                  
+                  echo '</div>';
+                  
+                  echo '<div class="flex flex-col justify-center items-center">';
+                  echo '<button class="mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-950 text-white text-semibold h-fit hover:bg-opacity-100 transition transition-all duration-300">';
+                  echo 'Add Friend';
+                  echo '</button>';  
+                  // echo '<button class="group cursor-pointer outline-none hover:rotate-90 duration-300 flex flex-col justify-center pr-3"><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="stroke-white fill-none group-hover:fill-green-800 group-active:stroke-white group-active:fill-zinc-600 group-active:duration-0 duration-300"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path><path d="M8 12H16" stroke-width="1.5"></path><path d="M12 16V8" stroke-width="1.5"></path></svg></button>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
+                } else {
                 echo "No users available";
               }
+
               ?>
             </div>
           </div>

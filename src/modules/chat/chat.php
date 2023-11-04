@@ -45,6 +45,8 @@ $pfp = $row['imgurl'];
                 </span>
                 <div
                   class="p-2 rounded-xl bg-gray-100 bg-opacity-20 backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center">
+                  
+                  <!-- chooses whether to show a green or a white dot based on status -->
                   <div
                     class="<?php echo $row['status'] === 'Online' ? 'w-2 h-2 rounded-full bg-green-500' : 'w-2 h-2 rounded-full bg-red-500'; ?>">
                   </div>
