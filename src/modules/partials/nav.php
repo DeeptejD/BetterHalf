@@ -6,7 +6,8 @@ if (isset($_POST['logout']))
 
 <div class="mx-0 pr-4 h-full w-1/4">
     <div class=" shadow-2xl rounded-r-xl h-full">
-        <div class="flex flex-row col-span-2 h-full bg-gray-950 rounded-r-xl shadow-2xl bg-opacity-20 backdrop-blur-xl p-4">
+        <div
+            class="flex flex-row col-span-2 h-full bg-gray-950 rounded-r-xl shadow-2xl bg-opacity-20 backdrop-blur-xl p-4">
             <nav class=" flex flex-col justify-between h-full w-full rounded-xl p-4">
                 <div class="h-4/5 space-y-4">
                     <div class="flex flex-row items-center justify-center">
@@ -23,9 +24,9 @@ if (isset($_POST['logout']))
                             </button>
                             <a href="../chat/users.php">
                                 <button
-                                class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-medium font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
-                                Chat
-                            </button>
+                                    class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-medium font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
+                                    Chat
+                                </button>
                             </a>
                             <a href="../calendar/calendar.php">
                                 <button
@@ -37,10 +38,12 @@ if (isset($_POST['logout']))
                                 class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-medium font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition ease-in-out hover:shadow-2xl bg-opacity-50 transform duration-100 hover:scale-105">
                                 Kundali
                             </button>
-                            <button
-                                class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-medium font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
-                                Map
-                            </button>
+                            <a href="../map/map.php">
+                                <button
+                                    class="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-medium font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-100 hover:scale-105">
+                                    Map
+                                </button>
+                            </a>
                     </div>
                 </div>
                 <div class="h-1/5">

@@ -81,6 +81,8 @@ if (isset($_POST['submit'])) {
 <head>
     <?php include '../partials/head-content.php'; ?>
     <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -91,7 +93,7 @@ if (isset($_POST['submit'])) {
             <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
                 style="backdrop-filter: blur(8px);">
                 <img src="../../images/OG-images/logo.png" class="pl-2">
-                    
+
                 <div class=""><a href="login.php"
                         class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
                         In</a></div>
@@ -108,7 +110,7 @@ if (isset($_POST['submit'])) {
             <div class="flex-grow rounded-r-xl md:ml-5 p-5 flex flex-col justify-center items-center">
                 <form action="register.php" method="POST" class="w-full py-3 px-2">
                     <h1 class="text-gray-100  text-2xl md:text-3xl font-bold pb-1 mb-2">
-                       Make the first move!</h1>
+                        Make the first move!</h1>
                     <?php
                     if (isset($error)) {
                         foreach ($error as $error) {

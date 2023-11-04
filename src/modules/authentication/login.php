@@ -43,6 +43,9 @@ if (isset($_POST['submit'])) {
 <head>
   <?php include '../partials/head-content.php'; ?>
   <title>Login</title>
+
+    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     ::selection {

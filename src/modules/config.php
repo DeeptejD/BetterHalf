@@ -69,4 +69,13 @@ $createUsersTableQuery = "
     ";
 mysqli_query($conn, $createUsersTableQuery);
 
+$createGIS = "
+CREATE TABLE IF NOT EXISTS `GIS` (
+    latitude FLOAT DEFAULT NULL,
+    longitude FLOAT DEFAULT NULL,
+    user_email VARCHAR(255) PRIMARY KEY
+);
+";
+mysqli_query($conn, $createGIS);
+
 ?>

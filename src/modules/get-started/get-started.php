@@ -15,12 +15,23 @@ if (mysqli_num_rows($userexists) > 0) {
             $gender = $_POST['gender'];
             $religion = $_POST['religion'];
             $caste = $_POST['caste'];
-            $age = $_POST['age'];
+            $birthDate = new DateTime($dob);
+            $currentDate = new DateTime();
+            $age = $currentDate->diff($birthDate)->y;
             $imgname = $_FILES['image']['name'];
             $imgsize = $_FILES['image']['size'];
             $tmpname = $_FILES['image']['tmp_name'];
             $error = $_FILES['image']['error'];
             $bio = $_POST['bio'];
+
+            if ($age < 18) {
+                echo "Age must be greater than 18";
+                echo '<script>
+                    window.location.href = "get-started.php";
+                    alert("Age must be greater than 18");
+                    </script>';
+            }
+
             if($error === 0){
                 if($imgsize > 3000000){
                     echo "crossed size limit";
@@ -177,13 +188,6 @@ if (mysqli_num_rows($userexists) > 0) {
                                                 <option value="shudra">Shudra</option>
                                                 <option value="others-hindu">Others</option>
                                             </select>
-                                        </div>
-
-                                        <div class="pt-2">
-                                            <label for="age"
-                                                class="text-gray-950 text-lg font-semibold shadow-2xl pl-2">Age</label>
-                                            <input type="number" name="age" id="age" min="18" max="100"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5 focus:outline-none">
                                         </div>
 
                                     </div>

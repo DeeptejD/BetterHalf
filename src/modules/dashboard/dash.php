@@ -36,7 +36,9 @@ $result = $conn->query($sql);
   <!-- <link rel="stylesheet" href="../../build/css/tailwind.css"> -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <title>Home</title>
+  <title>Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="../../images/dashboard/favicon.ico">
+
 
 
   <style>

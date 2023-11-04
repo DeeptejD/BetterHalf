@@ -5,6 +5,8 @@
 
 <head>
     <?php include '../../partials/head-content.php'; ?>
+    <title>Forgot Password</title>
+        <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
     <!-- css to be added later -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
