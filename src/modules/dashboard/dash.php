@@ -181,8 +181,6 @@ $profile_picture = $detail_rows['imgurl'];
                   echo '<div class="p-2 rounded-xl bg-gray-950 bg-opacity-50 text-white backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center shadow-2xl">';
                   if (strtoupper($row['m_status']) === 'SINGLE') {
                     echo '<div class="mr-2">👀</div>';
-                  } else {
-                    echo '<div class="mr-2">💖</div>';
                   }
                   echo ucwords($row['m_status']);
                   echo '</div>';
@@ -266,7 +264,7 @@ $profile_picture = $detail_rows['imgurl'];
                 echo '</button>';
                 ?>
               </a>
-              <a href="edit_profile.php" class="w-full h-1/4">
+              <a href="./edit/deleteAccount.php" class="w-full h-1/4">
                 <?php
                 echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-30 bg-red-300 hover:bg-red-500 text-2xl font-normal transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
                 echo 'Delete Account';
