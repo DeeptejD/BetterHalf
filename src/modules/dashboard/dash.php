@@ -94,7 +94,7 @@ $profile_picture = $detail_rows['imgurl'];
 </head>
 
 <body>
-  <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
+  <div class="bg-cover bg-center overflow-hidden h-screen w-screen backdrop-blur-2xl"
     style="background-image: url('<?php echo $profile_picture ?>');">
     <div class="flex justify-between h-full py-3">
 
@@ -213,73 +213,72 @@ $profile_picture = $detail_rows['imgurl'];
           <!-- SECOND BLOCK -->
           <div
             class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl  shadow-2xl">
-
-
-
             <?php
-
             // if user is in matched show the profile of the other partner else show the other code
             $checkInMatched = mysqli_query($conn, "SELECT * FROM `matched_pairs` WHERE user1 = '$uid'");
             $numMatched = mysqli_num_rows($checkInMatched);
 
             if ($numMatched > 0) {
-              $matched_rows = mysqli_fetch_array($checkInMatched, MYSQLI_ASSOC);
-              $matched_user = $matched_rows['user2'];
-
-              $fetch_matched_user = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$matched_user'");
-              $matched_user_row = mysqli_fetch_array($fetch_matched_user, MYSQLI_ASSOC);
-              $matched_user_image = $matched_user_row['imgurl'];
-
-              $fetch_matched_user_name = mysqli_query($conn, "SELECT * FROM `register` WHERE user_email = '$matched_user'");
-              $matched_user_name_row = mysqli_fetch_array($fetch_matched_user_name, MYSQLI_ASSOC);
-              $matched_user_name = $matched_user_name_row['user_name'];
-
-              echo '<div>';
-              echo '<p class="font-base text-white flex-grow pr-3 h-fit text-2xl text-center mt-5">Your Match</p>';
-              echo '</div>';
-
-              echo '<a href="../profile/user_profile.php?current_user_email=' . $matched_user . '">';
-              echo '<div class="w-full h-fit transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1">';
-              echo '<div class="flex flex-col items-center justify-center bg-gray-200 m-3 p-2 bg-opacity-20 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';
-
-
-              echo '<div>';
-              echo '<img src="' . $matched_user_image . '" alt="Profile Picture" class=" object-cover rounded-lg shadow-2xl h-28 w-28 m-2">';
-              echo '</div>';
-
-              echo '<div class="flex flex-col flex-grow pl-2 space-y-1 justify-center ">';
-              echo '<div>';
-              echo '<p class="font-md text-white flex-grow pr-3 h-fit text-2xl">' . $matched_user_name . '</p>';
-              echo '</div>';
-
-              // echo '<a href="">';
-              // // button to show chat
-              // echo '<div class="flex flex-col justify-center items-center w-full">';
-              // echo '<button class="shadow-2xl w-full m-4 p-4 rounded-xl bg-opacity-50 bg-gray-950 text-white text-semibold h-fit hover:bg-opacity-100 transition transition-all duration-300">';
-              // echo 'Chat';
-              // echo '</button>';
-              // echo '</div>';
-              // echo '</a>';  
-              echo '</div>';
-              echo '</div>';
-              echo '</div>';
-              echo '</a>';
-
+              include 'show_match.php';
             } else {
               include 'show_requests.php';
             }
-
             ?>
-
-
-
           </div>
-          <divs
-            class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl">
+
+          <!-- THIRD BLOCK -->
+          <div
+            class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl overflow-hidden">
+            <div
+              class="w-full h-full rounded-2xl shadow-2xl flex flex-col space-y-2 p-4 overflow-hidden overflow-y-auto scrollbar-hide">
+              <a href="edit_profile.php" class="w-full h-2/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-100 text-xl font-semibold transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Change Profile Picture';
+                echo '</button>';
+                ?>
+              </a>
+              <a href="edit_profile.php" class="w-full h-2/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-100 text-xl font-semibold transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Edit Name';
+                echo '</button>';
+                ?>
+              </a>
+              <a href="edit_profile.php" class="w-full h-2/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-100 text-xl font-semibold transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Edit Bio';
+                echo '</button>';
+                ?>
+              </a>
+              <a href="edit_profile.php" class="w-full h-1/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-100 text-xl font-semibold transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Edit Other Details';
+                echo '</button>';
+                ?>
+              </a>
+              <a href="edit_profile.php" class="w-full h-1/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-100 text-xl font-semibold transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Map Settings';
+                echo '</button>';
+                ?>
+              </a>
+              <a href="edit_profile.php" class="w-full h-1/4">
+                <?php
+                echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-30 bg-red-300 hover:bg-red-500 text-2xl font-normal transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+                echo 'Delete Account';
+                echo '</button>';
+                ?>
+              </a>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- SCRIPT TO HANDLE ACCEPT DECLINES-->
