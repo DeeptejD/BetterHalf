@@ -6,6 +6,8 @@ $db_name = "loginpage";
 $conn = mysqli_connect('localhost', $username, $password, $db_name);
 
 
+
+
 $createregisterTableQuery = "
         CREATE TABLE IF NOT EXISTS `register` (
             `user_id` int(10) NOT NULL,
@@ -85,5 +87,17 @@ $interest = "CREATE TABLE IF NOT EXISTS `interest_requests` (
     status ENUM('pending', 'accepted') DEFAULT 'pending'
 );";
 mysqli_query($conn, $interest);
+
+$createkundaliTableQuery = "CREATE TABLE IF NOT EXISTS `kundali` (
+    `user_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_name` VARCHAR(255) NOT NULL,
+    `dob` DATE NOT NULL,
+    `birth_time` TIME NOT NULL,
+    `latitude` FLOAT DEFAULT NULL,
+    `longitude` FLOAT DEFAULT NULL
+);
+";
+
+mysqli_query($conn, $createkundaliTableQuery);
 
 ?>
