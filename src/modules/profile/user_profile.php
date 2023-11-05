@@ -167,11 +167,22 @@ $user_name = $register_rows['user_name'];
 
                         // the idea here was to not show the interest button if you have already shown interest in someone else
                         if (!($check_rows > 0) && !($matched_pairs_rows > 0)) {
-                            echo '<div onclick="send_request()">';
-                            echo '<button class="bg-pink-200 shadow-2xl text-gray-950 hover:px-16 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-bold font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-pink-400 hover:text-gray-950 transition ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">';
-                            echo 'Express Interest';
-                            echo '</button>';
-                            echo '</div>';
+                            $check2 = mysqli_query($conn, "SELECT * FROM `matched_pairs` WHERE user1 = '$receiver_id'");
+                            $check2_rows = mysqli_num_rows($check2);
+
+                            if ($check2_rows > 0) {
+                                echo '<div>';
+                                echo '<button class="bg-gray-500 shadow-2xl text-white hover:px-10 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-semibold font-sans p-8 px-6 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">';
+                                echo 'Not available for matching';
+                                echo '</button>';
+                                echo '</div>';
+                            } else {
+                                echo '<div onclick="send_request()">';
+                                echo '<button class="bg-pink-200 shadow-2xl text-gray-950 hover:px-16 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-bold font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-pink-400 hover:text-gray-950 transition ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">';
+                                echo 'Express Interest';
+                                echo '</button>';
+                                echo '</div>';
+                            }
                         } else {
 
                             $check_connection = mysqli_query($conn, "SELECT * FROM `matched_pairs` WHERE user1 = '$sender_id' AND user2 = '$receiver_id'");
@@ -266,8 +277,7 @@ $user_name = $register_rows['user_name'];
 
         }
 
-        function unmatch()
-        {
+        function unmatch() {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "unmatch.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
