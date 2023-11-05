@@ -159,12 +159,25 @@ $user_name = $register_rows['user_name'];
                         $receiver_id = $userEmail;
 
                         // this button only shows up once u send a request
-                        $check = mysqli_query($conn, "SELECT * FROM `interest_requests` WHERE sender_id = '$sender_id' AND receiver_id = '$receiver_id'");
+                        $check = mysqli_query($conn, "SELECT * FROM `interest_requests` WHERE sender_id = '$sender_id'");
                         $check_rows = mysqli_num_rows($check);
+                        
+                        // the idea here was to not show the interest button if you have already shown interest in someone else
                         if (!($check_rows > 0)) {
                             echo '<div onclick="send_request()">';
                             echo '<button class="bg-pink-200 shadow-2xl text-gray-950 hover:px-16 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-bold font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-pink-400 hover:text-gray-950 transition ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">';
                             echo 'Express Interest';
+                            echo '</button>';
+                            echo '</div>';
+                        }
+
+                        $check2 = mysqli_query($conn, "SELECT * FROM `interest_requests` WHERE sender_id = '$sender_id' AND receiver_id = '$receiver_id'");
+                        $check_rows2 = mysqli_num_rows($check2);
+
+                        if ($check_rows2 > 0) {
+                            echo '<div onclick="revoke_request()">';
+                            echo '<button class="bg-red-200 shadow-2xl text-gray-950 hover:px-16 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-bold font-sans p-8 pt-4 pb-4 rounded-xl w-full hover:bg-red-400 hover:text-gray-950 transition ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">';
+                            echo 'Revoke Interest Request';
                             echo '</button>';
                             echo '</div>';
                         }
@@ -196,6 +209,29 @@ $user_name = $register_rows['user_name'];
                     Swal.fire({
                         icon: 'success',
                         title: 'Interest Request sent to <?php echo $user_name; ?>',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    console.log("Error: " + xhr.status);
+                }
+            };
+            xhr.send(data);
+
+        }
+
+        function revoke_request() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "revoke_interest_request.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            var data = "userEmail=" + encodeURIComponent("<?php echo $userEmail; ?>");
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Interest Request revoked from <?php echo $user_name; ?>',
                         showConfirmButton: false,
                         timer: 1500
                     });

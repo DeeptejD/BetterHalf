@@ -284,6 +284,12 @@ $profile_picture = $detail_rows['imgurl'];
                     echo '</a>';
 
                   }
+                } else{
+
+                  echo '<div class="text-center font-sembold text-white flex-grow mt-20 text-2xl">';
+                  echo 'No requests available';
+                  echo '</div>';
+                  
                 }
                 ?>
               </div>
