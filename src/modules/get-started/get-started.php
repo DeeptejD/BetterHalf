@@ -170,10 +170,10 @@ if (mysqli_num_rows($userexists) > 0) {
                                             <select name="religion" id="religion"
                                                 class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none"
                                                 onchange="updateCasteOptions()">
-                                                <option value="hindu">Hindu</option>
-                                                <option value="muslim">Muslim</option>
-                                                <option value="christian">Christian</option>
-                                                <option value="buddhism">Buddhism</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Muslim">Muslim</option>
+                                                <option value="Christian">Christian</option>
+                                                <option value="Buddhism">Buddhism</option>
                                                 <option value="Sikhism">Sikhism</option>
                                                 <option value="Judaism">Judaism</option>
                                                 <option value="Jainism">Jainism</option>
@@ -191,6 +191,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                                 class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Caste</label>
                                             <select name="caste" id="caste"
                                                 class="w-full rounded-2xl appearance-none shadow-2xl bg-gray-200 active:bg-gray-300 p-5 focus:outline-none">
+                                                <option value="None">None</option>
                                                 <option value="brahmin">Brahmin</option>
                                                 <option value="kshatriya">Kshatriya</option>
                                                 <option value="vaishya">Vaishya</option>
@@ -262,7 +263,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                     <p class="text-gray-100 font-bold mb-6  pb-3">
                                         Write a snappy bio that defines YOU!</p>
                                     <textarea id="bio-input" name="bio" rows="4" cols="50" maxlength="500"
-                                        placeholder="You really dont need more than a 50 words to write something catchy"
+                                        placeholder="Tell us about yourself. Share your hobbies, interests, values, and what you're looking for in a partner. (Maximum 50 characters)"
                                         class="w-full h-60 rounded-xl p-5 appearance-none"></textarea>
                                     <p id="bio-counter" class="text-gray-100 text-sm">Remaining words: 50</p>
                                     <div class="flex flex-row justify-between pt-7">

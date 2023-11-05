@@ -19,12 +19,12 @@ echo '</div>';
 
 echo '<div class="w-full h-3/4 flex flex-col transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1 items-center justify-center bg-gray-200 bg-opacity-20 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';
 echo '<a href="../profile/user_profile.php?current_user_email=' . $matched_user . '">';
-echo '<div class="">';
+echo '<div class="flex flex-row items-center justify-center">';
 echo '<img src="' . $matched_user_image . '" alt="Profile Picture" class=" object-cover rounded-lg shadow-2xl h-28 w-28 m-2">';
 echo '</div>';
 
-echo '<div>';
-echo '<p class="font-md text-white flex-grow pr-3 h-fit text-2xl">' . $matched_user_name . '</p>';
+echo '<div class="flex flex-row items-center justify-center">';
+echo '<p class="font-md text-white text-center flex-grow pr-3 h-fit text-2xl">' . $matched_user_name . '</p>';
 echo '</div>';
 echo '</a>';
 echo '</div>';

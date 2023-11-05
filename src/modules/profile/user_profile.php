@@ -41,7 +41,7 @@ $user_name = $register_rows['user_name'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>User Profile</title>
+    <title><?php echo $user_name ?></title>
     <link rel="icon" type="image/x-icon" href="<?php echo $profile_picture ?>">
 
     <!-- sweet alert -->
