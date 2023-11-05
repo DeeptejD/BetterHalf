@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_email'])) {
 $request_id = $_POST['request_id'];
 $action = $_POST['action'];
 
-if (strtoupper($action) === 'ACCEPT') {
+if (strtoupper($action) == 'ACCEPT') {
     $query = "UPDATE interest_requests SET status = 'accepted' WHERE request_id = '$request_id'";
     mysqli_query($conn, $query);
 
@@ -30,7 +30,7 @@ if (strtoupper($action) === 'ACCEPT') {
     mysqli_query($conn, $delete_request);
 
 } else {
-    $query = "DELETE FROM interest_requests WHERE request_id = '$request_id'";
+    $query = "DELETE FROM interest_requests WHERE request_id = '$request_id' AND receiver_id = '$receiver_id'";
     mysqli_query($conn, $query);
 }
 
