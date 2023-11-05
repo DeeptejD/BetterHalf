@@ -12,14 +12,15 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "loginpage";
+$conn = new mysqli($servername, $username, $password, $database);
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $connl = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $connl->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch events for the logged-in user
     $user_email = $_SESSION['user_email'];
-    $stmt = $conn->prepare("SELECT id, event_title, start_date, end_date, allDay, event_link, color  FROM calendar WHERE user_email = :user_email");
+    $stmt = $connl->prepare("SELECT id, event_title, start_date, end_date, allDay, event_link, color  FROM calendar WHERE user_email = :user_email");
     $stmt->bindParam(':user_email', $user_email);
     $stmt->execute();
 
@@ -36,7 +37,7 @@ try {
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
-        $event->allDay = $row['allDay'];
+        // $event->allDay = $row['allDay'];
         $event->url = $row['event_link'];
         $event->color = $row['color'];
 
@@ -47,6 +48,12 @@ try {
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+
+$userEmail = $_SESSION['user_email'];
+$details = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$userEmail'");
+$detail_rows = mysqli_fetch_array($details, MYSQLI_ASSOC);
+$profile_picture = $detail_rows['imgurl'];
+
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +99,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
 
 <body>
     <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
-        style="background-image: url('../../images/dashboard/background.jpg');">
+        style="background-image: url('<?php echo $profile_picture ?>');">
         <div class="flex justify-between h-full py-3">
 
             <!-- this is the side nav, do not touch -->
@@ -140,8 +147,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                     style="backdrop-filter: blur(8px);">
                     <div class="relative w-full max-w-2xl max-h-full">
                         <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow bg-white dark:bg-opacity-10 bg-opaicyt-60"
-                            style="backdrop-filter: blur(8px);">
+                        <div class="relative shadow-2xl rounded-lg shadow bg-gray-950 bg-opacity-30 backdrop-blur-2xl">
                             <button type="button"
                                 class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-hide="new-event-modal">
@@ -153,7 +159,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                 <span class="sr-only">Close modal</span>
                             </button>
                             <div class="px-6 py-6 lg:px-8">
-                                <h3 class="mb-8 text-4xl font-medium text-gray-900 dark:text-white">Add
+                                <h3 class="mb-8 text-4xl font-semibold text-center text-gray-900 text-white">Add
                                     event details
                                 </h3>
                                 <hr class="my-4 border-gray-600">
@@ -195,19 +201,6 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         </div>
                                     </div>
 
-                                    <div class="flex flex-row">
-                                        <!-- allday -->
-                                        <div class="flex items-center w-1/2">
-                                            <div class="flex items-center h-5">
-                                                <input id="allDay" type="checkbox" value="1" name="allDay"
-                                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
-                                            </div>
-                                            <label for="allDay"
-                                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">All
-                                                Day</label>
-                                        </div>
-                                    </div>
-
                                     <!-- dropdown for color selection -->
                                     <div class="flex flex-col w-full space-y-3">
                                         <label for="color"
@@ -230,12 +223,12 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                         <hr class="my-4 border-gray-600">
 
                                         <!-- desc -->
-                                        <label for="eventDescription"
+                                        <!-- <label for="eventDescription"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
                                             Description</label>
                                         <textarea id="eventDescription" rows="4" name="eventDescription"
                                             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-300 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="Enter Event Description here ..."></textarea>
+                                            placeholder="Enter Event Description here ..."></textarea> -->
 
                                         <div>
                                             <label for="eventLink"
@@ -306,8 +299,7 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
                                 day: 'numeric',
                                 hour: 'numeric',
                                 minute: 'numeric'
-                            }) + '<br><br>' +
-                            'All Day: ' + (info.event.allDay ? 'Yes' : 'No'),
+                            }) + '<br><br>',
                         showCancelButton: true,
                         cancelButtonText: 'Delete Event',
                         cancelButtonColor: '#d33',

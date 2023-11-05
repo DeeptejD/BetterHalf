@@ -44,7 +44,7 @@ $profile_picture = $detail_rows['imgurl'];
   <script src="https://cdn.tailwindcss.com"></script>
 
   <title>Dashboard</title>
-  <link rel="icon" type="image/x-icon" href="../../images/dashboard/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="<?php echo $pfp ?>">
 
 
 
@@ -103,8 +103,8 @@ $profile_picture = $detail_rows['imgurl'];
 
       <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
         <div class="col-span-9 row-span-3 pr-4 rounded-xl">
-          <div class="flex flex-row w-full h-full bg-gray-900 bg-opacity-50 shadow-2xl rounded-xl p-4"
-            style="backdrop-filter: blur(8px);">
+          <div
+            class="flex flex-row w-full h-full bg-gray-950 bg-opacity-20 shadow-2xl rounded-xl p-4 backdrop-blur-2xl">
             <div class="w-full h-full rounded-xl flex flex-row space-x-4">
               <div class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
                 <img src="<?php echo $pfp; ?>" alt="Profile picture"
@@ -114,7 +114,7 @@ $profile_picture = $detail_rows['imgurl'];
 
                 <!-- displayed the name of the user logged in with the greeting -->
                 <div
-                  class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-1/3 rounded-xl flex justify-center items-center">
+                  class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-1/3 rounded-xl flex justify-center items-center backdrop-blur-3xl">
                   <h1 class="font-sans font-thin font-semibold text-4xl text-center">Hi!
                     <span class="font-semibold">
                       <?php echo $name; ?>
@@ -123,7 +123,8 @@ $profile_picture = $detail_rows['imgurl'];
                 </div>
 
                 <!-- displays the biodata of the currently logged in user -->
-                <div class="bg-gray-900 bg-opacity-25 text-white p-2 w-full h-2/3 font-thin rounded-xl">
+                <div
+                  class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
                   <h3 class="text-xl text-center">Bio</h3>
                   <div class="text-center text-2xl font-semibold mt-5 px-5">
                     <?php echo $biodat; ?>
@@ -139,12 +140,11 @@ $profile_picture = $detail_rows['imgurl'];
 
           <!-- block 1: shows available users -->
           <div
-            class="overflow-hidden flex flex-col col-span-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
-            style="backdrop-filter: blur(8px);">
+            class="overflow-hidden flex flex-col col-span-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl">
 
             <!-- heading -->
             <div class="w-full h-fit ">
-              <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Available Users</h1>
+              <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Discover</h1>
             </div>
 
             <!-- vertically scrollable div -->
@@ -160,7 +160,7 @@ $profile_picture = $detail_rows['imgurl'];
                   echo '<div class="w-full transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1">';
 
                   // profile image
-                  echo '<div class="flex bg-white m-3 p-2 bg-opacity-30 rounded-xl bg-cover bg-center ">';
+                  echo '<div class="flex bg-gray-200 m-3 p-2 bg-opacity-20 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';
                   echo '<img src="' . $row['imgurl'] . '" alt="Profile Picture" class="object-cover rounded-lg shadow-xl h-16 w-16 m-2">';
 
                   // fetching the name of the user to be displayed
@@ -212,13 +212,12 @@ $profile_picture = $detail_rows['imgurl'];
 
           <!-- SECOND BLOCK -->
           <div
-            class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-700 rounded-2xl shadow-2xl bg-opacity-60 transition ease-in-out transform duration-500 hover:scale-105 "
-            style="backdrop-filter: blur(8px);">
+            class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl  shadow-2xl">
             <span class="tooltiptext absolute text-sm bg-gray-950 text-white p-1 rounded-md">Interest Requests
               contain people who are interested to be commited in a relationship with you. Accepting one will change
               your status to commited with that person</span>
 
-                
+
             <div class="w-full h-full overflow-y-auto flex flex-col space-y-2 scrollbar-hide">
               <div class="w-full h-fit ">
                 <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Interest Requests</h1>
@@ -227,6 +226,8 @@ $profile_picture = $detail_rows['imgurl'];
               <!-- vertically scrollable div to show requests -->
               <div class="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide">
                 <?php
+
+                // fetches interest requests
                 $fetch_requests = "SELECT * FROM `interest_requests` WHERE receiver_id = '$uid'";
                 $fetch_result = $conn->query($fetch_requests);
 
@@ -291,8 +292,7 @@ $profile_picture = $detail_rows['imgurl'];
 
           </div>
           <divs
-            class="col-span-3 w-1/3 bg-gray-700 rounded-2xl bg-opacity-60 transition duration-500 ease-in-out transform hover:scale-105"
-            style="backdrop-filter: blur(8px);">
+            class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl">
         </div>
       </div>
     </div>
@@ -311,12 +311,12 @@ $profile_picture = $detail_rows['imgurl'];
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          // The request was successful, and you can handle the response here if needed.
-          // For example, you might update the UI to reflect the accepted or rejected status.
+          location.reload();
         }
       };
 
       xhr.send(data);
+
     }
 
     document.addEventListener('click', function (event) {

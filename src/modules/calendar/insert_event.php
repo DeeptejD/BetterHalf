@@ -24,21 +24,21 @@ try {
     $end_date = $_POST['endDate'];
     $end_time = $_POST['endTime'];
     $end_date = $end_date . "T" . $end_time;
-    $event_description = $_POST['eventDescription'];
+    // $event_description = $_POST['eventDescription'];
     $event_link = $_POST['eventLink'];
-    if (isset($_POST['allDay']))
-        $all_day = $_POST['allDay'];
-    else
-        $all_day = 0;
+    // if (isset($_POST['allDay']))
+    //     $all_day = $_POST['allDay'];
+    // else
+    $all_day = 0;
     $color = $_POST['color'];
 
-    $stmt = $conn->prepare("INSERT INTO calendar (user_email, event_title, start_date, end_date, event_description, event_link, allDay, color) VALUES (:user_email, :event_title, :start_date, :end_date, :event_description, :event_link, :all_day, :color)");
+    $stmt = $conn->prepare("INSERT INTO calendar (user_email, event_title, start_date, end_date,  event_link, allDay, color) VALUES (:user_email, :event_title, :start_date, :end_date, :event_link, :all_day, :color)");
 
     $stmt->bindParam(':user_email', $user_email);
     $stmt->bindParam(':event_title', $event_title);
     $stmt->bindParam(':start_date', $start_date);
     $stmt->bindParam(':end_date', $end_date);
-    $stmt->bindParam(':event_description', $event_description);
+    // $stmt->bindParam(':event_description', $event_description);
     $stmt->bindParam(':event_link', $event_link);
     $stmt->bindParam(':all_day', $all_day);
     $stmt->bindParam(':color', $color);
@@ -75,7 +75,7 @@ try {
         $event->title = $row['event_title'];
         $event->start = $formattedStart;
         $event->end = $formattedEnd;
-        $event->allDay = $row['allDay'];
+        // $event->allDay = $row['allDay'];
         $event->url = $row['event_link'];
         $event->color = $row['color'];
 
