@@ -40,7 +40,17 @@ $profile_picture = $detail_rows['imgurl'];
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <title><?php echo $name ?></title>
+  <!-- sweet alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="sweetalert2.all.min.js"></script>
+
+  <!-- swal themes -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+  <title>
+    <?php echo $name ?>
+  </title>
   <link rel="icon" type="image/x-icon" href="../../images/dashboard/favicon.ico">
 
 
@@ -119,12 +129,35 @@ $profile_picture = $detail_rows['imgurl'];
                   </h1>
                 </div>
 
-                <!-- displays the biodata of the currently logged in user -->
+                <!-- Display the biodata of the currently logged in user -->
                 <div
-                  class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
-                  <h3 class="text-xl text-center">Bio</h3>
-                  <div class="text-center text-2xl font-semibold mt-5 px-5">
-                    <?php echo $biodat; ?>
+                  class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
+                  <!-- Display bio, but hide it initially -->
+                  <div id="bioDisplay"
+                    class="text-center flex flex-col space-y-2 items-center justify-center overflow-y-auto scrollbar-hide">
+                    <div class="text-center text-3xl font-base italic">
+                      <?php echo $biodat; ?>
+                    </div>
+                  </div>
+                  <div class="flex flex-row justify-end mr-5" id="edit-bio-btn-div2">
+                    <div
+                      class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit"
+                      id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
+                  </div>
+
+                  <!-- Editable text area, hidden initially -->
+                  <div class="flex flex-col items-center hidden justify-center w-full h-full" id="edit-bio-flex">
+                    <div
+                      class="text-gray-950 bg-opacity-20 w-full h-3/4 rounded-xl shadow-xl bg-gray-950 overflow-hidden">
+                      <textarea id="bioEdit"
+                        class="hidden w-full h-full bg-opacity-50 bg-gray-100 backdrop-blur-2xl shadow-2xl p-4 focus:outline-none"
+                        rows="7 "><?php echo $biodat; ?></textarea>
+                    </div>
+                    <div
+                      class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit">
+                      <button id="saveBioButton" class="hidden h-1/4" onclick="saveBio()">Save</button>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -160,8 +193,8 @@ $profile_picture = $detail_rows['imgurl'];
           <!-- THIRD BLOCK -->
           <div
             class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl overflow-hidden">
-            <?php 
-              include 'block3.php';
+            <?php
+            include 'block3.php';
             ?>
           </div>
         </div>
@@ -196,6 +229,72 @@ $profile_picture = $detail_rows['imgurl'];
         handleRequestAction(event.target, 'reject');
       }
     });
+
+
+    // SCRIPT TO HANDLE BIO EDIT
+    function editBio() {
+      document.getElementById("bioDisplay").style.display = "none";
+      document.getElementById("bioEdit").style.display = "block";
+      document.getElementById("editBioButton").style.display = "none";
+      document.getElementById("saveBioButton").style.display = "block";
+      document.getElementById("edit-bio-flex").style.display = "flex";
+      document.getElementById("edit-bio-btn-div").style.display = "none";
+      document.getElementById("edit-bio-btn-div2").style.display = "none";
+    }
+
+    function saveBio() {
+      const newBio = document.getElementById("bioEdit").value;
+
+      // Update the bio in the database
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('POST', 'update_bio.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      const data = 'bio=' + encodeURIComponent(newBio);
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            // put swal fire here
+            Swal.fire({
+              icon: "success",
+              title: "Your bio has been updated",
+              showConfirmButton: true,
+              time: 1500
+            });
+            
+            setTimeout(function () {
+              location.reload();
+            }, 1500);
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Could not update your Bio",
+              text: "Try again later",
+            });
+          }
+        }
+      };
+
+      // Send the data to the server
+      xhr.send(data);
+
+      document.getElementById("bioDisplay").textContent = newBio;
+
+      // Hide the edit mode and show the display mode
+      document.getElementById("bioDisplay").style.display = "block";
+      document.getElementById("bioEdit").style.display = "none";
+      document.getElementById("editBioButton").style.display = "block";
+      document.getElementById("saveBioButton").style.display = "none";
+      document.getElementById("edit-bio-flex").style.display = "none";
+      document.getElementById("edit-bio-btn-div").style.display = "flex";
+      document.getElementById("edit-bio-btn-div2").style.display = "flex";
+
+      // reload
+      // location.reload();
+
+    }
 
   </script>
 
