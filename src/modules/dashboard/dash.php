@@ -16,6 +16,8 @@ $name = $_SESSION['user_name'];
 $biodat = $row['bio'];
 $gender = $row['gender'];
 
+$_SESSION['pfp'] = $pfp;
+
 // query to fetch users to be displayed under available users
 $sql = "SELECT * FROM details  WHERE user_email != '$uid' AND gender != '$gender'";
 $result = $conn->query($sql);
@@ -101,8 +103,7 @@ $profile_picture = $detail_rows['imgurl'];
 </head>
 
 <body>
-  <div class="bg-cover bg-center overflow-hidden h-screen w-screen backdrop-blur-2xl"
-    style="background-image: url('<?php echo $profile_picture ?>');">
+  <div class="bg-cover bg-center overflow-hidden h-screen w-screen backdrop-blur-2xl" style="background-image: url('<?php echo $profile_picture ?>');">
     <div class="flex justify-between h-full py-3">
 
       <!-- nav -->
@@ -110,18 +111,15 @@ $profile_picture = $detail_rows['imgurl'];
 
       <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
         <div class="col-span-9 row-span-3 pr-4 rounded-xl">
-          <div
-            class="flex flex-row w-full h-full bg-gray-950 bg-opacity-20 shadow-2xl rounded-xl p-4 backdrop-blur-2xl">
+          <div class="flex flex-row w-full h-full bg-gray-950 bg-opacity-20 shadow-2xl rounded-xl p-4 backdrop-blur-2xl">
             <div class="w-full h-full rounded-xl flex flex-row space-x-4">
               <div class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
-                <img src="<?php echo $pfp; ?>" alt="Profile picture"
-                  class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img src="<?php echo $pfp; ?>" alt="Profile picture" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full rounded-xl flex flex-col space-y-4">
 
                 <!-- displayed the name of the user logged in with the greeting -->
-                <div
-                  class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-1/3 rounded-xl flex justify-center items-center backdrop-blur-3xl">
+                <div class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-1/3 rounded-xl flex justify-center items-center backdrop-blur-3xl">
                   <h1 class="font-sans font-thin font-semibold text-4xl text-center">Hi!
                     <span class="font-semibold">
                       <?php echo $name; ?>
@@ -130,31 +128,23 @@ $profile_picture = $detail_rows['imgurl'];
                 </div>
 
                 <!-- Display the biodata of the currently logged in user -->
-                <div
-                  class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
+                <div class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
                   <!-- Display bio, but hide it initially -->
-                  <div id="bioDisplay"
-                    class="text-center flex flex-col space-y-2 items-center justify-center overflow-y-auto scrollbar-hide">
+                  <div id="bioDisplay" class="text-center flex flex-col space-y-2 items-center justify-center overflow-y-auto scrollbar-hide">
                     <div class="text-center text-3xl font-base italic">
                       <?php echo $biodat; ?>
                     </div>
                   </div>
-                  <div class="flex flex-row justify-end mr-5" id="edit-bio-btn-div2">
-                    <div
-                      class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit"
-                      id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
+                  <div class="flex flex-row justify-end mr-5 bg-opacity-0" id="edit-bio-btn-div2">
+                    <div class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
                   </div>
 
                   <!-- Editable text area, hidden initially -->
                   <div class="flex flex-col items-center hidden justify-center w-full h-full" id="edit-bio-flex">
-                    <div
-                      class="text-gray-950 bg-opacity-20 w-full h-3/4 rounded-xl shadow-xl bg-gray-950 overflow-hidden">
-                      <textarea id="bioEdit"
-                        class="hidden w-full h-full bg-opacity-50 bg-gray-100 backdrop-blur-2xl shadow-2xl p-4 focus:outline-none"
-                        rows="7 "><?php echo $biodat; ?></textarea>
+                    <div class="text-gray-950 bg-opacity-20 w-full h-3/4 rounded-xl shadow-xl bg-gray-950 overflow-hidden">
+                      <textarea id="bioEdit" class="hidden w-full h-full bg-opacity-50 bg-gray-100 backdrop-blur-2xl shadow-2xl p-4 focus:outline-none" rows="7 "><?php echo $biodat; ?></textarea>
                     </div>
-                    <div
-                      class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit">
+                    <div class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit">
                       <button id="saveBioButton" class="hidden h-1/4" onclick="saveBio()">Save</button>
                     </div>
 
@@ -169,14 +159,12 @@ $profile_picture = $detail_rows['imgurl'];
         <div class="flex flex-row gap-4 pb-0 pr-4 col-span-9 row-span-4 row-start-4">
 
           <!-- FIRST BLOCK -->
-          <div
-            class="overflow-hidden flex flex-col col-span-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl">
+          <div class="overflow-hidden flex flex-col col-span-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl">
             <?php include 'block1.php'; ?>
           </div>
 
           <!-- SECOND BLOCK -->
-          <div
-            class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl  shadow-2xl">
+          <div class="tooltip col-span-3 col-start-3 w-1/3 row-span-3 bg-gray-950 rounded-2xl shadow-2xl bg-opacity-10 transition ease-in-out transform duration-500 hover:scale-105 backdrop-blur-2xl  shadow-2xl">
             <?php
             // if user is in matched show the profile of the other partner else show the other code
             $checkInMatched = mysqli_query($conn, "SELECT * FROM `matched_pairs` WHERE user1 = '$uid'");
@@ -191,8 +179,7 @@ $profile_picture = $detail_rows['imgurl'];
           </div>
 
           <!-- THIRD BLOCK -->
-          <div
-            class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl overflow-hidden">
+          <div class="col-span-3 w-1/3 bg-gray-950 rounded-2xl bg-opacity-10 transition duration-500 ease-in-out transform hover:scale-105  backdrop-blur-2xl shadow-2xl overflow-hidden">
             <?php
             include 'block3.php';
             ?>
@@ -212,7 +199,7 @@ $profile_picture = $detail_rows['imgurl'];
 
       const data = 'request_id=' + requestId + '&action=' + action;
 
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
           location.reload();
         }
@@ -222,7 +209,7 @@ $profile_picture = $detail_rows['imgurl'];
 
     }
 
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', function(event) {
       if (event.target.classList.contains('accept-button')) {
         handleRequestAction(event.target, 'accept');
       } else if (event.target.classList.contains('reject-button')) {
@@ -253,7 +240,7 @@ $profile_picture = $detail_rows['imgurl'];
 
       const data = 'bio=' + encodeURIComponent(newBio);
 
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             // put swal fire here
@@ -263,8 +250,8 @@ $profile_picture = $detail_rows['imgurl'];
               showConfirmButton: true,
               time: 1500
             });
-            
-            setTimeout(function () {
+
+            setTimeout(function() {
               location.reload();
             }, 1500);
           } else {
@@ -295,7 +282,6 @@ $profile_picture = $detail_rows['imgurl'];
       // location.reload();
 
     }
-
   </script>
 
 </body>
