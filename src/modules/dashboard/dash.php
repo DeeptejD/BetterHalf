@@ -141,8 +141,8 @@ $profile_picture = $detail_rows['imgurl'];
 
                   <!-- Editable text area, hidden initially -->
                   <div class="flex flex-col items-center hidden justify-center w-full h-full" id="edit-bio-flex">
-                    <div class="text-gray-950 bg-opacity-20 w-full h-3/4 rounded-xl shadow-xl bg-gray-950 overflow-hidden">
-                      <textarea id="bioEdit" class="hidden w-full h-full bg-opacity-50 bg-gray-100 backdrop-blur-2xl shadow-2xl p-4 focus:outline-none" rows="7 "><?php echo $biodat; ?></textarea>
+                    <div class="text-gray-950 text-center italic font-base text-2xl bg-opacity-20 w-full h-3/4 rounded-xl shadow-xl bg-gray-950 overflow-hidden">
+                      <textarea id="bioEdit" class="hidden w-full h-full bg-opacity-50 bg-gray-100 backdrop-blur-2xl shadow-2xl p-4 focus:outline-none italic" rows="7 "><?php echo $biodat; ?></textarea>
                     </div>
                     <div class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit">
                       <button id="saveBioButton" class="hidden h-1/4" onclick="saveBio()">Save</button>

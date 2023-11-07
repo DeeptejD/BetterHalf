@@ -7,8 +7,7 @@ if (mysqli_num_rows($userexists) > 0) {
     header("location: ../dashboard/dash.php");
 } else {
     if (isset($_SESSION['user_email'])) {
-        if (isset($_POST['submit'])) {
-            ;
+        if (isset($_POST['submit'])) {;
             $dob = $_POST['dob'];
             $user_email = $_SESSION['user_email'];
             $mstatus = $_POST['marital'];
@@ -28,7 +27,7 @@ if (mysqli_num_rows($userexists) > 0) {
                 echo "You need to be more than 20 years old";
                 echo '<script>
                     window.location.href = "get-started.php";
-                    alert("Minimum age for marriage is 21, this aint rajasthan");
+                    alert("The legal minimum age mandatory for marriage in India is 21");
                     </script>';
             }
 
@@ -47,8 +46,35 @@ if (mysqli_num_rows($userexists) > 0) {
                         $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
                         $img_upload_path = "../../../uploads/" . $new_img_name;
                         move_uploaded_file($tmpname, $img_upload_path);
-                        $insertquery = "INSERT INTO `details` (user_id, DOB, m_status, gender, Religion, Caste, Age, imgurl, bio, user_email) VALUES ('$userid', '$dob', '$mstatus', '$gender', '$religion', '$caste', '$age', '$img_upload_path', '$bio', '$user_email')";
-                        mysqli_query($conn, $insertquery);
+
+                        // PDO TO INSERT BIO
+                        $pdo = new PDO("mysql:host=localhost;dbname=loginpage", "root", "");
+
+
+                        // Prepare the SQL statement with placeholders
+                        $insertquery = $pdo->prepare("INSERT INTO `details` (user_id, DOB, m_status, gender, Religion, Caste, Age, imgurl, bio, user_email) VALUES (:userid, :dob, :mstatus, :gender, :religion, :caste, :age, :img_upload_path, :bio, :user_email)");
+
+                        // Bind the values to the placeholders
+                        $insertquery->bindParam(':userid', $userid);
+                        $insertquery->bindParam(':dob', $dob);
+                        $insertquery->bindParam(':mstatus', $mstatus);
+                        $insertquery->bindParam(':gender', $gender);
+                        $insertquery->bindParam(':religion', $religion);
+                        $insertquery->bindParam(':caste', $caste);
+                        $insertquery->bindParam(':age', $age);
+                        $insertquery->bindParam(':img_upload_path', $img_upload_path);
+                        $insertquery->bindParam(':bio', $bio);
+                        $insertquery->bindParam(':user_email', $user_email);
+
+                        // Execute the query
+                        if ($insertquery->execute()) {
+                            // Query was successful
+                        } else {
+                            // Query failed
+                            $errorInfo = $insertquery->errorInfo();
+                            echo "Error: " . $errorInfo[2];
+                        }
+
                         header("location: ../dashboard/dash.php");
                     } else {
                         echo "incorrect file type";
@@ -103,15 +129,12 @@ if (mysqli_num_rows($userexists) > 0) {
 </head>
 
 <body>
-    <div class="bg-cover bg-center overflow-hidden h-screen w-screen "
-        style="background-image: url('../../images/dashboard/background.jpg');">
+    <div class="bg-cover bg-center overflow-hidden h-screen w-screen " style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="min-h-screen flex items-center justify-center shadow-2xl">
             <div class="h-screen w-screen py-11 px-52">
-                <div class="bg-gray-200 bg-opacity-25 bg-blur rounded-xl flex flex-row h-full w-full "
-                    style="backdrop-filter: blur(8px);">
+                <div class="bg-gray-200 bg-opacity-25 bg-blur rounded-xl flex flex-row h-full w-full " style="backdrop-filter: blur(8px);">
                     <div class="bg-gray-900 rounded-l-xl w-1/3 h-full overflow-hidden">
-                        <img src="../../images/get-started/the-gif.gif" alt=""
-                            class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                        <img src="../../images/get-started/the-gif.gif" alt="" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
                     </div>
                     <!-- this was where there was the red color -->
                     <div class="w-2/3 h-full p-4 rounded-r-xl">
@@ -126,20 +149,16 @@ if (mysqli_num_rows($userexists) > 0) {
                                     <div class="flex flex-row space-x-3">
                                         <!-- DOB -->
                                         <div class="pt-2">
-                                            <label for="dob"
-                                                class="text-gray-950 text-lg font-semibold shadow-2xl pl-2">Date of
+                                            <label for="dob" class="text-gray-950 text-lg font-semibold shadow-2xl pl-2">Date of
                                                 birth</label>
-                                            <input type="date" name="dob" id="dob"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5 focus:outline-none">
+                                            <input type="date" name="dob" id="dob" class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 uppercase p-5 focus:outline-none">
                                         </div>
 
                                         <!-- Marital -->
                                         <div class="pt-2 ">
-                                            <label for="marital"
-                                                class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Marital
+                                            <label for="marital" class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Marital
                                                 Status</label>
-                                            <select name="marital" id="marital"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
+                                            <select name="marital" id="marital" class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="single">Single</option>
                                                 <option value="seperated">Seperated</option>
                                                 <option value="divorced">Divorced</option>
@@ -149,11 +168,9 @@ if (mysqli_num_rows($userexists) > 0) {
                                         </div>
                                         <!-- Gender -->
                                         <div class="pt-2">
-                                            <label for="gender"
-                                                class="text-gray-950  text-lg font-semibold shadow-2xl  pl-2">Select
+                                            <label for="gender" class="text-gray-950  text-lg font-semibold shadow-2xl  pl-2">Select
                                                 Gender</label>
-                                            <select name="gender" id="gender"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
+                                            <select name="gender" id="gender" class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none">
                                                 <option value="male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <!-- <option value="nonBinary">Non Binary</option> -->
@@ -165,11 +182,8 @@ if (mysqli_num_rows($userexists) > 0) {
                                     <div class="flex flex-row space-x-3">
                                         <!-- Religion -->
                                         <div class="pt-2">
-                                            <label for="religion"
-                                                class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Religion</label>
-                                            <select name="religion" id="religion"
-                                                class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none"
-                                                onchange="updateCasteOptions()">
+                                            <label for="religion" class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Religion</label>
+                                            <select name="religion" id="religion" class="w-full rounded-2xl shadow-2xl bg-gray-200 active:bg-gray-300 p-5 appearance-none focus:outline-none" onchange="updateCasteOptions()">
                                                 <option value="Hindu">Hindu</option>
                                                 <option value="Muslim">Muslim</option>
                                                 <option value="Christian">Christian</option>
@@ -187,10 +201,8 @@ if (mysqli_num_rows($userexists) > 0) {
 
                                         <!-- Caste -->
                                         <div class="pt-2">
-                                            <label for="caste"
-                                                class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Caste</label>
-                                            <select name="caste" id="caste"
-                                                class="w-full rounded-2xl appearance-none shadow-2xl bg-gray-200 active:bg-gray-300 p-5 focus:outline-none">
+                                            <label for="caste" class="text-gray-950  text-lg font-semibold shadow-2xl pl-2">Caste</label>
+                                            <select name="caste" id="caste" class="w-full rounded-2xl appearance-none shadow-2xl bg-gray-200 active:bg-gray-300 p-5 focus:outline-none">
                                                 <option value="None">None</option>
                                                 <option value="brahmin">Brahmin</option>
                                                 <option value="kshatriya">Kshatriya</option>
@@ -201,9 +213,7 @@ if (mysqli_num_rows($userexists) > 0) {
 
                                     </div>
                                     <div class="flex flex-row justify-end pt-7">
-                                        <a href="#"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
-                                            onclick="showStepTwo()">Next</a>
+                                        <a href="#" class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" onclick="showStepTwo()">Next</a>
                                     </div>
                                 </div>
 
@@ -214,45 +224,31 @@ if (mysqli_num_rows($userexists) > 0) {
                                     <p class="text-gray-100 font-bold mb-6  pb-3">
                                         This is how people will identify you!</p>
                                     <div class="flex items-center justify-center w-full" id="input-field">
-                                        <label for="dropzone-file"
-                                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-300 border-gray-600">
+                                        <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-300 border-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                                <svg class="w-8 h-8 mb-4 text-gray-600" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                                <svg class="w-8 h-8 mb-4 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                                 </svg>
                                                 <div class=" hover:text-gray-50">
-                                                    <p class="mb-2 text-sm text-gray-500 "><span
-                                                            class="font-semibold">Click to upload</span>
+                                                    <p class="mb-2 text-sm text-gray-500 "><span class="font-semibold">Click to upload</span>
                                                         or drag and drop</p>
                                                     <p class="text-xs text-gray-500">PNG, JPG or JPEG
                                                         (MAX. 800x400px)</p>
                                                 </div>
                                             </div>
-                                            <input type="file" id="dropzone-file" name="image" class="hidden"
-                                                onchange="previewImage(this)" accept="image/*" />
+                                            <input type="file" id="dropzone-file" name="image" class="hidden" onchange="previewImage(this)" accept="image/*" />
                                         </label>
                                     </div>
                                     <!-- Displaying the uploaded profile picture -->
                                     <div class="flex justify-center items-center border-gray-700 ">
-                                        <img id="profile-picture" name="image"
-                                            class="rounded-full h-32 w-32 object-cover hidden" src=""
-                                            alt="Profile Picture" />
+                                        <img id="profile-picture" name="image" class="rounded-full h-32 w-32 object-cover hidden" src="" alt="Profile Picture" />
                                     </div>
                                     <div class="flex flex-row justify-between pt-7">
-                                        <a href="#"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
-                                            onclick="showStepOne()">Previous</a>
+                                        <a href="#" class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" onclick="showStepOne()">Previous</a>
 
-                                        <a href="#" id="upload-another"
-                                            class="focus:outline-none hidden w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
-                                            onclick="showFileInput()">Change</a>
+                                        <a href="#" id="upload-another" class="focus:outline-none hidden w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" onclick="showFileInput()">Change</a>
 
-                                        <a href=" #"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
-                                            onclick="showStepThree()">Next</a>
+                                        <a href=" #" class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" onclick="showStepThree()">Next</a>
                                     </div>
                                 </div>
 
@@ -261,19 +257,14 @@ if (mysqli_num_rows($userexists) > 0) {
                                     <h1 class="text-gray-100  xl:text-4xl lg:text-3xl sm:text-lg font-bold mb-6">
                                         Enter your bio</h1>
                                     <p class="text-gray-100 font-bold mb-6  pb-3">
-                                        Write a snappy bio that defines YOU!</p>
-                                    <textarea id="bio-input" name="bio" rows="4" cols="50" maxlength="500"
-                                        placeholder="Tell us about yourself. Share your hobbies, interests, values, and what you're looking for in a partner. (Maximum 50 characters)"
-                                        class="w-full h-60 rounded-xl p-5 appearance-none"></textarea>
+                                        Express yourself!</p>
+                                    <textarea id="bio-input" name="bio" rows="4" cols="50" maxlength="500" placeholder="Tell us about yourself. Share your hobbies, interests, values, and what you're looking for in a partner. (Maximum 50 characters)" class="w-full h-60 rounded-xl p-5 appearance-none"></textarea>
                                     <p id="bio-counter" class="text-gray-100 text-sm">Remaining words: 50</p>
                                     <div class="flex flex-row justify-between pt-7">
-                                        <a href="#"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110"
-                                            onclick="showStepTwo()">Previous</a>
+                                        <a href="#" class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" onclick="showStepTwo()">Previous</a>
 
 
-                                        <input type="submit" name="submit" id="submit" href=" #"
-                                            class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" />
+                                        <input type="submit" name="submit" id="submit" href=" #" class="focus:outline-none w-1/5 text-center p-5 h-full rounded-xl bg-slate-200 hover:bg-slate-400 active:bg-slate-500 active:text-gray-50 active:shadow-inner font-semibold transition transform duration-500 hover:scale-110" />
                                     </div>
                                 </div>
                             </form>
@@ -322,7 +313,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                     if (input.files && input.files[0]) {
                                         const reader = new FileReader();
 
-                                        reader.onload = function (e) {
+                                        reader.onload = function(e) {
                                             const profilePicture = document.getElementById('profile-picture');
                                             profilePicture.src = e.target.result;
                                             profilePicture.classList.remove('hidden');
@@ -368,7 +359,7 @@ if (mysqli_num_rows($userexists) > 0) {
                                 const bioCounter = document.getElementById('bio-counter');
                                 const maxWords = 50;
 
-                                bioInput.addEventListener('input', function () {
+                                bioInput.addEventListener('input', function() {
                                     const bioText = bioInput.value;
 
                                     // split into words

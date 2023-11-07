@@ -69,21 +69,18 @@ $user_name = $register_rows['user_name'];
 </head>
 
 <body>
-    <div class="bg-cover bg-center overflow-hidden h-screen w-screen"
-        style="background-image: url('<?php echo $profile_picture ?>');">
+    <div class="bg-cover bg-center overflow-hidden h-screen w-screen" style="background-image: url('<?php echo $profile_picture ?>');">
         <div class="flex justify-between h-full py-3">
 
             <!-- nav -->
             <?php include '../../modules/partials/nav.php' ?>
 
             <div class="ml-0 container grid grid-cols-9 grid-rows-5 gap-4 h-full w-screen mx-auto my-auto">
-                <div
-                    class="row-span-5 col-span-9 rounded-xl backdrop-blur-xl bg-gray-950 bg-opacity-50 mr-4 overflow-x-hidden overflow-y-auto scrollbar-hide">
+                <div class="row-span-5 col-span-9 rounded-xl backdrop-blur-xl bg-gray-950 bg-opacity-50 mr-4 overflow-x-hidden overflow-y-auto scrollbar-hide">
                     <!-- to show the pfp -->
                     <div class="flex w-full flex-row items-center justify-center p-16 pb-10">
-                        <div class="rounded-xl shadow-2xl bg-center bg-cover">
-                            <img src="<?php echo $profile_picture; ?>" alt=""
-                                class="rounded-xl shadow-2xl h-48 w-48 object-cover">
+                        <div class="rounded-xl shadow-2xl bg-center bg-cover bg-gradient-to-t from-opacity-100 to-transparent">
+                            <img src="<?php echo $profile_picture; ?>" alt="" class="rounded-xl shadow-2xl h-48 w-48 object-cover">
                         </div>
                     </div>
 
@@ -104,8 +101,7 @@ $user_name = $register_rows['user_name'];
                         <div class="flex flex-row flex-wrap space-x-4 ">
 
                             <!-- marital status card -->
-                            <div
-                                class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
+                            <div class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
                                 <?php
                                 // if (strtoupper($user_marital_status) === 'SINGLE')
                                 //     echo '👀';
@@ -116,8 +112,7 @@ $user_name = $register_rows['user_name'];
                             </div>
 
                             <!-- gender card -->
-                            <div
-                                class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
+                            <div class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
                                 <?php
                                 // if (strtoupper($user_gender) === 'MALE')
                                 //     echo '👨🏻';
@@ -128,22 +123,19 @@ $user_name = $register_rows['user_name'];
                             </div>
 
                             <!-- age card -->
-                            <div
-                                class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
+                            <div class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
 
                                 <?php echo 'Age: ' . $user_age; ?>
                             </div>
 
                             <!-- religion card -->
-                            <div
-                                class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
+                            <div class="hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
 
                                 <?php echo $user_religion; ?>
                             </div>
 
                             <!-- DOB card -->
-                            <div
-                                class=" hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
+                            <div class=" hover:px-5 transition transition-all duration:300 p-2 mt-5 text-xl  rounded-xl bg-gray-950 text-white bg-opacity-50 backdrop-blur-xl w-fit px-3 space-x-2 flex flex-row items-center justify-center">
 
                                 <?php echo $user_DOB; ?>
 
@@ -198,7 +190,7 @@ $user_name = $register_rows['user_name'];
                         }
 
                         // 
-                        
+
                         $check2 = mysqli_query($conn, "SELECT * FROM `interest_requests` WHERE sender_id = '$sender_id' AND receiver_id = '$receiver_id'");
                         $check_rows2 = mysqli_num_rows($check2);
 
@@ -211,8 +203,7 @@ $user_name = $register_rows['user_name'];
                         }
                         ?>
                         <div>
-                            <button
-                                class="bg-gray-500 shadow-2xl text-white hover:px-10 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-semibold font-sans p-8 px-6 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">
+                            <button class="bg-gray-500 shadow-2xl text-white hover:px-10 transition transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-semibold font-sans p-8 px-6 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100 transition  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">
                                 Add Friend
                             </button>
                         </div>
@@ -232,17 +223,16 @@ $user_name = $register_rows['user_name'];
 
             var data = "userEmail=" + encodeURIComponent("<?php echo $userEmail; ?>");
 
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (xhr.status === 200) {
                     Swal.fire({
                         icon: 'success',
-                        title:
-                            'Interest Request sent to <?php echo $user_name; ?>',
+                        title: 'Interest Request sent to <?php echo $user_name; ?>',
                         showConfirmButton: false,
                         timer: 1500
                     });
                     // reload page
-                    setTimeout(function () {
+                    setTimeout(function() {
                         location.reload();
                     }, 1500);
                 } else {
@@ -260,12 +250,11 @@ $user_name = $register_rows['user_name'];
 
             var data = "userEmail=" + encodeURIComponent("<?php echo $userEmail; ?>");
 
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (xhr.status === 200) {
                     Swal.fire({
                         icon: 'success',
-                        title:
-                            'Interest Request revoked from <?php echo $user_name; ?>',
+                        title: 'Interest Request revoked from <?php echo $user_name; ?>',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -284,17 +273,16 @@ $user_name = $register_rows['user_name'];
 
             var data = "userEmail=" + encodeURIComponent("<?php echo $userEmail; ?>");
 
-            xhr.onload = function () {
+            xhr.onload = function() {
                 if (xhr.status === 200) {
                     Swal.fire({
                         icon: 'success',
-                        title:
-                            'Unmatched with <?php echo $user_name; ?>',
+                        title: 'Unmatched with <?php echo $user_name; ?>',
                         showConfirmButton: false,
                         timer: 1500
                     });
                     // reload page
-                    setTimeout(function () {
+                    setTimeout(function() {
                         location.reload();
                     }, 1500);
                 } else {

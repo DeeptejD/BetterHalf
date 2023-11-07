@@ -52,7 +52,7 @@ $pfp = $row['imgurl'];
                   
                   <!-- chooses whether to show a green or a white dot based on status -->
                   <div
-                    class="<?php echo $row['status'] === 'Online' ? 'w-2 h-2 rounded-full bg-green-500' : 'w-2 h-2 rounded-full bg-red-500'; ?>">
+                    class="<?php echo strtoupper($row['status']) === 'ONLINE' ? 'w-2 h-2 rounded-full bg-green-500' : 'w-2 h-2 rounded-full bg-red-500'; ?>">
                   </div>
                   <div>
                     <?php echo $row['status']; ?>
