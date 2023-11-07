@@ -31,6 +31,10 @@ $pfp = $row['imgurl'];
             $sql = mysqli_query($conn, "SELECT * FROM register WHERE user_email = '{$user_id}'");
             if (mysqli_num_rows($sql) > 0) {
               $row = mysqli_fetch_assoc($sql);
+              $userkaid = $row['user_id'];
+              $sql2 = mysqli_query($conn, "SELECT * FROM details WHERE user_id = '{$userkaid}'");
+              $row2 = mysqli_fetch_assoc($sql2);
+              $pfp2 = $row2['imgurl'];
             } else {
               header("location: users.php");
             }
@@ -38,7 +42,7 @@ $pfp = $row['imgurl'];
 
             <a href="users.php" class="back-icon"><i class="fas fa-arrow-left text-white"></i></a>
             <div class="flex flex-row items-center justify-center">
-              <img src="<?php echo $pfp; ?>" alt="" class="rounded-xl ">
+              <img src="<?php echo $pfp2; ?>" alt="" class="rounded-xl ">
               <div class="details flex flex-row space-x-3 items-center justify-center">
                 <span class="font-4xl">
                   <?php echo $row['user_name'] ?>
