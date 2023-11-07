@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
         <div class="m-4 mb-0">
             <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
                 style="backdrop-filter: blur(8px);">
-                <img src="../../images/OG-images/logo.png" class="pl-2">
+                <img src="../../images/OG-images/logo.png" class="h-full w-38 pl-8">
 
                 <div class=""><a href="login.php"
                         class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log

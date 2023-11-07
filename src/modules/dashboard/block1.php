@@ -1,6 +1,6 @@
 <!-- heading -->
 <div class="w-full h-fit ">
-    <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Discover</h1>
+    <h1 class='font-sans mt-2 text-2xl text-center text-white mt-5'>Discover(Scroll for More)</h1>
 </div>
 
 <!-- vertically scrollable div -->
@@ -34,18 +34,26 @@
             echo '</div>';
 
             // marital status wala badge
-            echo '<div class="p-2 rounded-xl bg-gray-950 bg-opacity-50 text-white backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center shadow-2xl">';
-            if (strtoupper($row['m_status']) === 'SINGLE') {
-                echo '<div class="mr-2">👀</div>';
-            }
+            echo '<div class="pl-4 pr-4 rounded-xl bg-opacity-50 text-white backdrop-blur-xl w-fit px-2 space-x-2 flex flex-row items-center justify-center shadow-2xl">';
+            // if (strtoupper($row['m_status']) === 'SINGLE') {
+            //     echo '<div class="mr-2"></div>';
+            // }
             echo ucwords($row['m_status']);
             echo '</div>';
 
             echo '</div>';
 
             echo '<div class="flex flex-col justify-center items-center">';
-            echo '<button class="shadow-2xl mr-3 p-4 rounded-xl bg-opacity-50 bg-gray-950 text-white text-semibold h-fit hover:bg-opacity-100 transition transition-all duration-300">';
-            echo 'Add Friend';
+            echo '<button title="Add As Friend"class="group cursor-pointer outline-none hover:rotate-90 duration-300">';
+            echo '<svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24" class="stroke-white fill-none group-hover: group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300">';
+            echo '<path
+            d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+            stroke-width="1.5"
+          >';
+            echo '</path>';
+            echo '<path d="M8 12H16" stroke-width="1.5"></path>';
+            echo '<path d="M12 16V8" stroke-width="1.5"></path>';
+            echo '</svg>';
             echo '</button>';
             // echo '<button class="group cursor-pointer outline-none hover:rotate-90 duration-300 flex flex-col justify-center pr-3"><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="stroke-white fill-none group-hover:fill-green-800 group-active:stroke-white group-active:fill-zinc-600 group-active:duration-0 duration-300"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke-width="1.5"></path><path d="M8 12H16" stroke-width="1.5"></path><path d="M12 16V8" stroke-width="1.5"></path></svg></button>';
             echo '</div>';

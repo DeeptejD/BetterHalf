@@ -14,7 +14,7 @@
 
     <a href="./edit/deleteAccount.php" class="w-full h-1/4">
         <?php
-        echo '<button class="w-full shadow-2xl mr-3 p-4 rounded-xl bg-opacity-30 bg-red-300 hover:bg-red-500 text-2xl font-normal transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
+        echo '<button class="w-full text-white shadow-2xl mr-3 p-4 rounded-xl bg-opacity-30 bg-red-300 hover:bg-red-500 text-2xl font-normal transition duration-500 ease-in-out transform hover:scale-105 text-gray-20 text-semibold h-full hover:bg-opacity-100 transition transition-all duration-300 backdrop-blur-2xl">';
         echo 'Delete Account';
         echo '</button>';
         ?>

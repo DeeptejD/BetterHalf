@@ -17,7 +17,7 @@ echo '<div class="w-full h-1/4">';
 echo '<p class="font-base text-white flex-grow pr-3 h-fit text-2xl text-center mt-5">Your Match</p>';
 echo '</div>';
 
-echo '<div class="w-full h-3/4 flex flex-col transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1 items-center justify-center bg-gray-200 bg-opacity-20 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';
+echo '<div class="w-full h-3/4 flex flex-col transform transition transition-all duration-500 hover:-translate-y-1 hover:translate-x-1 items-center justify-center bg-gray-200 bg-opacity-10 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';
 echo '<a href="../profile/user_profile.php?current_user_email=' . $matched_user . '">';
 echo '<div class="flex flex-row items-center justify-center">';
 echo '<img src="' . $matched_user_image . '" alt="Profile Picture" class=" object-cover rounded-lg shadow-2xl h-28 w-28 m-2">';

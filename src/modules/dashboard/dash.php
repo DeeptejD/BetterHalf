@@ -131,12 +131,12 @@ $profile_picture = $detail_rows['imgurl'];
                 <div class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
                   <!-- Display bio, but hide it initially -->
                   <div id="bioDisplay" class="text-center flex flex-col space-y-2 items-center justify-center overflow-y-auto scrollbar-hide">
-                    <div class="text-center text-3xl font-base italic">
+                    <div class="text-center text-3xl font-base">
                       <?php echo $biodat; ?>
                     </div>
                   </div>
-                  <div class="flex flex-row justify-end mr-5 bg-opacity-0" id="edit-bio-btn-div2">
-                    <div class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
+                  <div class="flex flex-row justify-center mr-5 bg-opacity-0" id="edit-bio-btn-div2">
+                    <div class="p-4 mt-28 text-center text-white bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
                   </div>
 
                   <!-- Editable text area, hidden initially -->
