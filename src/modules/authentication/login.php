@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
   <?php include '../partials/head-content.php'; ?>
   <title>Login</title>
 
-    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
+    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png class="h-full w-40"">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>

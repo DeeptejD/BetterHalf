@@ -11,7 +11,7 @@ if (isset($_POST['logout']))
                 <div class="h-4/5 space-y-4">
                     <div class="flex flex-row items-center justify-center">
                         <a href="../dashboard/dash.php">
-                            <img src="../../images/OG-images/logo.png" class="h-28 w-28">
+                            <img src="../../images/OG-images/logo.png" class="h-full w-40">
                         </a>
 
                     </div>

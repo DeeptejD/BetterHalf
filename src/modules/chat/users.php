@@ -4,10 +4,11 @@ include_once "../config.php";
 if (!isset($_SESSION['user_email'])) {
   header("location: ../authentication/login.php");
 }
-$uid = $_SESSION['user_id'];
-$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_id = '$uid'");
+$uid = $_SESSION['user_email'];
+$result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$uid'");
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $pfp = $row['imgurl'];
+
 ?>
 
 <!-- PHP END HTML STARTS -->
