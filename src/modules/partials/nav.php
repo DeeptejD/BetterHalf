@@ -12,13 +12,22 @@ if (isset($_POST['logout']))
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Inter", sans-serif;
+        }
+
+        .font-sans {
+            font-family: "Inter", sans-serif;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+    </style>
+
 </head>
 
-<style>
-    * {
-        font-family: "Inter", sans-serif;
-    }
-</style>
 
 <body>
 
@@ -29,7 +38,7 @@ if (isset($_POST['logout']))
                     <div class="h-4/5 space-y-4">
                         <div class="flex flex-row items-center justify-center mb-11">
                             <a href="../dashboard/dash.php">
-                                <img src="../../images/OG-images/logo.png" class="h-full w-40">
+                                <img src="../../images/OG-images/horizontalnoBG.png" class="w-48">
                             </a>
 
                         </div>

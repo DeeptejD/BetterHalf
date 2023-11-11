@@ -14,7 +14,7 @@ $matched_user_name = $matched_user_name_row['user_name'];
 echo '<div class="flex flex-col w-full h-full p-4 pt-0">';
 
 echo '<div class="w-full h-1/4">';
-echo '<p class="font-base text-white flex-grow pr-3 h-fit text-2xl text-center mt-5">Your Match</p>';
+echo '<p class="font-base text-white flex-grow pr-3 h-fit text-2xl text-center mt-5">Your Connection</p>';
 echo '</div>';
 
 echo '<div class="w-full h-3/4 flex flex-col transform transition-all duration-500 hover:-translate-y-1 hover:translate-x-1 items-center justify-center bg-gray-200 bg-opacity-10 rounded-xl bg-cover bg-center backdrop-blur-3xl shadow-2xl">';

@@ -1,11 +1,23 @@
-* This code block initializes a Node.js project and installs the necessary dependencies.
- * To install the dependencies, run `npm install` in the terminal.
- * 
- * To set up Tailwind CSS, follow these steps:
- * 1. Install Tailwind CSS: `npm install tailwindcss`
- * 2. Create a configuration file: `npx tailwindcss init`
- * 3. Include the Tailwind CSS styles in your project by importing the CSS file in your main stylesheet:
- *    `@import 'tailwindcss/base';`
- *    `@import 'tailwindcss/components';`
- *    `@import 'tailwindcss/utilities';`
- * 4. Build your CSS file: `npx tailwindcss build styles.css -o output.css`
+# BetterHalf
+
+## Follow the steps to run the project
+
+### Step1: Clone this project into the htdocs directory of your xampp installation
+
+```bash
+git clone https://github.com/no-good-username/DBMSProj.git
+
+cd DBMSProj
+```
+
+### Step2: Install dependencies
+```bash
+npm i -D
+npx tailwindcss init
+```
+
+### Step3: Start thee Apache Server and MySQL from your Xampp control panel
+
+### Step4: Type ```localhost/DBMSProj/index.html``` in your browser
+
+### Step5: Find a match ```(can't guarantee)```
