@@ -9,68 +9,102 @@ require './phpMailer/src/Exception.php';
 require './phpmailer/src/PHPMailer.php';
 require './phpmailer/src/SMTP.php';
 
-if (isset($_POST['submit'])) {
+function isStrongPassword($password) {
+    // Minimum length of 8 characters
+    if (strlen($password) < 8) {
+      return false;
+    }
+  
+    // Should contain at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+      return false;
+    }
+  
+    // Should contain at least one lowercase letter
+    if (!preg_match('/[a-z]/', $password)) {
+      return false;
+    }
+  
+    // Should contain at least one digit
+    if (!preg_match('/\d/', $password)) {
+      return false;
+    }
+    
+    // Should contain at least one special character
+    if (!preg_match('/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/', $password)) {
+      return false;
+    }
+  
+    // If all criteria are met, return true
+    return true;
+  }
 
+if (isset($_POST['submit'])) {
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $enteredPassword = $_POST['password'];
-    $hashedPassword = password_hash($enteredPassword, PASSWORD_DEFAULT);
-    $cpass = $_POST['cpassword'];
-    $cHashedPassword = password_hash($cpass, PASSWORD_DEFAULT);
+    
+    if(isStrongPassword($enteredPassword)){
+        $hashedPassword = password_hash($enteredPassword, PASSWORD_DEFAULT);
+        $cpass = $_POST['cpassword'];
+        $cHashedPassword = password_hash($cpass, PASSWORD_DEFAULT);
 
-    $select = " SELECT * FROM `register` WHERE user_email = '$email'";
+        $select = " SELECT * FROM `register` WHERE user_email = '$email'";
 
-    $result = mysqli_query($conn, $select);
+        $result = mysqli_query($conn, $select);
 
-    if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
 
-        $error[] = 'User already exists!';
-    } else {
-        if (($name == "") || ($email == "") || !password_verify($cpass, $cHashedPassword)) {
-            $error[] = 'Registration Failed. Please recheck your entered details.';
+            $error[] = 'User already exists!';
         } else {
-            // OTP PART STARTS HERE
-            $otp = mt_rand(100000, 999999); // 6-digit OTP
-            date_default_timezone_set('Asia/Kolkata');
-            $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes'));
-
-            $phpmailer = new PHPMailer();
-            $phpmailer->isSMTP();
-            $phpmailer->Host = 'smtp.gmail.com';
-            $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = 2525;
-            $phpmailer->Username = 'matrimonydbms@gmail.com';
-            $phpmailer->Password = 'jotbnkrvqpkugzcv';
-            // $phpmailer->SMTPSecure = 'tls';
-            $phpmailer->SMTPSecure = 'ssl';
-            // $phpmailer->Port = 587;
-            $phpmailer->Port = 465;
-            $phpmailer->setFrom('matrimonydbms@gmail.com', 'Matrimony Project'); // (EMAIL, NAME)
-            $phpmailer->addAddress($email, $name);
-            $phpmailer->Subject = 'Here\'s your OTP!';
-            $phpmailer->isHTML(true);
-
-            // fetchin the template
-            $otpEmailTemplate = file_get_contents('./otp/otp-mail-template.php');
-            $otpEmailTemplate = str_replace('{{name}}', $name, $otpEmailTemplate);
-            $otpEmailTemplate = str_replace('{{otp}}', $otp, $otpEmailTemplate);
-
-            $phpmailer->Body = $otpEmailTemplate;
-
-            if (!$phpmailer->send()) {
-                echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+            if (($name == "") || ($email == "") || !password_verify($cpass, $cHashedPassword)) {
+                $error[] = 'Registration Failed. Please recheck your entered details.';
             } else {
-                echo 'OTP sent successfully! Please check your inbox.';
+                // OTP PART STARTS HERE
+                $otp = mt_rand(100000, 999999); // 6-digit OTP
+                date_default_timezone_set('Asia/Kolkata');
+                $otp_expiry = date('Y-m-d H:i:s', strtotime('+10 minutes'));
 
-                $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
-                mysqli_query($conn, $insertOtpQuery);
+                $phpmailer = new PHPMailer();
+                $phpmailer->isSMTP();
+                $phpmailer->Host = 'smtp.gmail.com';
+                $phpmailer->SMTPAuth = true;
+                $phpmailer->Port = 2525;
+                $phpmailer->Username = 'matrimonydbms@gmail.com';
+                $phpmailer->Password = 'jotbnkrvqpkugzcv';
+                // $phpmailer->SMTPSecure = 'tls';
+                $phpmailer->SMTPSecure = 'ssl';
+                // $phpmailer->Port = 587;
+                $phpmailer->Port = 465;
+                $phpmailer->setFrom('matrimonydbms@gmail.com', 'Matrimony Project'); // (EMAIL, NAME)
+                $phpmailer->addAddress($email, $name);
+                $phpmailer->Subject = 'Here\'s your OTP!';
+                $phpmailer->isHTML(true);
 
-                $_SESSION['name'] = $name;
-                $_SESSION['hashedPassword'] = $hashedPassword;
-                $_SESSION['email'] = $email;
-                header('location:verify-otp.php');
+                // fetchin the template
+                $otpEmailTemplate = file_get_contents('./otp/otp-mail-template.php');
+                $otpEmailTemplate = str_replace('{{name}}', $name, $otpEmailTemplate);
+                $otpEmailTemplate = str_replace('{{otp}}', $otp, $otpEmailTemplate);
+
+                $phpmailer->Body = $otpEmailTemplate;
+
+                if (!$phpmailer->send()) {
+                    echo 'Mailer Error: ' . $phpmailer->ErrorInfo;
+                } else {
+                    echo 'OTP sent successfully! Please check your inbox.';
+
+                    $insertOtpQuery = "INSERT INTO `otp_data` (user_email, otp_code, otp_expiry) VALUES ('$email', '$otp', '$otp_expiry')";
+                    mysqli_query($conn, $insertOtpQuery);
+
+                    $_SESSION['name'] = $name;
+                    $_SESSION['hashedPassword'] = $hashedPassword;
+                    $_SESSION['email'] = $email;
+                    header('location:verify-otp.php');
+                }
             }
         }
+    }else{
+        $error[] = 'Please select a strong password!(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters';
     }
 }
 ?>

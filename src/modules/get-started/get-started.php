@@ -26,7 +26,7 @@ if (mysqli_num_rows($userexists) > 0) {
             $mstatus = $_POST['marital'];
             $gender = $_POST['gender'];
             $religion = $_POST['religion'];
-            $caste = $_POST['caste'];
+        
 
             // CALC AGE FROM BIRTH DATE
             $birthDate = new DateTime($dob);

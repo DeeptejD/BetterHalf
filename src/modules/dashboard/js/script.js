@@ -37,6 +37,8 @@ function editBio() {
     document.getElementById("edit-bio-btn-div2").style.display = "none";
 }
 
+
+
 function saveBio() {
     const newBio = document.getElementById("bioEdit").value;
 
