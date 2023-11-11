@@ -26,7 +26,7 @@ if (mysqli_num_rows($userexists) > 0) {
             $mstatus = $_POST['marital'];
             $gender = $_POST['gender'];
             $religion = $_POST['religion'];
-            $caste = $_POST['caste'];
+            // $caste = $_POST['caste'];
 
             // CALC AGE FROM BIRTH DATE
             $birthDate = new DateTime($dob);
@@ -75,14 +75,14 @@ if (mysqli_num_rows($userexists) > 0) {
 
                         $pdo = new PDO("mysql:host=localhost;dbname=loginpage", "root", "");
 
-                        $insertquery = $pdo->prepare("INSERT INTO `details` (user_id, DOB, m_status, gender, Religion, Caste, Age, imgurl, bio, user_email, EI, SN, TF, JP) VALUES (:userid, :dob, :mstatus, :gender, :religion, :caste, :age, :img_upload_path, :bio, :user_email, :EI, :SN, :TF, :JP)");
+                        $insertquery = $pdo->prepare("INSERT INTO `details` (user_id, DOB, m_status, gender, Religion, Age, imgurl, bio, user_email, EI, SN, TF, JP) VALUES (:userid, :dob, :mstatus, :gender, :religion, :age, :img_upload_path, :bio, :user_email, :EI, :SN, :TF, :JP)");
 
                         $insertquery->bindParam(':userid', $userid);
                         $insertquery->bindParam(':dob', $dob);
                         $insertquery->bindParam(':mstatus', $mstatus);
                         $insertquery->bindParam(':gender', $gender);
                         $insertquery->bindParam(':religion', $religion);
-                        $insertquery->bindParam(':caste', $caste);
+                        // $insertquery->bindParam(':caste', $caste);
                         $insertquery->bindParam(':age', $age);
                         $insertquery->bindParam(':img_upload_path', $img_upload_path);
                         $insertquery->bindParam(':bio', $bio);

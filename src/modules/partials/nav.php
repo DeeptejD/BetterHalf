@@ -23,7 +23,6 @@ if (isset($_POST['logout']))
 
         .font-semibold {
             font-weight: 600;
-            /* Adjust the weight as needed */
         }
     </style>
 

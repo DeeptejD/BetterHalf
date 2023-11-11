@@ -80,7 +80,7 @@ $user_name = $register_rows['user_name'];
                     <!-- to show the pfp -->
                     <div class="flex w-full flex-row items-center justify-center p-16 pb-10">
                         <div class="rounded-xl shadow-2xl bg-center bg-cover bg-gradient-to-t from-opacity-100 to-transparent">
-                            <img src="<?php echo $profile_picture; ?>" alt="" class="rounded-xl shadow-2xl h-48 w-48 object-cover">
+                            <img src="<?php echo $profile_picture; ?>" alt="" class="rounded-xl shadow-2xl h-52 w-52 object-cover">
                         </div>
                     </div>
 

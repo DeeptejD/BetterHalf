@@ -8,28 +8,14 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="../../images/OG-images/favicon.ico" type="image/x-icon">
-    
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <!-- <div>
-        <div class="form">
-            <h1>Verify OTP</h1>
-            <form action="verify-otp-process.php" method="POST">
-                <div class="nameinput">
-                        Enter the OTP sent to your email
-                    <br>
-                    <input type="text" id="otp" name="otp" required>
-                </div>
-                <button id="sbmitbtn" type="submit">Verify OTP</button>
-            </form>
-        </div>
-    </div> -->
-
-    <div class="bg-cover bg-center overflow-hidden h-screen w-screen " style="background-image: url('../../images/dashboard/background-2.jpg');">
+    <div class="bg-cover bg-center overflow-hidden h-screen w-screen " style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="min-h-screen flex items-center justify-center shadow-2xl">
             <div class="h-screen w-screen py-11 px-52">
                 <div class="bg-gray-200 bg-opacity-25 bg-blur rounded-xl flex flex-row h-full w-full " style="backdrop-filter: blur(8px);">
