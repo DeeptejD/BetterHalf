@@ -40,7 +40,7 @@
 
 
         <!-- hero -->
-        <div class="w-full h-screen object-center bg-cover flex flex-col" style="background-image: url(./hero.jpg);">
+        <div class="w-full h-screen object-center bg-cover flex flex-col" style="background-image: url(./images/hero.jpg);">
             <!-- nav -->
             <div class="z-10 text-lg w-full fixed bg-opacity-50 backdrop-blur-2xl transition-all duration-300 h-20 rounded-b-xl border-2 border-t-0 border-gray-200  flex flex-row justify-between text-gray-950  items-center px-11">
                 <!-- logo -->
@@ -77,11 +77,11 @@
             <div class="flex flex-row w-full h-full space-x-2">
                 <div class="w-1/2 h-full flex flex-col  space-y-4 p-20 px-20 pr-10 items-center justify-center">
                     <div class="w-full h-full hover:backdrop-blur-2xl rounded-2xl "><div></div></div>
-                    <div class=" w-full rounded-2xl bg-cover bg-center mb-11" style="height: 400px; background-image: url(./c1.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
-                    <div class=" w-full rounded-2xl bg-cover bg-center" style="height: 400px; background-image: url(./c2.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
+                    <div class=" w-full rounded-2xl bg-cover bg-center mb-11" style="height: 400px; background-image: url(./images/c1.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
+                    <div class=" w-full rounded-2xl bg-cover bg-center" style="height: 400px; background-image: url(./images/c2.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
                 </div>
                 <div class="w-1/2 min-h-screen flex flex-col  space-y-4 p-6 items-center justify-center px-20 pl-10">
-                    <div class=" w-full rounded-2xl bg-cover bg-center" style="height: 400px; background-image: url(./c3.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
+                    <div class=" w-full rounded-2xl bg-cover bg-center" style="height: 400px; background-image: url(./images/c3.jpg);"><div class="w-full h-full rounded-2xl transition-all duration-500 hover:backdrop-blur-2xl"></div></div>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
         <div class="w-full h-screen items-center justify-center py-32 px-16">
             <div class="flex flex-row space-x-11 w-full h-full">
                 <div class="w-1/3 h-full hover:w-5/6 transition-all duration-300 flex-flex-col shadow-2xl rounded-2xl">
-                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('cal.png');">
+                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('./images/cal.png');">
                         <div class="h-1/2 group-hover:h-full bg-cover bg-center rounded-t-2xl transition-all duration-300"></div>
                         <!-- <div class="flex grow bg-cover bg-center rounded-b-2xl bg-opacity-20 backdrop-blur-2xl group-hover:w-0 transition-all duration-300"></div> -->
                     </div>
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="w-1/3 h-full hover:w-5/6 transition-all duration-300 flex-flex-col shadow-2xl rounded-2xl">
-                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('chat.png');">
+                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('./images/chat.png');">
                         <div class="h-1/2 group-hover:h-full bg-cover bg-center rounded-t-2xl transition-all duration-300"></div>
                         <!-- <div class="flex grow bg-cover bg-center rounded-b-2xl bg-opacity-20 backdrop-blur-2xl group-hover:w-0 transition-all duration-300"></div> -->
                     </div>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="w-1/3 h-full hover:w-5/6 transition-all duration-300 flex-flex-col shadow-2xl rounded-2xl">
-                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('map.png');">
+                    <div class="w-full hover:w-full h-full rounded-2xl border-1 border-gray-600 flex flex-col group transition-all duration-300 bg-cover bg-center" style="background-image: url('./images/map.png');">
                         <div class="h-1/2 group-hover:h-full bg-cover bg-center rounded-t-2xl transition-all duration-300"></div>
                         <!-- <div class="flex grow bg-cover bg-center rounded-b-2xl bg-opacity-20 backdrop-blur-2xl group-hover:w-0 transition-all duration-300"></div> -->
                     </div>
