@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>OTP Verification</title>
 
-    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../../images/OG-images/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../build/css/tailwind.css">
 </head>
 

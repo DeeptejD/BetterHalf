@@ -81,31 +81,27 @@ if (isset($_POST['submit'])) {
 <head>
     <?php include '../partials/head-content.php'; ?>
     <title>Register</title>
-    <link rel="icon" type="image/x-icon" href="../../images/OG-images/logo.png">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../../images/OG-images/favicon.ico" type="image/x-icon">
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <div class="bg-cover bg-center md:overflow-hidden h-full md:h-screen w-screen flex flex-col md:px-5"
-        style="background-image: url('../../images/dashboard/background.jpg');">
+    <div class="bg-cover bg-center md:overflow-hidden h-full md:h-screen w-screen flex flex-col md:px-5" style="background-image: url('../../images/dashboard/background.jpg');">
         <div class="m-4 mb-0">
-            <nav class="w-full h-12 rounded-full p-2 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-2xl"
-                style="backdrop-filter: blur(8px);">
-                <img src="../../images/OG-images/logo.png" class="h-full w-38 pl-8">
+            <nav class="w-full h-fit rounded-full p-2 bg-gray-100 flex flex-row justify-between items-center bg-opacity-25 shadow-2xl" style="backdrop-filter: blur(8px);">
+                <!-- <img src="../../images/OG-images/logo.png" class="h-full w-38 pl-8"> -->
+                <img src="../../images/OG-images/horizontalnoBG.png" alt="BetterHalf" class="w-36 ">
 
-                <div class=""><a href="login.php"
-                        class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
+                <div class=""><a href="login.php" class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
                         In</a></div>
             </nav>
         </div>
-        <div class="flex-grow bg-white m-4 rounded-xl rounded-t-xl flex flex-col md:flex-row bg-opacity-25 shadow-xl"
-            style="backdrop-filter: blur(8px);">
+        <div class="flex-grow bg-white m-4 rounded-xl rounded-t-xl flex flex-col md:flex-row bg-opacity-25 shadow-xl" style="backdrop-filter: blur(8px);">
             <div class="bg-gray-900 rounded-t-xl md:rounded-l-xl w-full md:w-1/3 h-full overflow-hidden">
-                <img src="../../images/login/hero-gif.gif" alt=""
-                    class="hidden md:block object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
-                <img src="../../images/login/hero-mobile.gif" alt=""
-                    class="md:hidden block object-cover rounded-t-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img src="../../images/login/hero-gif.gif" alt="" class="hidden md:block object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img src="../../images/login/hero-mobile.gif" alt="" class="md:hidden block object-cover rounded-t-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
             </div>
             <div class="flex-grow rounded-r-xl md:ml-5 p-5 flex flex-col justify-center items-center">
                 <form action="register.php" method="POST" class="w-full py-3 px-2">
@@ -115,36 +111,29 @@ if (isset($_POST['submit'])) {
                     if (isset($error)) {
                         foreach ($error as $error) {
                             echo '<span color="white" class="error-msg">' . $error . '</span>';
-                        }
-                        ;
-                    }
-                    ;
+                        };
+                    };
 
                     ?>
                     <div class="pt-2">
                         <label for="name" class="text-white text-lg font-semibold shadow-2xl pl-2">Name</label>
-                        <input type="text" placeholder="Enter your full name" name="username" id="name"
-                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
+                        <input type="text" placeholder="Enter your full name" name="username" id="name" class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="email" class="text-white text-lg font-semibold shadow-2xl pl-2">Email</label>
-                        <input type="emai" placeholder="johndoe@example.com" name="email" id="email"
-                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
+                        <input type="emai" placeholder="johndoe@example.com" name="email" id="email" class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
-                        <input type="password" name="password" id="pass" placeholder="Min 8 characters"
-                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
+                        <input type="password" name="password" id="pass" placeholder="Min 8 characters" class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="pt-2">
                         <label for="cpassword" class="text-white text-lg font-semibold shadow-2xl pl-2">Confirm
                             Password</label>
-                        <input type="password" placeholder="* * * * * * * *" name="cpassword" id="cnfrm-pass"
-                            class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
+                        <input type="password" placeholder="* * * * * * * *" name="cpassword" id="cnfrm-pass" class="w-full rounded-2xl shadow-2xl bg-white opacity-50 p-5  focus:outline-none">
                     </div>
                     <div class="flex flex-row justify-end pt-11">
-                        <input type="submit" name="submit" id="submit"
-                            class="md:w-1/5 w-full shadow-2xl text-center p-5 h-full rounded-xl bg-lime-100 hover:bg-lime-100 active:bg-lime-200  active:shadow-inner font-semibold transition transform duration-500 hover:scale-90 active:scale-80 focus:outline-none" />
+                        <input type="submit" name="submit" id="submit" class="md:w-1/5 w-full shadow-2xl text-center p-5 h-full rounded-xl bg-lime-100 hover:bg-lime-100 active:bg-[#ec679e]   active:shadow-inner font-semibold transition transform duration-500 hover:scale-90 active:scale-80 focus:outline-none" />
                     </div>
                 </form>
             </div>
@@ -152,7 +141,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        document.getElementById("submit").addEventListener("click", function () {
+        document.getElementById("submit").addEventListener("click", function() {
             document.getElementById("name").style.border = "none";
             document.getElementById("email").style.border = "none";
             document.getElementById("pass").style.border = "none";
