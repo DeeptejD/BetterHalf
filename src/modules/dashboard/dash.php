@@ -81,7 +81,7 @@ $profile_picture = $detail_rows['imgurl'];
         <div class="col-span-9 row-span-3 pr-4 rounded-xl">
           <div class="flex flex-row w-full h-full bg-gray-950 bg-opacity-20 shadow-2xl rounded-xl p-4 backdrop-blur-2xl">
             <div class="w-full h-full rounded-xl flex flex-row space-x-4">
-              <div class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
+              <div id="pfpDisplay" class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
                 <img src="<?php echo $pfp; ?>" alt="Profile picture" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
               <div class="w-2/3 h-full rounded-xl flex flex-col space-y-4">
@@ -104,8 +104,14 @@ $profile_picture = $detail_rows['imgurl'];
                     </div>
                   </div>
                   <div class="flex flex-row justify-center mr-5 bg-opacity-0" id="edit-bio-btn-div2">
-                    <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit</button></div>
+                    <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit bio</button></div><br>
                   </div>
+                  <div class="flex flex-row justify-center mr-5 bg-opacity-0" id="edit-pfp-btn-div2">
+                  <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-pfp-btn-div">
+                    <button id="editpfpButton" class="" onclick="changepfp()">Edit profile pic</button>
+                  </div>
+                  </div>
+
 
                   <!-- Editable text area, hidden initially -->
                   <div class="flex-col items-center hidden justify-center w-full h-full" id="edit-bio-flex">
@@ -115,7 +121,6 @@ $profile_picture = $detail_rows['imgurl'];
                     <div class="p-4 py-2 mt-3 bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl italic text-gray-950 w-fit">
                       <button id="saveBioButton" class="hidden h-1/4" onclick="saveBio()">Save</button>
                     </div>
-
                   </div>
                 </div>
               </div>
