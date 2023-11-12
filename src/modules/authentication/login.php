@@ -61,7 +61,9 @@ if (isset($_POST['submit'])) {
     <!-- this right here is the nav -->
     <div class="m-4 mb-0">
       <nav class="w-full h-fit rounded-full md:p-2 px-11 bg-gray-100 flex flex-row justify-between bg-opacity-25 shadow-xl" style="backdrop-filter: blur(8px);">
-        <img src="../../images/OG-images/horizontalnoBG.png" class=" w-36">
+        <a href="../../../index.html">
+          <img src="../../images/OG-images/horizontalnoBG.png" class=" w-36">
+        </a>
         <a href=" #" class=" md:hidden m-2 text-semibold flex justify-center items-center font-semibold pl-6">Logo</a>
         <div class="flex flex-row space-x-4">
           <a href="register.php" class=" m-2 text-semibold flex justify-center items-center font-semibold pr-6">Sign

@@ -68,6 +68,21 @@ $profile_picture = $detail_rows['imgurl'];
   <link rel="icon" type="image/x-icon" href="../../images/dashboard/favicon.ico">
 
   <link rel="stylesheet" href="./css/styles.css">
+
+  <style>
+    * {
+      font-family: 'Gentium Book Plus', serif;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -87,7 +102,7 @@ $profile_picture = $detail_rows['imgurl'];
               <div class="w-2/3 h-full rounded-xl flex flex-col space-y-4">
 
                 <!-- displayed the name of the user logged in with the greeting -->
-                <div class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-1/3 rounded-xl flex justify-center items-center backdrop-blur-3xl">
+                <div class="bg-gray-950 bg-opacity-20 text-white p-2 w-full h-1/3 scrollbar-hide rounded-xl flex justify-center items-center backdrop-blur-3xl">
                   <h1 class="font-sans ont-semibold text-4xl text-center">Hi!
                     <span class="font-semibold">
                       <?php echo $name; ?>
@@ -96,20 +111,22 @@ $profile_picture = $detail_rows['imgurl'];
                 </div>
 
                 <!-- Display the biodata of the currently logged in user -->
-                <div class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl">
+                <div class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl overflow-y-auto scrollbar-hide">
                   <!-- Display bio, but hide it initially -->
-                  <div id="bioDisplay" class="text-center flex flex-col space-y-2 items-center justify-center overflow-y-auto scrollbar-hide">
-                    <div class="text-center text-2xl italic font-base">
+                  <div id="bioDisplay" class="text-center flex flex-col space-y-2 items-center justify-center scrollbar-hide overflow-y-auto scrollbar-hide">
+                    <div class="text-center text-2xl italic font-base overflow-y-auto">
                       <?php echo $biodat; ?>
                     </div>
                   </div>
-                  <div class="flex flex-row justify-center mr-5 bg-opacity-0" id="edit-bio-btn-div2">
-                    <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit bio</button></div><br>
-                  </div>
-                  <div class="flex flex-row justify-center mr-5 bg-opacity-0" id="edit-pfp-btn-div2">
-                  <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-1/2" id="edit-pfp-btn-div">
-                    <button id="editpfpButton" class="" onclick="changepfp()">Edit profile pic</button>
-                  </div>
+                  <div class="w-full h-fit flex flex-row space-x-2">
+                    <div class="justify-center mr-5 w-1/2 bg-opacity-0" id="edit-bio-btn-div2">
+                      <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-full" id="edit-bio-btn-div"><button id="editBioButton" class="" onclick="editBio()">Edit bio</button></div><br>
+                    </div>
+                    <div class="justify-center mr-5 w-1/2 bg-opacity-0" id="edit-pfp-btn-div2">
+                      <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-full" id="edit-pfp-btn-div">
+                        <button id="editpfpButton" class="" onclick="changepfp()">Edit profile pic</button>
+                      </div>
+                    </div>
                   </div>
 
 

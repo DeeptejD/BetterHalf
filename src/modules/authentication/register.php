@@ -9,42 +9,43 @@ require './phpMailer/src/Exception.php';
 require './phpmailer/src/PHPMailer.php';
 require './phpmailer/src/SMTP.php';
 
-function isStrongPassword($password) {
+function isStrongPassword($password)
+{
     // Minimum length of 8 characters
     if (strlen($password) < 8) {
-      return false;
+        return false;
     }
-  
+
     // Should contain at least one uppercase letter
     if (!preg_match('/[A-Z]/', $password)) {
-      return false;
+        return false;
     }
-  
+
     // Should contain at least one lowercase letter
     if (!preg_match('/[a-z]/', $password)) {
-      return false;
+        return false;
     }
-  
+
     // Should contain at least one digit
     if (!preg_match('/\d/', $password)) {
-      return false;
+        return false;
     }
-    
+
     // Should contain at least one special character
     if (!preg_match('/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/', $password)) {
-      return false;
+        return false;
     }
-  
+
     // If all criteria are met, return true
     return true;
-  }
+}
 
 if (isset($_POST['submit'])) {
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $enteredPassword = $_POST['password'];
-    
-    if(isStrongPassword($enteredPassword)){
+
+    if (isStrongPassword($enteredPassword)) {
         $hashedPassword = password_hash($enteredPassword, PASSWORD_DEFAULT);
         $cpass = $_POST['cpassword'];
         $cHashedPassword = password_hash($cpass, PASSWORD_DEFAULT);
@@ -103,7 +104,7 @@ if (isset($_POST['submit'])) {
                 }
             }
         }
-    }else{
+    } else {
         $error[] = 'Please select a strong password!(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters';
     }
 }
@@ -126,7 +127,9 @@ if (isset($_POST['submit'])) {
         <div class="m-4 mb-0">
             <nav class="w-full h-fit rounded-full p-2 bg-gray-100 flex flex-row justify-between items-center bg-opacity-25 shadow-2xl" style="backdrop-filter: blur(8px);">
                 <!-- <img src="../../images/OG-images/logo.png" class="h-full w-38 pl-8"> -->
-                <img src="../../images/OG-images/horizontalnoBG.png" alt="BetterHalf" class="w-36 ">
+                <a href="../../../index.html">
+                    <img src="../../images/OG-images/horizontalnoBG.png" class=" w-36">
+                </a>
 
                 <div class=""><a href="login.php" class="m-1 text-semibold text-white flex justify-center items-center font-semibold mr-6 rounded-xl hover:shadow-2xl">Log
                         In</a></div>
