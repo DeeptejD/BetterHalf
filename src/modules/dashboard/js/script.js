@@ -38,6 +38,48 @@ function editBio() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the modal and button elements
+    var modal = document.getElementById('pfpModal');
+    var editPfpButton = document.getElementById('editpfpButton');
+    var closeModalButton = document.getElementById('closeModalButton');
+
+    editPfpButton.onclick = function () {
+        modal.style.display = 'block';
+    };
+
+    // When the user clicks on the close button, close the modal
+    closeModalButton.onclick = function () {
+        modal.style.display = 'none';
+    };
+
+    // When the user clicks outside the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+});
+
+// Function to handle the image upload
+function uploadNewPfp() {
+    var uploadForm = document.getElementById('pfpUploadForm');
+    var pfpInput = document.getElementById('pfpInput');
+
+    var formData = new FormData(uploadForm);
+
+    console.log(formData);
+
+    // Add your AJAX or form submission logic here
+    // Example using fetch and FormData:
+   
+}
+
+// Function to close the modal
+function closeModal() {
+    var modal = document.getElementById('pfpModal');
+    modal.style.display = 'none';
+}
 
 function saveBio() {
     const newBio = document.getElementById("bioEdit").value;

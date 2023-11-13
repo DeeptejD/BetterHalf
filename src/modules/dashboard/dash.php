@@ -124,8 +124,9 @@ $profile_picture = $detail_rows['imgurl'];
                     </div>
                     <div class="justify-center mr-5 w-1/2 bg-opacity-0" id="edit-pfp-btn-div2">
                       <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-full" id="edit-pfp-btn-div">
-                        <button id="editpfpButton" class="" onclick="changepfp()">Edit profile pic</button>
+                        <button id="editpfpButton" class="" onclick="uploadNewPfp()">Edit profile pic</button>
                       </div>
+                      
                     </div>
                   </div>
 
@@ -144,8 +145,22 @@ $profile_picture = $detail_rows['imgurl'];
             </div>
           </div>
         </div>
+        <!-- Add this modal HTML code with Tailwind CSS classes -->
+        <!-- Add this modal HTML code with Tailwind CSS classes -->
+<div id="pfpModal" class="modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-70 flex items-center justify-center">
+    <div class="modal-content bg-white w-96 p-4 rounded-lg">
+        <span class="close text-gray-600 text-xl cursor-pointer" id="closeModalButton" onclick="closeModal()">&times;</span>
+        <h2 class="text-2xl font-semibold mb-4">Upload New Profile Picture</h2>
+        <form id="pfpUploadForm" enctype="multipart/form-data">
+            <input type="file" name="pfp" id="pfpInput" accept="image/*" class="mb-2 p-2 border rounded w-full">
+            <button type="button" onclick="uploadNewPfp()" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none">Upload</button>
+        </form>
+    </div>
+</div>
 
-        <!-- 3 BLOCKS -->
+
+
+        <!-- 3 BLOCKS --> 
         <div class="flex flex-row gap-4 pb-0 pr-4 col-span-9 row-span-4 row-start-4">
 
           <!-- FIRST BLOCK -->
