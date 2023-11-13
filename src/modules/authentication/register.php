@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
             }
         }
     } else {
-        $error[] = 'Please select a strong password!(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters';
+        $error[] = 'Please select a strong password!\n(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters';
     }
 }
 ?>
