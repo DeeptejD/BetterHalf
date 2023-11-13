@@ -45,42 +45,42 @@ if (isset($_POST['uploadpfp'])) {
 
   if ($error === 0) {
     if ($imgsize > 3000000) {
-        echo '<script> 
+      echo '<script> 
             window.location.href = "get-started.php";
             alert("Please insert a file with smaller size");
         </script>';
     } else {
-        $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
-        $img_ex_lc = strtolower($img_ex);
-        $allowed_exs = array("jpg", "jpeg", "png");
-        if (in_array($img_ex_lc, $allowed_exs)) {
-            $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
-            $img_upload_path = "../../../uploads/" . $new_img_name;
-            move_uploaded_file($tmpname, $img_upload_path);
+      $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+      $img_ex_lc = strtolower($img_ex);
+      $allowed_exs = array("jpg", "jpeg", "png");
+      if (in_array($img_ex_lc, $allowed_exs)) {
+        $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
+        $img_upload_path = "../../../uploads/" . $new_img_name;
+        move_uploaded_file($tmpname, $img_upload_path);
 
-            $pdo = new PDO("mysql:host=localhost;dbname=loginpage", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=loginpage", "root", "");
 
-            $insertquery = $pdo->prepare("INSERT INTO `details` (imgurl) VALUES (:img_upload_path) ");
-            $updatequery = "UPDATE `details`
+        $insertquery = $pdo->prepare("INSERT INTO `details` (imgurl) VALUES (:img_upload_path) ");
+        $updatequery = "UPDATE `details`
                             SET imgurl = '$img_upload_path'
                             WHERE user_id = $user_id";
-            mysqli_query($conn, $updatequery);
+        mysqli_query($conn, $updatequery);
 
-            header("location: ../dashboard/dash.php");
-        } else {
-            echo "incorrect file type";
-            echo '<script> 
+        header("location: ../dashboard/dash.php");
+      } else {
+        echo "incorrect file type";
+        echo '<script> 
             window.location.href = "dash.php";
             alert("Please insert a valid file type!");
         </script>';
-        }
+      }
     }
-} else {
+  } else {
     echo '<script> 
         window.location.href = "";
         alert("unknown error");
     </script>';
-}
+  }
 }
 ?>
 
@@ -145,8 +145,9 @@ if (isset($_POST['uploadpfp'])) {
           <div class="flex flex-row w-full h-full bg-gray-950 bg-opacity-20 shadow-2xl rounded-xl p-4 backdrop-blur-2xl">
             <div class="w-full h-full rounded-xl flex flex-row space-x-4">
               <div id="pfpDisplay" class="w-1/3 h-full bg-gray-300 rounded-xl overflow-hidden shadow-xl">
-                <img src="<?php echo $pfp; ?>" alt="Profile picture" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
+                <img id="pfp" src="<?php echo $pfp; ?>" alt="Profile picture" class="object-cover rounded-l-xl shadow-xl h-full w-full object-center transition transform duration-500 hover:scale-110  ">
               </div>
+
               <div class="w-2/3 h-full rounded-xl flex flex-col space-y-4">
 
                 <!-- displayed the name of the user logged in with the greeting -->
@@ -174,7 +175,7 @@ if (isset($_POST['uploadpfp'])) {
                       <div class="p-4 mt-2 text-center bg-gray-300 font-semibold bg-opacity-50 backdrop-blur-2xl rounded-2xl shadow-2xl text-gray-950 w-full" id="edit-pfp-btn-div">
                         <button id="editpfpButton" class="" onclick="uploadNewPfp()">Edit profile pic</button>
                       </div>
-                      
+
                     </div>
                   </div>
 
@@ -194,22 +195,12 @@ if (isset($_POST['uploadpfp'])) {
           </div>
         </div>
         <!-- Add this modal HTML code with Tailwind CSS classes -->
-        <!-- Add this modal HTML code with Tailwind CSS classes -->
-<div id="pfpModal" class="modal hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-70 flex items-center justify-center">
-    <div class="modal-content bg-white w-96 p-4 rounded-lg">
-        <span class="close text-gray-600 text-xl cursor-pointer" id="closeModalButton" onclick="closeModal()">&times;</span>
-        <h2 class="text-2xl font-semibold mb-4">Upload New Profile Picture</h2>
-        <form id="pfpUploadForm" enctype="multipart/form-data" method="post">
-            <input type="file" name="pfp" id="pfpInput" accept="image/*" class="mb-2 p-2 border rounded w-full">
-            <img src="">
-            <input type="submit" name="uploadpfp" value="upload" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none">
-        </form>
-    </div>
-</div>
 
 
 
-        <!-- 3 BLOCKS --> 
+
+
+        <!-- 3 BLOCKS -->
         <div class="flex flex-row gap-4 pb-0 pr-4 col-span-9 row-span-4 row-start-4">
 
           <!-- FIRST BLOCK -->
@@ -238,11 +229,28 @@ if (isset($_POST['uploadpfp'])) {
             <?php
             include './blocks/block3.php';
             ?>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div id="pfpModal" class="modal hidden fixed w-1/3 h-full inset-0 z-50 overflow-auto  bg-opacity-70 flex flex-col items-center justify-center">
+    <div>
+      <div class="modal-content bg-gray-950 bg-opacity-10 backdrop-blur-2xl shadow-2xl max-w-md p-4 rounded-lg">
+        <span class="close text-gray-600 text-xl cursor-pointer absolute top-2 right-2" id="closeModalButton" onclick="closeModal()">&times;</span>
+        <h2 class="text-2xl font-semibold mb-4">Upload New Profile Picture</h2>
+        <form id="pfpUploadForm" enctype="multipart/form-data" method="post">
+          <input type="file" name="pfp" id="pfpInput" accept="image/*" class="mb-2 p-2 border rounded w-full">
+          <!-- <img src="" alt="Preview" class="mb-2 w-full rounded"> -->
+          <input type="submit" name="uploadpfp" value="Upload" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 
   <!-- SCRIPT TO HANDLE ACCEPT DECLINES-->
   <script src="./js/script.js"></script>

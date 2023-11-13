@@ -202,11 +202,11 @@ $user_name = $register_rows['user_name'];
                             echo '</div>';
                         }
                         ?>
-                        <div>
+                        <!-- <div>
                             <button class="bg-gray-500 shadow-2xl text-white hover:px-10 transition-all text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl 5xl:text-5xl 6xl:text-6xl h-16 text-center font-semibold font-sans p-8 px-6 pt-4 pb-4 rounded-xl w-full hover:bg-black  hover:text-gray-100  ease-in-out hover:shadow-2xl mb-14 bg-opacity-50 transform duration-300 hover:scale-105">
                                 Add Friend
                             </button>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
