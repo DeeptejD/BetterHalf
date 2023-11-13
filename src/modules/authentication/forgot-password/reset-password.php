@@ -52,7 +52,6 @@ if (isset($_GET['token'])) {
                     header('Location: ../login.php');
                     exit();
                 }else{
-                    $error[] = '';
                     echo "  <script>
                                 alert('Please select a strong password!\n(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters');
                             </script>";
@@ -104,8 +103,6 @@ if (isset($_GET['token'])) {
                     <h1 class="text-gray-100  text-2xl md:text-3xl font-bold md:pb-3 md:mb-6 pb-1 mb-2">
                         Enter your new password</h1>
                     <div class="pt-2">
-                        <label for="new_password"
-                            class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
                             <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
                         <input type="password" name="new_password" id="new_password"
                             placeholder="Enter your new password" required
