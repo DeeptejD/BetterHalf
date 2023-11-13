@@ -1,23 +1,70 @@
 <?php
 include '../../config.php';
 
+function isStrongPassword($password)
+{
+    // Minimum length of 8 characters
+    if (strlen($password) < 8) {
+        return false;
+    }
+
+    // Should contain at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+        return false;
+    }
+
+    // Should contain at least one lowercase letter
+    if (!preg_match('/[a-z]/', $password)) {
+        return false;
+    }
+
+    // Should contain at least one digit
+    if (!preg_match('/\d/', $password)) {
+        return false;
+    }
+
+    // Should contain at least one special character
+    if (!preg_match('/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/', $password)) {
+        return false;
+    }
+
+    // If all criteria are met, return true
+    return true;
+}
+
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
+    if(isset($_POST['submit'])){
+        if($_POST['new_password']==$_POST['new_cpassword']){
+            if (isset($_POST['new_password'])) {
+                if(isStrongPassword($_POST['new_password'])){
+                    $newPassword = $_POST['new_password'];
+                    $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            
+                    $updatePasswordQuery = "UPDATE `register` SET user_password = '$newPassword' WHERE user_email = (SELECT user_email FROM password_reset_tokens WHERE token = '$token' AND otp_expiry > NOW())";
+                    mysqli_query($conn, $updatePasswordQuery);
+            
+                    $deleteTokenQuery = "DELETE FROM password_reset_tokens WHERE token = '$token'";
+                    mysqli_query($conn, $deleteTokenQuery);
+            
+                    echo 'Password reset successfully!';
+            
+                    header('Location: ../login.php');
+                    exit();
+                }else{
+                    $error[] = '';
+                    echo "  <script>
+                                alert('Please select a strong password!\n(strong password should have atleast 1 symbol, 1 number, 1 uppercase, 1 lowercase characters');
+                            </script>";
+    
+                }
+            }
+        }else{
+            echo "<script>
+            alert('Your passwords do not match!');
+            </script>";
+        }
 
-    if (isset($_POST['new_password'])) {
-        $newPassword = $_POST['new_password'];
-        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-        $updatePasswordQuery = "UPDATE `register` SET user_password = '$newPassword' WHERE user_email = (SELECT user_email FROM password_reset_tokens WHERE token = '$token' AND otp_expiry > NOW())";
-        mysqli_query($conn, $updatePasswordQuery);
-
-        $deleteTokenQuery = "DELETE FROM password_reset_tokens WHERE token = '$token'";
-        mysqli_query($conn, $deleteTokenQuery);
-
-        echo 'Password reset successfully!';
-
-        header('Location: ../login.php');
-        exit();
     }
 }
 ?>
@@ -59,8 +106,14 @@ if (isset($_GET['token'])) {
                     <div class="pt-2">
                         <label for="new_password"
                             class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
+                            <label for="password" class="text-white text-lg font-semibold shadow-2xl pl-2">Password</label>
                         <input type="password" name="new_password" id="new_password"
                             placeholder="Enter your new password" required
+                            class="w-full rounded-2xl shadow-2xl bg-gray-50 p-5  focus:outline-none">
+                            <br>
+                            <label for="cpassword" class="text-white text-lg font-semibold shadow-2xl pl-2">Confirm Password</label>
+                        <input type="password" name="new_cpassword" id="new_cpassword"
+                            placeholder="Re-enter your new password" required
                             class="w-full rounded-2xl shadow-2xl bg-gray-50 p-5  focus:outline-none">
                     </div>
                     <div class="flex flex-row justify-end pt-5 md:pt-11">
