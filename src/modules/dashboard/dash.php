@@ -114,7 +114,7 @@ $profile_picture = $detail_rows['imgurl'];
                 <div class="bg-gray-950 bg-opacity-20 text-white p-4 w-full h-2/3 font-thin rounded-xl backdrop-blur-3xl overflow-y-auto scrollbar-hide">
                   <!-- Display bio, but hide it initially -->
                   <div id="bioDisplay" class="text-center flex flex-col space-y-2 items-center justify-center scrollbar-hide overflow-y-auto scrollbar-hide">
-                    <div class="text-center text-2xl italic font-base overflow-y-auto">
+                    <div class="text-center text-xl font-base overflow-y-auto">
                       <?php echo $biodat; ?>
                     </div>
                   </div>
