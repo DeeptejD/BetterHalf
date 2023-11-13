@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_email'])) {
 
 // fetching the details of the user that is current logged into be displayed on the dashboard
 $uid = $_SESSION['user_email'];
+$user_id = $_SESSION['user_id'];
 $result = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$uid'");
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $pfp = $row['imgurl'];
@@ -34,6 +35,53 @@ $details = mysqli_query($conn, "SELECT * FROM `details` WHERE user_email = '$uid
 $detail_rows = mysqli_fetch_array($details, MYSQLI_ASSOC);
 $profile_picture = $detail_rows['imgurl'];
 
+
+//pfp code
+if (isset($_POST['uploadpfp'])) {
+  $imgname = $_FILES['pfp']['name'];
+  $imgsize = $_FILES['pfp']['size'];
+  $tmpname = $_FILES['pfp']['tmp_name'];
+  $error = $_FILES['pfp']['error'];
+
+  if ($error === 0) {
+    if ($imgsize > 3000000) {
+        echo '<script> 
+            window.location.href = "get-started.php";
+            alert("Please insert a file with smaller size");
+        </script>';
+    } else {
+        $img_ex = pathinfo($imgname, PATHINFO_EXTENSION);
+        $img_ex_lc = strtolower($img_ex);
+        $allowed_exs = array("jpg", "jpeg", "png");
+        if (in_array($img_ex_lc, $allowed_exs)) {
+            $new_img_name = uniqid("IMG-", true) . "." . $img_ex_lc;
+            $img_upload_path = "../../../uploads/" . $new_img_name;
+            move_uploaded_file($tmpname, $img_upload_path);
+
+            $pdo = new PDO("mysql:host=localhost;dbname=loginpage", "root", "");
+
+            $insertquery = $pdo->prepare("INSERT INTO `details` (imgurl) VALUES (:img_upload_path) ");
+            $updatequery = "UPDATE `details`
+                            SET imgurl = '$img_upload_path'
+                            WHERE user_id = $user_id";
+            mysqli_query($conn, $updatequery);
+
+            header("location: ../dashboard/dash.php");
+        } else {
+            echo "incorrect file type";
+            echo '<script> 
+            window.location.href = "dash.php";
+            alert("Please insert a valid file type!");
+        </script>';
+        }
+    }
+} else {
+    echo '<script> 
+        window.location.href = "";
+        alert("unknown error");
+    </script>';
+}
+}
 ?>
 
 <!-- PHP ends here -->
@@ -151,9 +199,10 @@ $profile_picture = $detail_rows['imgurl'];
     <div class="modal-content bg-white w-96 p-4 rounded-lg">
         <span class="close text-gray-600 text-xl cursor-pointer" id="closeModalButton" onclick="closeModal()">&times;</span>
         <h2 class="text-2xl font-semibold mb-4">Upload New Profile Picture</h2>
-        <form id="pfpUploadForm" enctype="multipart/form-data">
+        <form id="pfpUploadForm" enctype="multipart/form-data" method="post">
             <input type="file" name="pfp" id="pfpInput" accept="image/*" class="mb-2 p-2 border rounded w-full">
-            <button type="button" onclick="uploadNewPfp()" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none">Upload</button>
+            <img src="">
+            <input type="submit" name="uploadpfp" value="upload" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 focus:outline-none">
         </form>
     </div>
 </div>
