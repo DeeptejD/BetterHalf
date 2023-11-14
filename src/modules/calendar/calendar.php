@@ -338,7 +338,6 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
         function handleSubmit(event) {
             event.preventDefault();
 
-            // Perform date validation
             const startDate = new Date(document.getElementById('startDate').value + 'T' + document.getElementById('startTime').value);
             const endDate = new Date(document.getElementById('endDate').value + 'T' + document.getElementById('endTime').value);
 

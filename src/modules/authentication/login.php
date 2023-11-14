@@ -103,6 +103,8 @@ if (isset($_POST['submit'])) {
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="sweetalert2.all.min.js"></script>
+
   <script src="index.js" async defer></script>
 </body>
 
