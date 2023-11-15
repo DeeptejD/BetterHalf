@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                 $phpmailer->SMTPSecure = 'ssl';
                 // $phpmailer->Port = 587;
                 $phpmailer->Port = 465;
-                $phpmailer->setFrom('matrimonydbms@gmail.com', 'Matrimony Project'); // (EMAIL, NAME)
+                $phpmailer->setFrom('matrimonydbms@gmail.com', 'BetterHalf'); // (EMAIL, NAME)
                 $phpmailer->addAddress($email, $name);
                 $phpmailer->Subject = 'Here\'s your OTP!';
                 $phpmailer->isHTML(true);
