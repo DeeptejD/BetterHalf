@@ -332,33 +332,6 @@ https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js
             document.getElementById("calendarbg").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
             document.getElementById("calendarbgday").style.backgroundImage = "url('../../images/calendar/" + bg[random] + "')";
         }
-
-
-        // this is to handle the date edge case shoutout to joshua
-        function handleSubmit(event) {
-            event.preventDefault();
-
-            const startDate = new Date(document.getElementById('startDate').value + 'T' + document.getElementById('startTime').value);
-            const endDate = new Date(document.getElementById('endDate').value + 'T' + document.getElementById('endTime').value);
-
-            const currentDate = new Date();
-
-            if (startDate < currentDate || endDate < startDate) {
-                // Show alert for invalid date
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Date',
-                    text: 'Please select a valid date and time.',
-                });
-                return;
-            }
-
-            // If the validation is successful, proceed with form submission
-            event.target.submit();
-        }
-
-        // Attach the validation function to the form submission
-        document.getElementById('submit').addEventListener('click', handleSubmit);
     </script>
 </body>
 
