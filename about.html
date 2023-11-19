@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>BetterHalf - Find your partner</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./src/images/OG-images/favicon.ico" type="image/x-icon">
+
+    <!-- Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,700;1,400;1,700&family=Inter:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Flowbite -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css" rel="stylesheet" />
+
+    <style>
+        * {
+            font-family: 'Gentium Book Plus', serif;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden scrollbar-hide w-screen min-h-screen">
+    <div class="w-full h-full flex flex-col">
+
+
+        <!-- hero -->
+        <div class="w-full h-screen object-center bg-cover flex flex-col"
+            style="background-image: url(./images/hero.jpg);">
+            <!-- nav -->
+            <div
+                class="z-50 text-lg w-full fixed bg-opacity-50 backdrop-blur-2xl transition-all duration-300 h-20 rounded-b-xl border-2 border-t-0 border-gray-200  flex flex-row justify-between text-gray-950  items-center px-11">
+                <!-- logo -->
+                <div>
+                    <a href="index.html"><img src="./src/images/OG-images/horizontalnoBG.png" alt="BetterHalf" class="w-48 "></a>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div
+                        class="mr-11 hover:bg-[#ec679e] hover:px-7 transition-all duration-500 p-3 rounded-md hover:text-black">
+                        About</div>
+                    <a href="./src/modules/authentication/register.php">
+                        <div
+                            class="hover:bg-[#ec679e]  hover:px-7 transition-all duration-500 p-3 rounded-md hover:text-white">
+                            Register</div>
+                    </a>
+                    <a href="./src/modules/authentication/login.php">
+                        <div
+                            class="hover:bg-[#ec679e]  hover:px-7 transition-all duration-500 p-3 rounded-md hover:text-white">
+                            Login</div>
+                    </a>
+                </div>
+            </div>
+            <div class="p-7 px-36 w-full flex-grow mt-20">
+                <div
+                    class="w-full rounded-2xl h-full border-2 border-gray-200 flex justify-center items-center bg-gray-950 bg-opacity-10 backdrop-blur-xl">
+                    <div class="flex flex-col divide-y-2 divide-gray-500 text-white px-28">
+                        <div class="text-5xl font-bold">About Us</div>
+                        <div class="text-2xl font-light"> 
+                        <br><br>
+                            Welcome to BetterHalf - where finding love is more casual hangout than serious matchmaking. We're not your typical
+                        matrimonial site; think of us as your easygoing friend with a talent for connecting people.
+                        <br><br>
+                        At BetterHalf, we keep it simple. While age and location matter, we're more interested in the fun stuff, like agreeing
+                        on pizza toppings or sharing a mutual dislike for cilantro.
+                        <br><br>
+                        BetterHalf is all about real connections without the formalities. Swipe right for a laid-back approach to finding your
+                        better half because, let's be real, love should be as uncomplicated as deciding what to order for takeout. <br> Let the
+                        matchmaking begin!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+</body>
+
+</html>
