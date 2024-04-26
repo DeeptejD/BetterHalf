@@ -6,8 +6,6 @@ $db_name = "loginpage";
 $conn = mysqli_connect('localhost', $username, $password, $db_name);
 
 
-
-
 $createregisterTableQuery = "
         CREATE TABLE IF NOT EXISTS `register` (
             `user_id` int(10) NOT NULL,
